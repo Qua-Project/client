@@ -1,1 +1,1 @@
-# client
+# Qua project client part
