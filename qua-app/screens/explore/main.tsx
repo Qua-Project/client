@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "@emotion/native";
 
-export default function StartScreen() {
+export default function MainScreen() {
   return (
     <Container>
-      <Title>OnBoarding</Title>
+      <Title>Explore Main</Title>
     </Container>
   );
 }
