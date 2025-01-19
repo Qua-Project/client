@@ -8,7 +8,7 @@ interface KakaoButtonProps {
 const KakaoButton: React.FC<KakaoButtonProps> = ({ onPress }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Text style={styles.text}>카카오로 로그인</Text>
+      <Text style={styles.text}>카카오 로그인</Text>
     </TouchableOpacity>
   );
 };
@@ -16,15 +16,13 @@ const KakaoButton: React.FC<KakaoButtonProps> = ({ onPress }) => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "#FEE500",
-    padding: 12,
-    borderRadius: 4,
+    padding: 15,
+    borderRadius: 5,
     alignItems: "center",
-    justifyContent: "center",
     marginVertical: 10,
   },
   text: {
-    color: "#000",
-    fontSize: 16,
+    color: "#000000",
     fontWeight: "bold",
   },
 });

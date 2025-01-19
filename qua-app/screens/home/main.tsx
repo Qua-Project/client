@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "@emotion/native";
-import HomeScreen from "../../components/utils/home/util/container";
 
 export default function MainScreen() {
-  return HomeScreen();
+  return (
+    <Container>
+      <Title>Home Main</Title>
+    </Container>
+  );
 }
 
 const Container = styled.View`

@@ -1,75 +1,57 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { View, StyleSheet, Alert } from "react-native";
-import KakaoButton from "../../../../utils/onBoarding/commons/KakaoButton";
-import { getAuthRequestConfig, sendCodeToBackend, getAccessToken, getUserInfo, REST_API_KEY, KAKAO_REDIRECT_URI } from "../../../../../hooks/services/kakaoServices";
-
-import { useAuthRequest } from "expo-auth-session";
+import * as WebBrowser from "expo-web-browser";
+import { useNavigation } from "@react-navigation/native";
+import { getAccessToken, getUserInfo, getLogin } from "../../../../../hooks/services/kakaoServices";
+import KakaoButton from "../../commons/KakaoButton";
 import { useUserStore } from "../../../../../hooks/stores/user";
-import { startStore } from "../../../../../hooks/stores/start";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootParamList } from "../../../../../types";
 
-const LoginContainer = () => {
-  // const authConfig = getAuthRequestConfig(clientId);
-  const { setLoggedIn } = useUserStore();
-  const { setStart } = startStore();
-  // const [request, response, promptAsync] = useAuthRequest(authConfig, {
-  //   authorizationEndpoint: "https://kauth.kakao.com/oauth/authorize",
-  // });
 
-  const clientId = REST_API_KEY
-  console.log(clientId);
-  const redirectUri = KAKAO_REDIRECT_URI;
-  const [request, response, promptAsync] = useAuthRequest(
-    {
-      clientId,
-      redirectUri,
-      responseType: "code",
-      scopes: ["profile_nickname"], // 카카오에서 필요한 권한
-    },
-    { authorizationEndpoint: "https://kauth.kakao.com/oauth/authorize" }
-  );
+const KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize";
 
-  useEffect(() => {
-    const handleAuthResponse = async () => {
-      if (response?.type === "success" && response.params.code) {
-        console.log("login success, auth code: ", response.params.code);
-        try {
-          const accessToken = await getAccessToken(response.params.code);
-          if (accessToken) {
-            const userInfo = await getUserInfo(accessToken);
-            console.log("카카오 사용자 정보:", userInfo);
+type LoginScreenNavigationProp = StackNavigationProp<RootParamList, "Login">;
 
-            setLoggedIn(true);
+const LoginScreen = () => {
+  const navigation = useNavigation<LoginScreenNavigationProp>();
+  const { setLoggedIn, setUserInfo, userInfo } = useUserStore();
+  console.log(userInfo);
 
-            //navigation.replace("Main");
-          }
-        } catch (error) {
-          console.error("카카오 로그인 처리 실패:", error);
-          Alert.alert("로그인 실패", "카카오 인증 중 문제가 발생했습니다.");
+  const handleLogin = async () => {
+    try {
+      const redirectUri = "http://localhost:8081"; // 카카오 개발자 콘솔에 등록된 Redirect URI
+      const clientId = "941454427746b572c3db886d7663f80e";
+
+      const authUrl = `${KAKAO_AUTH_URL}?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
+
+      // 카카오 로그인 페이지 열기
+      const result = await WebBrowser.openAuthSessionAsync(authUrl, redirectUri);
+
+      if (result.type === "success" && result.url) {
+        // Redirect URI에서 인가 코드 파싱
+        const code = new URL(result.url).searchParams.get("code");
+        if (code) {
+          console.log("Authorization Code:", code);
+
+          const accessToken = await getAccessToken(code);
+          const userInfo = await getUserInfo(accessToken);
+          getLogin(code);
+          console.log("User Info:", userInfo);
+          Alert.alert("로그인 성공", `환영합니다, ${userInfo.properties.nickname}님!`);
+        } else {
+          Alert.alert("로그인 실패", "인가 코드를 가져올 수 없습니다.");
         }
-        // try {
-        //   // send authorization code to BE
-        //   const backendResponse = await sendCodeToBackend(response.params.code);
-          
-        //   setLoggedIn(true);
-        //   setStart(false);
-          
-        //   // check BE JWT
-        //   console.log("로그인 성공", `JWT: ${backendResponse.token}`);
-        // } catch (error) {
-        //   console.error("로그인 실패:", error);
-        //   Alert.alert("로그인 실패", "서버와의 통신 중 오류가 발생했습니다.");
-        // }
-      }else{
-        console.error("login fail")
       }
-    };
-
-    handleAuthResponse();
-  }, [response]);
+    } catch (error) {
+      console.error("카카오 로그인 처리 실패:", error);
+      Alert.alert("로그인 실패", "카카오 로그인 중 오류가 발생했습니다.");
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <KakaoButton onPress={() => promptAsync()} />
+      <KakaoButton onPress={handleLogin} />
     </View>
   );
 };
@@ -79,8 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
   },
 });
 
-export default LoginContainer;
+export default LoginScreen;
