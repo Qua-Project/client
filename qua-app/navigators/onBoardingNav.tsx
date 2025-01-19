@@ -1,17 +1,18 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import StartScreen from "../screens/onBoarding/start";
+// navigators/onBoardingNav.tsx
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import StartScreen from '../screens/onBoarding/start';
+import LoginScreen from '../screens/onBoarding/login';
 
-const OnBoardingStack = createStackNavigator();
+const Stack = createStackNavigator();
 
-export default function OnBoardingNavigator() {
+const OnBoardingNavigator = () => {
   return (
-    <OnBoardingStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <OnBoardingStack.Screen name="start" component={StartScreen} />
-    </OnBoardingStack.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen name="Login" component={LoginScreen} />
+      {/* <Stack.Screen name="Start" component={StartScreen} /> */}
+    </Stack.Navigator>
   );
-}
+};
+
+export default OnBoardingNavigator;
