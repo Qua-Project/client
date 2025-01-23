@@ -2,18 +2,26 @@
   "expo": {
     "name": "qua-app",
     "slug": "qua-app",
+    "scheme": "qua-app",
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "extra": {
+      "backendUrl": "https://qua-app.com" ,
+      "kakaoRestApiKey": "941454427746b572c3db886d7663f80e", 
+      "kakaoRedirectUri": "http://localhost:8081/auth" 
+    },
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.qua-project.qua"
     },
     "android": {
       "adaptiveIcon": {
