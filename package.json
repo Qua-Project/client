@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@types/react": "^19.0.8",
-    "react-native-linear-gradient": "^2.8.3"
-  }
-}

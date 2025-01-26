@@ -6,7 +6,7 @@ import { getAccessToken, getUserInfo, getLogin } from "../../../../../hooks/serv
 import KakaoButton from "../../commons/login/KakaoButton";
 import { useUserStore } from "../../../../../hooks/stores/user";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootParamList } from "../../../../../types";
+import { RootParamList } from "../../../../../types/type";
 
 
 const KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize";
