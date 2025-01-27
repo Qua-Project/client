@@ -1,11 +1,10 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import {Image} from 'react-native'
 import styled from '@emotion/native';
 
 interface SkinTypeStartCardProps {
   title: string;
   description: string;
-  //svg: React.FC<SvgProps>; // SVG XML 코드 문자열
   image: any;
 }
 

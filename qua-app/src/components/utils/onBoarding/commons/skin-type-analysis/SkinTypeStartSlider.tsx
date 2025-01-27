@@ -6,7 +6,6 @@ import styled from '@emotion/native';
 
 const { width: screenWidth } = Dimensions.get('window');
 
-// 슬라이더 데이터
 const slides = [
   {
     title: '나는 어떤 피부 유형일까?',
@@ -99,7 +98,7 @@ const CardContainer = styled(LinearGradient)`
   padding: 16px;
   margin-bottom: 20px;
   max-height: 403px;
-  max-sidth: 328px;
+  max-width: 328px;
 `;
 const Dot = styled.View<{ dotColor: string }>`
   width: 5px;
@@ -119,16 +118,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 0,
   }
-  // dot: {
-  //   width: 5,
-  //   height: 5,
-  //   borderRadius: 4,
-  //   backgroundColor: '#AAAAAB',
-  //   marginHorizontal: 8,
-  // },
-  // activeDot: {
-  //   backgroundColor: '#3A54AA',
-  // },
 });
 
 export default SkinTypeSlider;
