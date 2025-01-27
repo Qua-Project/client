@@ -6,12 +6,13 @@ interface SkinTypeStartCardProps {
   title: string;
   description: string;
   image: any;
+  index: number;
 }
 
-const SkinTypeStartCard: React.FC<SkinTypeStartCardProps> = ({ title, description, image }) => {
+const SkinTypeStartCard: React.FC<SkinTypeStartCardProps> = ({ title, description, image, index }) => {
   return (
     <Container>
-      <Image source={image}/>
+      <IconImage source={image} index={index}/>
       <Title>{title}</Title>
       <Description>{description}</Description>
     </Container>
@@ -24,8 +25,14 @@ const Title = styled.Text`
   text-align: center;
   color: white;
   margin-bottom: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
 `;
+
+const IconImage = styled.Image<{index:number}>`
+  margin-top: ${({index}) => ((index===2)? '40px': '10px')};
+  justify-content: center;
+  align-items: center;
+`
 
 const Description = styled.Text`
   font-size: 16px;
@@ -34,7 +41,6 @@ const Description = styled.Text`
   text-align: center;
   font-family: 'Pretendard';
   color: white;
-  margin-bottom: 20px;
 `;
 
 const Container = styled.View`

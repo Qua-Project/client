@@ -1,3 +1,4 @@
+import styled from '@emotion/native';
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
@@ -15,65 +16,60 @@ const SkinTypeTestCard: React.FC<SkinTypeTestCardProps> = ({
   onSelect,
 }) => {
   return (
-    <View style={styles.card}>
-      <Text style={styles.question}>{question}</Text>
-      <View style={styles.optionsContainer}>
+    <Container>
+      <Question>{question}</Question>
+      <OptionContainer>
         {options.map((option, index) => (
-          <TouchableOpacity
+          <Option
+            selected={selectedOptionIndex === index}
             key={index}
-            style={[
-              styles.option,
-              selectedOptionIndex === index && styles.selectedOption, // 선택된 옵션 스타일
-            ]}
             onPress={() => onSelect(index)} // 선택 이벤트 호출
           >
-            <Text
-              style={[
-                styles.optionText,
-                selectedOptionIndex === index && styles.selectedOptionText,
-              ]}
-            >
+            <OptionText selected={selectedOptionIndex === index}>
               {option}
-            </Text>
-          </TouchableOpacity>
+            </OptionText>
+          </Option>
         ))}
-      </View>
-    </View>
+      </OptionContainer>
+    </Container>
   );
 };
 
 export default SkinTypeTestCard;
 
-const styles = StyleSheet.create({
-  card: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  question: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  optionsContainer: {
-    width: '100%',
-  },
-  option: {
-    padding: 15,
-    marginVertical: 8,
-    backgroundColor: '#E0E0E0',
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  selectedOption: {
-    backgroundColor: '#3A54AA',
-  },
-  optionText: {
-    fontSize: 16,
-    color: '#333',
-  },
-  selectedOptionText: {
-    color: '#FFF',
-  },
-});
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`
+const Question = styled.Text`
+  color: '#081533';
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Pretendard;
+  text-align: center;
+  margin-bottom: 20px;
+`
+const OptionText = styled.Text<{selected:boolean}>`
+  color: ${({selected}) => (selected? '#FFFFFF': '#081533')};
+  font-size: 14px;
+  font-weight: regular;
+  font-family: Pretendard;
+  text-align: center;
+`;
+const OptionContainer = styled.View`
+  flex-direction: row; /* 가로로 정렬 */
+  flex-wrap: wrap; /* 줄바꿈 허용 */
+  justify-content: center; /* 옵션 가로 정렬 */
+  gap: 10px; /* 카드 간격 */
+`;
+const Option = styled.TouchableOpacity<{selected:boolean}>`
+  backgroundColor: ${({selected}) => (selected? 'rgba(93, 133, 238, 1)': 'rgba(255, 255, 255, 0.7)')};
+  flex: 1;
+  min-width: 125px;
+  min-height: 120px;
+  borderRadius: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+`;

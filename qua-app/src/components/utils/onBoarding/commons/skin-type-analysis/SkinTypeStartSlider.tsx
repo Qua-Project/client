@@ -18,7 +18,7 @@ const slides = [
     image: require('../../../../../assets/onBoarding/bubble.png')
   },
   {
-    title: '나만의 피부 타입 분석 리포트',
+    title: '나만의 피부 타입\n분석 리포트',
     description: '쿠아가 분석해주는 피부 리포트를 통해\n더욱 빛나는 스킨케어 루틴을 만들어요',
     image: require('../../../../../assets/onBoarding/report.png')
   },
@@ -79,6 +79,7 @@ const SkinTypeSlider: React.FC = () => {
                 title={item.title}
                 description={item.description}
                 image={item.image}
+                index={index}
               />
             </View>
           ))}
@@ -96,7 +97,6 @@ const CardContainer = styled(LinearGradient)`
   border-color: white;
   flex: 1;
   padding: 16px;
-  margin-bottom: 20px;
   max-height: 403px;
   max-width: 328px;
 `;
