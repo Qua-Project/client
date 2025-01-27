@@ -6,10 +6,10 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import HomeNavigator from "../navigators/homeNav";
-import SearchNavigator from "../navigators/searchNav";
-import ExploreNavigator from "../navigators/exploreNav";
-import ProfileNavigator from "../navigators/profileNav";
+import HomeNavigator from "./homeNav";
+import SearchNavigator from "./searchNav";
+import ExploreNavigator from "./exploreNav";
+import ProfileNavigator from "./profileNav";
 
 const Tab = createBottomTabNavigator();
 
