@@ -2,18 +2,15 @@
 import styled from '@emotion/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '@emotion/react';
-import SkinTypeSlider from '../../commons/skin-type-analysis/SkinTypeStartSlider';
+import SkinTypeStartSlider from '../../commons/skin-type-analysis/SkinTypeStartSlider';
+import SkinTypeTestSlider from '../../commons/skin-type-analysis/SkinTypeTestSlider';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
 
 const GradientBackground = styled(LinearGradient)`
   flex: 1;
   justify-content: center;
   align-items: center;
-`;
-
-const ThemedText = styled.Text`
-  font-size: 24px;
-  color: #081533;
 `;
 
 const styles = StyleSheet.create({
@@ -49,6 +46,10 @@ const styles = StyleSheet.create({
 });
 
 const SkinTypeStartContainer: React.FC = () => {
+  const [activeStart, setActiveStart] = useState(false);
+  const handleButtonClick = () => {
+    setActiveStart(true);
+  };
   const theme = useTheme(); // 테마 값 가져오기
   console.log(theme);
   return (
@@ -62,10 +63,17 @@ const SkinTypeStartContainer: React.FC = () => {
       >
         <View style={styles.container}>
           <Text style={styles.header}>피부 타입 분석</Text>
-          <SkinTypeSlider />
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>시작하기</Text>
-          </TouchableOpacity>
+          {activeStart 
+          ? (<>
+            <SkinTypeTestSlider />
+          </>)
+          :(<>
+            <SkinTypeStartSlider />
+            <TouchableOpacity style={styles.button} onPress={handleButtonClick}>
+              <Text style={styles.buttonText}>시작하기</Text>
+            </TouchableOpacity>
+          </>)
+          }
         </View>
       </GradientBackground>
     
