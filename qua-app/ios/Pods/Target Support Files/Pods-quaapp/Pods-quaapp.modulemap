@@ -1,0 +1,6 @@
+module Pods_quaapp {
+  umbrella header "Pods-quaapp-umbrella.h"
+
+  export *
+  module * { export * }
+}
