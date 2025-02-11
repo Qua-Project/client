@@ -3,31 +3,37 @@
     "name": "qua-app",
     "slug": "qua-app",
     "scheme": "qua-app",
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "extra": {
-      "backendUrl": "https://qua-app.com" ,
-      "kakaoRestApiKey": "941454427746b572c3db886d7663f80e", 
-      "kakaoRedirectUri": "http://localhost:8081/auth" 
+      "backendUrl": "https://qua-app.com",
+      "kakaoRestApiKey": "941454427746b572c3db886d7663f80e",
+      "kakaoRedirectUri": "http://localhost:8081/auth"
     },
     "splash": {
-      "image": "./src/assets/splash-icon.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "icon": "./assets/icon.png",
       "supportsTablet": true,
       "bundleIdentifier": "com.qua-project.qua"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.quaproject.qua"
     },
     "web": {
       "favicon": "./assets/favicon.png"

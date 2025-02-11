@@ -11,8 +11,8 @@ const Stack = createStackNavigator<RootParamList>();
 export default function AppNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
-      <Stack.Screen name="OnBoarding" component={OnBoardingNavigator} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      {/* <Stack.Screen name="OnBoarding" component={OnBoardingNavigator} /> */}
     </Stack.Navigator>
   );
 }
