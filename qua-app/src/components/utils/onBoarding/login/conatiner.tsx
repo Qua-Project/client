@@ -2,12 +2,12 @@ import React from "react";
 import { View, StyleSheet, Alert } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import { useNavigation } from "@react-navigation/native";
-import { getAccessToken, getUserInfo, getLogin } from "../../../../../hooks/services/kakaoServices";
-import KakaoButton from "../../commons/login/KakaoButton";
-import { useUserStore } from "../../../../../hooks/stores/user";
+import { getAccessToken, getUserInfo, getLogin } from "../../../../hooks/services/kakaoServices"; 
+import KakaoButton from "./commons/KakaoButton";
+import { useUserStore } from "../../../../hooks/stores/user"; 
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootParamList } from "../../../../../types/type";
-import AppleLoginButton from "../../commons/login/AppleButton";
+import { RootParamList } from "../../../../types/type"; 
+import AppleLoginButton from "./commons/AppleButton";
 
 
 const KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize";

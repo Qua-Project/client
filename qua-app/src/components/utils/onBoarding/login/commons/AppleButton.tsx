@@ -13,7 +13,7 @@ const AppleLoginButton = () => {
       });
 
       console.log('Apple Credential:', credential);
-      Alert.alert('로그인 성공!', `User: ${credential.user}`);
+      Alert.alert('로그인 성공!', `User: ${credential.authorizationCode}`);
     } catch (error) {
       Alert.alert(`${error}`)
     }
