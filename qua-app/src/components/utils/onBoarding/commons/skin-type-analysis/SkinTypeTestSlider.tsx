@@ -116,10 +116,12 @@ const SkinTeypTestSlider:React.FC = () => {
 }
 
 
-const AnimatedCardContainer = styled(LinearGradient)<{gap: number}>`
+const AnimatedCardContainer = styled(LinearGradient)`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
+  border-width: 1px;
+  border-color: white;
   flex: 1;
   height: 413px;
   width: 328px;
