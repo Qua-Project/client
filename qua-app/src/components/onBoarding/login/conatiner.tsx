@@ -2,11 +2,11 @@ import React from "react";
 import { View, StyleSheet, Alert } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import { useNavigation } from "@react-navigation/native";
-import { getAccessToken, getUserInfo, getLogin } from "../../../../hooks/services/kakaoServices"; 
+import { getAccessToken, getUserInfo, getLogin } from "../../../hooks/services/kakaoServices"; 
 import KakaoButton from "./commons/KakaoButton";
-import { useUserStore } from "../../../../hooks/stores/user"; 
+import { useUserStore } from "../../../hooks/stores/user"; 
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootParamList } from "../../../../types/type"; 
+import { RootParamList } from "../../../types/type"; 
 import AppleLoginButton from "./commons/AppleButton";
 
 

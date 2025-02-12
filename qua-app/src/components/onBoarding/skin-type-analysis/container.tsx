@@ -2,8 +2,8 @@
 import styled from '@emotion/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '@emotion/react';
-import SkinTypeStartSlider from '../skin-type-analysis/commons/SkinTypeStartSlider'
-import SkinTypeTestSlider from '../skin-type-analysis/commons/SkinTypeTestSlider';
+import SkinTypeStartSlider from './commons/SkinTypeStartSlider'
+import SkinTypeTestSlider from './commons/SkinTypeTestSlider';
 import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { useState } from 'react';
 
