@@ -1,5 +1,5 @@
 import React from "react";
-import SkinTypeStartContainer from "../../components/onBoarding/utils/skin-type-analysis/container";
+import SkinTypeStartContainer from '@/src/components/onBoarding/skin-type-test/container'
 
 export default function SkinTypeStartScreen() {
   return <SkinTypeStartContainer />;

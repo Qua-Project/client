@@ -3,40 +3,8 @@ import { ScrollView, Dimensions, View, StyleSheet, Animated, FlatList} from 'rea
 import SkinTypeTestCard from './SkinTypeTestCard';
 import { LinearGradient } from 'expo-linear-gradient';
 import styled from '@emotion/native';
-
+import { TEST_SLIDE_DATA } from '../utils/constants';
 const screenWidth = Math.round(Dimensions.get('window').width);
-const questions = [
-  {
-    id: 1,
-    question: '본인이 생각하는 자신의\n피부 타입을 선택해주세요.',
-    options: [
-      '쉽게 당기고\n건조함을 느껴요',
-      '피지 분비가 많고\n유분이 많아요',
-      '건조함과 유분이\n공존해요',
-      '쉽게 자극을\n받아요',
-    ],
-  },
-  {
-    id: 2,
-    question: '얼굴에 모공이 많고\n크기가 큰가요?',
-    options: [
-      '그렇지 않아요',
-      '얼굴의 일부에만\n있어요',
-      '곳곳에 도드라져\n보여요',
-      '전체적으로\n도드라져 보여요',
-    ],
-  },
-  {
-    id: 3,
-    question: '얼굴에 핏줄이\n잘 보이는 편인가요?',
-    options: [
-      '전혀 안 보여요',
-      '운동 시에만\n보여요',
-      '평상시에도\n약간 보여요',
-      '눈에 띄게\n보여요',
-    ],
-  },
-];
 
 const gap = 6;
 const pageWidth = 328;
@@ -58,7 +26,7 @@ const SkinTeypTestSlider:React.FC = () => {
       ...prev,
       [page]: optionIndex,
     }));
-    if (page < questions.length - 1) {
+    if (page < TEST_SLIDE_DATA.length - 1) {
       const nextPage = page + 1;
       setPage(nextPage);
 
@@ -85,7 +53,7 @@ const SkinTeypTestSlider:React.FC = () => {
         contentContainerStyle={{
           paddingHorizontal: offset,
         }}
-        data={questions}
+        data={TEST_SLIDE_DATA}
         decelerationRate="normal"
         horizontal
         keyExtractor={(item: any) => `page__${item.id}`}

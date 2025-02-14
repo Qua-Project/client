@@ -51,7 +51,7 @@ const Container = styled.View`
 `
 const Question = styled.Text`
   color: #081533;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   font-family: Pretendard;
   text-align: center;
@@ -60,7 +60,7 @@ const Question = styled.Text`
 `
 const OptionText = styled.Text<{selected:boolean}>`
   color: ${({selected}) => (selected? '#FFFFFF': '#081533')};
-  font-size: 14px;
+  font-size: 12px;
   font-weight: regular;
   font-family: Pretendard;
   text-align: center;

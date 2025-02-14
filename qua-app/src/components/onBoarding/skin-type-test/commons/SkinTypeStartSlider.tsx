@@ -3,26 +3,9 @@ import { View, ScrollView, Dimensions, StyleSheet, Text } from 'react-native';
 import SkinTypeStartCard from './SkinTypeStartCard';
 import { LinearGradient } from 'expo-linear-gradient';
 import styled from '@emotion/native';
+import { START_SLIDE_DATA } from '../utils/constants';
 
 const { width: screenWidth } = Dimensions.get('window');
-
-const slides = [
-  {
-    title: '나는 어떤 피부 유형일까?',
-    description: '나에게 맞는 스킨케어를 찾으려면\n피부 유형부터 파악해야 해요',
-    image: require('../../../../../../assets/onBoarding/magnifier.png')
-  },
-  {
-    title: '쿠아만의 8가지 피부 타입',
-    description: '쿠아만의 피부 타입 분석 테스트를\n통해 나의 피부 타입을 확인하세요!',
-    image: require('../../../../../../assets/onBoarding/bubble.png')
-  },
-  {
-    title: '나만의 피부 타입\n분석 리포트',
-    description: '쿠아가 분석해주는 피부 리포트를 통해\n더욱 빛나는 스킨케어 루틴을 만들어요',
-    image: require('../../../../../../assets/onBoarding/report.png')
-  },
-];
 
 const SkinTypeSlider: React.FC = () => {
   const scrollRef = useRef<ScrollView>(null);
@@ -57,7 +40,7 @@ const SkinTypeSlider: React.FC = () => {
         onLayout={handleCardLayout}
       >
         <View style={styles.pagination}>
-          {slides.map((_, index) => (
+          {START_SLIDE_DATA.map((_, index) => (
             <Dot
               key={index}
               dotColor={getDotColor(index, activeIndex)} // 동적으로 색상 결정
@@ -73,7 +56,7 @@ const SkinTypeSlider: React.FC = () => {
           scrollEventThrottle={16}
           contentContainerStyle={{ alignItems: 'center', justifyContent: 'center' }} 
         >
-          {slides.map((item, index) => (
+          {START_SLIDE_DATA.map((item, index) => (
             <View key={index} style={{ width: cardWidth * 0.9, alignItems: 'center', justifyContent: 'center'}}>
               <SkinTypeStartCard
                 title={item.title}
