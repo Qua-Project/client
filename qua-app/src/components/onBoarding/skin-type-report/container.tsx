@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import styled from '@emotion/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useTheme } from '@emotion/react';
-import { Dimensions, View, Text, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform, FlatList } from 'react-native';
+import SkinTypeDescription from './commons/SkinTypeDesciption';
+import { Dimensions, Text, FlatList } from 'react-native';
 
 enum TabType {
   DESCRIPTION = '피부 타입 설명',
@@ -13,12 +13,6 @@ enum TabType {
 const SkinTypeResultcContainer: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<TabType>(TabType.DESCRIPTION);
   const { width, height } = Dimensions.get('window');
-
-  const SkinTypeDescription = () => (
-    <ContentContainer>
-      <Text>여기에 피부 타입 설명 내용이 들어갑니다.</Text>
-    </ContentContainer>
-  );
 
   const SkinCareTips = () => (
     <ContentContainer>
@@ -99,7 +93,7 @@ const SkinTypeResultcContainer: React.FC = () => {
 const GradientBackground = styled(LinearGradient)`
   flex: 1;
   align-items: center;
-  padding: 10px;
+  padding: 14px;
 `;
 const Container = styled.View`
   flex: 1;
@@ -113,7 +107,7 @@ const TypeContainer = styled(LinearGradient)`
   margin-top: 20px;
   margin-bottom: 20px;
   width: 100%;
-  max-width: 350px;
+  min-width: 344px;
   height: 100%;
   justify-content: space-between;
   align-items: center;
