@@ -5,6 +5,7 @@ import StartScreen from '../screens/onBoarding/start';
 import LoginScreen from '../screens/onBoarding/login';
 import SkinTypeStartScreen from '../screens/onBoarding/skinTypeStart';
 import SkinTypeResultScreen from '../screens/onBoarding/skinTypeResult';
+import SkinTypeReportScreen from '../screens/onBoarding/skinTypeReport';
 const Stack = createStackNavigator();
 
 const OnBoardingNavigator = () => {
@@ -12,7 +13,8 @@ const OnBoardingNavigator = () => {
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name="SkinTypeResult" component={SkinTypeResultScreen} />
+      <Stack.Screen name="SkinTypeReport" component={SkinTypeReportScreen} />
+      {/* <Stack.Screen name="SkinTypeResult" component={SkinTypeResultScreen} /> */}
       {/* <Stack.Screen name="SkinTypeStart" component={SkinTypeStartScreen} /> */}
       {/* <Stack.Screen name="Start" component={StartScreen} /> */}
     </Stack.Navigator>
