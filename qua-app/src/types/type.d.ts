@@ -1,7 +1,7 @@
 
 export type RootParamList = {
   Login: undefined;
-  Main: undefined;
+  Tab: undefined;
   SkinTypeStart: undefined;
   OnBoarding: undefined;
 };
