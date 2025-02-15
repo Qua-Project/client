@@ -10,6 +10,9 @@ const SkinTypeDescriptionContainer = () => {
       <SkinTypeDescription/>
       <SkinBalance/>
       <SkinTypeDetail/>
+      <ButtonContainer onPress={() => {}}>
+        <ButtonText>확인</ButtonText>
+      </ButtonContainer>
     </Container>
   );
 };
@@ -20,4 +23,22 @@ const Container = styled.View`
   flex-direction: col;
   align-items: center;
   justify-content: center;
+`;
+
+const ButtonContainer = styled.TouchableOpacity`
+  background-color: rgba(93, 133, 238, 1);
+  width: 148px;
+  height: 43px;
+  border-radius: 20px;
+  align-items: center;
+  padding-vertical: 8px;
+  padding-horizontal: 60px;
+  justify-content: center;
+  margin-bottom: 15px;
+`;
+
+const ButtonText = styled.Text`
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
 `;

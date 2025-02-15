@@ -91,7 +91,7 @@ const Container = styled.View`
 `;
 
 const TypeContainer = styled(LinearGradient)`
-  border-radius: 10px;
+  border-radius: 20px;
   border: 1px;
   border-color: rgba(255, 255, 255, 1);
   margin-top: 20px;

@@ -168,7 +168,7 @@ const Container = styled.View`
   align-items: center;
   justify-content: center;
   padding-horizontal: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 `;
 
 const DescriptionBox = styled(LinearGradient)`
