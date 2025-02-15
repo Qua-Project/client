@@ -8,7 +8,7 @@
     "start:prod": "ENVFILE=.env.production expo start --no-dev --minify",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web", 
+    "web": "expo start --web",
     "ios:dev": "expo run:ios --configuration Development",
     "ios:prod": "expo run:ios --configuration Production"
   },

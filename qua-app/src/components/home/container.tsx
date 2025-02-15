@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '@emotion/react';
 import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import MyDresser from './commons/MyDresser';
 
 
@@ -29,32 +30,34 @@ const HomeContainer: React.FC = () => {
         start={{ x: 0.5, y: 0 }} 
         end={{ x: 0.5, y: 1  }}   
       >
-        {/* 🔹 헤더 */}
-        <Header>
-          <Logo source={require('@assets/Qua.png')} />
-          <HeaderButtons>
-            <SkinTypeButton>
-              <SkinTypeText>피부 타입</SkinTypeText>
-            </SkinTypeButton>
-            <NotificationIcon source={require('@assets/notification_icon.png')} />
-          </HeaderButtons>
-        </Header>
+        <SafeContainer>
+          {/* 🔹 헤더 */}
+          <Header>
+            <Logo source={require('@assets/Qua.png')} />
+            <HeaderButtons>
+              <SkinTypeButton>
+                <SkinTypeText>피부 타입</SkinTypeText>
+              </SkinTypeButton>
+              <NotificationIcon source={require('@assets/notification_icon.png')} />
+            </HeaderButtons>
+          </Header>
 
-        {/* 🔹 탭 선택 */}
-        <TabBox>
-          <Tabs>
-            <TabButton active={selectedTab === 'DRESSER'} onPress={() => setSelectedTab('DRESSER')}>
-              <TabText  active={selectedTab === 'DRESSER'}>내 화장대</TabText>
-            </TabButton>
-            <TabButton active={selectedTab === 'COSMETICS'} onPress={() => setSelectedTab('COSMETICS')}>
-              <TabText active={selectedTab === 'COSMETICS'}>내 화장품</TabText>
-            </TabButton>
-          </Tabs>
-          <RegisterButton>
-            <RegisterText>등록하기</RegisterText>
-          </RegisterButton>
-        </TabBox>
-        {selectedTab === 'DRESSER' ? <MyDresser /> : <MyCosmetics />}        
+          {/* 🔹 탭 선택 */}
+          <TabBox>
+            <Tabs>
+              <TabButton active={selectedTab === 'DRESSER'} onPress={() => setSelectedTab('DRESSER')}>
+                <TabText  active={selectedTab === 'DRESSER'}>내 화장대</TabText>
+              </TabButton>
+              <TabButton active={selectedTab === 'COSMETICS'} onPress={() => setSelectedTab('COSMETICS')}>
+                <TabText active={selectedTab === 'COSMETICS'}>내 화장품</TabText>
+              </TabButton>
+            </Tabs>
+            <RegisterButton>
+              <RegisterText>등록하기</RegisterText>
+            </RegisterButton>
+          </TabBox>
+          {selectedTab === 'DRESSER' ? <MyDresser /> : <MyCosmetics />}        
+        </SafeContainer>
       </GradientBackground>
     
   );
@@ -68,17 +71,25 @@ const GradientBackground = styled(LinearGradient)`
   height:100%;
 `;
 
+const SafeContainer = styled(SafeAreaView)`
+  flex: 1;
+  background-color: transparent; /* ✅ 배경은 투명하게 유지 */
+`;
+
 const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 25px;
+  margin-bottom: 14px;
 `;
 
 const Logo = styled.Image`
-  width: 50px;
-  height: 20px;
+  resize-mode: contain;
+  width: 60px;
+  height: 30px;
 `;
+
 const ContentContainer = styled.View`
   flex: 1;
   justify-content: center;
@@ -88,70 +99,70 @@ const ContentContainer = styled.View`
 const HeaderButtons = styled.View`
   flex-direction: row;
   align-items: center;
+  gap: 10px;
 `;
 
 const SkinTypeButton = styled.TouchableOpacity`
-  background-color: #f0f0f5;
-  padding: 5px 10px;
-  border-radius: 20px;
-  margin-right: 10px;
+  background-color: transparent;
+  padding: 3px 12px;
+  border-radius: 32px;
+  border-width: 1.5px;
+  border-color: #818182;
 `;
 
 const SkinTypeText = styled.Text`
-  font-size: 12px;
-  color: #666;
+  font-size: 14px;
+  color: #818182;
 `;
 
 const NotificationIcon = styled.Image`
-  width: 24px;
-  height: 24px;
+  width: 25px;
+  height: 25px;
 `;
 
 /* 🔹 탭 */
 const Tabs = styled.View`
   flex-direction: row;
-  justify-content: center;
+  align-items: flex-start;
+  gap: 18px;
   margin-top: 10px;
 `;
 
 const TabBox = styled.View`
   flex-direction: row;
+  align-items: baseline;
   justify-content: space-between;
+  padding-horizontal: 25px;
 `;
 
 
 const TabButton = styled.TouchableOpacity<{ active?: boolean }>`
-  padding: 10px 15px;
-  border-bottom-width: ${({ active }) => (active ? '2px' : '0px')};
+  padding: 1px 1px;
+  border-bottom-width: ${({ active }) => (active ? '1.5px' : '0px')};
   border-bottom-color: ${({ active }) => (active ? '#081533' : 'transparent')};
 `;
 
 const TabText = styled.Text<{ active?: boolean }>`
-  font-size: 14px;
-  font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
-  color: ${({ active }) => (active ? '#081533' : '#666')};
-`;
-
-/* 🔹 중앙 이미지 */
-const MainImage = styled.Image`
-  width: 100%;
-  resize-mode: cover;
-  margin-top: 10px;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: ${({ active }) => (active ? '700' : '500')};
+  color: ${({ active }) => (active ? '#081533' : '#818182')};
 `;
 
 /* 🔹 등록 버튼 */
 const RegisterButton = styled.TouchableOpacity`
-  background-color: #658ef4;
-  padding: 10px 15px;
-  border-radius: 20px;
+  background-color: #3A54AA;
+  padding: 4px 16px;
+  border-radius: 30px;
   align-self: center;
-  margin-top: -20px;
+  
 `;
 
 const RegisterText = styled.Text`
   color: white;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
 `;
 
 export default HomeContainer;
