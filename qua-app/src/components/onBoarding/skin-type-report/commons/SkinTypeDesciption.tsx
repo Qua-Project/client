@@ -82,10 +82,6 @@ const SkinTypeDescription = () => {
             </LinearGradient>
           </MaskedView>
         </FinalRow>
-        {/* <GradientText text={'"'} style={{ fontSize: 12, fontWeight: 700 }} />
-        <GradientText text="이러한 피부는 유분과 민감성에 맞춘 균형 잡힌 관리가 필요합니다!" style={{ fontSize: 12, fontWeight: 700 }} />
-        <GradientText text={'"'} style={{ fontSize: 12, fontWeight: 700 }} /> */}
-        {/* <FinalText>❝ 이러한 피부는 유분과 민감성에 맞춘 균형 잡힌 관리가 필요합니다! ❞</FinalText> */}
       </DescriptionBox>
     </Container>
   );
@@ -97,7 +93,8 @@ const Container = styled.View`
   width: 100%;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding-horizontal: 10px;
+  margin-bottom: 30px;
 `;
 
 
@@ -127,14 +124,14 @@ const DescriptionBox = styled.View`
   align-items: center;
   justify-content: center;
   max-height: 243px;
+  max-width: 302px;
   margin-horizontal: 11px;
   gap: 10px;
   padding-vertical: 16px;
-  padding-horizontal: 20px;
+  padding-horizontal: 25px;
 `;
 
 const DescriptionTextBox = styled.View`
-  padding-horizontal:10px;
   margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom-width: 1px;

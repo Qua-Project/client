@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import SkinTypeDescription from './commons/SkinTypeDesciption';
+import SkinTypeDescriptionContainer from './commons/SkinTypeDescriptionContainer';
 import { Dimensions, Text, FlatList } from 'react-native';
 
 enum TabType {
@@ -51,17 +51,7 @@ const SkinTypeResultcContainer: React.FC = () => {
             </TabText>
           </TabButton>
         </TabContainer>
-        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescription /> : <SkinCareTips />}
-        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescription /> : <SkinCareTips />}
-        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescription /> : <SkinCareTips />}
-        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescription /> : <SkinCareTips />}{selectedTab === TabType.DESCRIPTION ? <SkinTypeDescription /> : <SkinCareTips />}
-        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescription /> : <SkinCareTips />}
-        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescription /> : <SkinCareTips />}
-        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescription /> : <SkinCareTips />}
-        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescription /> : <SkinCareTips />}
-        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescription /> : <SkinCareTips />}
-        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescription /> : <SkinCareTips />}
-        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescription /> : <SkinCareTips />}
+        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescriptionContainer /> : <SkinCareTips />}
       </TypeContainer>
     }
   ]
