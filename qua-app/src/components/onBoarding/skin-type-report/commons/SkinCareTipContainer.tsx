@@ -1,53 +1,41 @@
-import React from 'react';
-import {Image} from 'react-native'
 import styled from '@emotion/native';
+import SkincareStepNavigator from './SkinCareStepNavigator';
+import { SKIN_CARE_STEP_TIPS } from '../utils/constants';
 
-interface SkinTypeStartCardProps {
-  title: string;
-  description: string;
-  image: any;
-  index: number;
-}
+const SkinCareTipContainer = () => {
 
-const SkinTypeStartCard: React.FC<SkinTypeStartCardProps> = ({ title, description, image, index }) => {
   return (
     <Container>
-      <IconImage source={image} index={index}/>
-      <Title>{title}</Title>
-      <Description>{description}</Description>
+      <SkincareStepNavigator steps={SKIN_CARE_STEP_TIPS} />
+      <ButtonContainer onPress={() => {}}>
+        <ButtonText>확인</ButtonText>
+      </ButtonContainer>
     </Container>
   );
 };
-const Title = styled.Text`
-  font-size: 24px;
-  font-weight: bold;
-  font-family: 'Pretendard';
-  text-align: center;
-  color: white;
-  margin-bottom: 10px;
-  margin-top: 10px;
-`;
 
-const IconImage = styled.Image<{index:number}>`
-  margin-top: ${({index}) => ((index===2)? '40px': '10px')};
-  justify-content: center;
-  align-items: center;
-`
-
-const Description = styled.Text`
-  font-size: 16px;
-  width: 85%;
-  font-weight: regular;
-  text-align: center;
-  font-family: 'Pretendard';
-  color: white;
-`;
+export default SkinCareTipContainer;
 
 const Container = styled.View`
-  flex: 1;
-  color: transparent;
-  justify-content: center;
+  flex-direction: col;
   align-items: center;
-`
+  justify-content: center;
+`;
 
-export default SkinTypeStartCard;
+const ButtonContainer = styled.TouchableOpacity`
+  background-color: rgba(93, 133, 238, 1);
+  width: 148px;
+  height: 43px;
+  border-radius: 20px;
+  align-items: center;
+  padding-vertical: 8px;
+  padding-horizontal: 60px;
+  justify-content: center;
+  margin-bottom: 15px;
+`;
+
+const ButtonText = styled.Text`
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+`;

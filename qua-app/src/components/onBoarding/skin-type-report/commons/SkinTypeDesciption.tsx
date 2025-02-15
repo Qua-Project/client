@@ -4,20 +4,6 @@ import styled from '@emotion/native';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const GradientText = ({ text, style }: { text: string; style?: any }) => {
-  return (
-    <MaskedView maskElement={<Text style={[style, { color: 'black' }]}>{text}</Text>}>
-      <LinearGradient
-        colors={['#5D85EE', '#3A54AA']} // 🔥 원하는 그라데이션 색상
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-      >
-        <Text style={[style, { opacity: 0 }]}>{text}</Text> 
-      </LinearGradient>
-    </MaskedView>
-  );
-}
-
 const SkinTypeDescription = () => {
   
   return (

@@ -4,6 +4,7 @@ import styled from '@emotion/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import SkinTypeDescriptionContainer from './commons/SkinTypeDescriptionContainer';
 import { Dimensions, Text, FlatList } from 'react-native';
+import SkinCareTipContainer from './commons/SkinCareTipContainer';
 
 enum TabType {
   DESCRIPTION = '피부 타입 설명',
@@ -13,12 +14,6 @@ enum TabType {
 const SkinTypeResultcContainer: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<TabType>(TabType.DESCRIPTION);
   const { width, height } = Dimensions.get('window');
-
-  const SkinCareTips = () => (
-    <ContentContainer>
-      <Text>여기에 스킨 케어 팁 내용이 들어갑니다.</Text>
-    </ContentContainer>
-  );
 
   const sections = [
     {id: 'title', content:
@@ -51,7 +46,7 @@ const SkinTypeResultcContainer: React.FC = () => {
             </TabText>
           </TabButton>
         </TabContainer>
-        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescriptionContainer /> : <SkinCareTips />}
+        {selectedTab === TabType.DESCRIPTION ? <SkinTypeDescriptionContainer /> : <SkinCareTipContainer />}
       </TypeContainer>
     }
   ]
