@@ -5,7 +5,7 @@ import { useTheme } from '@emotion/react';
 import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import MyDresser from './commons/MyDresser';
+import MyDresser from './commons/my-dresser/MyDresser';
 
 const { height } = Dimensions.get('window');
 const HEADER_HEIGHT = -50; 
@@ -29,8 +29,8 @@ const HomeContainer: React.FC = () => {
           '#E9F0FF',
           '#CBDBFF',
         ]}
-        start={{ x: 0.5, y: 0 }} 
-        end={{ x: 0.5, y: 1  }}   
+        start={{ x: 0, y: 0 }} 
+        end={{ x: 0.5, y: 0.5  }}   
       >
         <SafeContainer>
           {/* 🔹 헤더 */}
@@ -43,6 +43,7 @@ const HomeContainer: React.FC = () => {
               <NotificationIcon source={require('@assets/notification_icon.png')} />
             </HeaderButtons>
           </Header>
+        </SafeContainer>
 
           {/* 🔹 탭 선택 */}
           <TabBox>
@@ -59,7 +60,7 @@ const HomeContainer: React.FC = () => {
             </RegisterButton>
           </TabBox>
           {selectedTab === 'DRESSER' ? <MyDresser headerHeight={HEADER_HEIGHT} /> : <MyCosmetics />}        
-        </SafeContainer>
+        
       </GradientBackground>
     
   );
@@ -74,16 +75,15 @@ const GradientBackground = styled(LinearGradient)`
 `;
 
 const SafeContainer = styled(SafeAreaView)`
-  flex: 1;
-  background-color: transparent; /* ✅ 배경은 투명하게 유지 */
+  background-color: transparent;
+  padding: 0px;
 `;
 
 const Header = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 25px;
-  margin-bottom: 14px;
+  padding-horizontal: 25px;
 `;
 
 const Logo = styled.Image`
@@ -127,7 +127,6 @@ const Tabs = styled.View`
   flex-direction: row;
   align-items: flex-start;
   gap: 18px;
-  margin-top: 10px;
 `;
 
 const TabBox = styled.View`
@@ -135,6 +134,7 @@ const TabBox = styled.View`
   align-items: baseline;
   justify-content: space-between;
   padding-horizontal: 25px;
+  margin-top: -10px;
 `;
 
 
@@ -157,7 +157,6 @@ const RegisterButton = styled.TouchableOpacity`
   padding: 4px 16px;
   border-radius: 30px;
   align-self: center;
-  
 `;
 
 const RegisterText = styled.Text`
