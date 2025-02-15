@@ -7,7 +7,11 @@ const { height } = Dimensions.get('window');
 const MIN_HEIGHT = 0;
 const MAX_HEIGHT = -height*0.5;
 
-const MyDresser: React.FC = () => {
+interface MyDresserProps {
+  headerHeight: number; 
+}
+
+const MyDresser: React.FC<MyDresserProps> = ({headerHeight}) => {
   const [translateY] = useState(new Animated.Value(MIN_HEIGHT)); // ✅ 기본값: 약간 올라온 상태
 
   // ✅ 바텀시트 드래그 핸들링
@@ -40,7 +44,7 @@ const MyDresser: React.FC = () => {
   return (
     <Container>
       {/* 🔹 중앙 메인 이미지 */}
-      <MainImage source={require('@assets/home/dressing_table.png')} />
+      <MainImage source={require('@assets/home/dressing_table.png')} headerHeight={headerHeight}/>
 
 {/* 🔹 바텀시트 (아래 프로필 섹션) */}
       <AnimatedBottomSheet style={{ transform: [{ translateY }] }} {...panResponder.panHandlers}>
@@ -79,17 +83,26 @@ const MyDresser: React.FC = () => {
 
 const Container = styled.View`
   flex: 1;
-  justify-content: center;
   align-items: center;
+  position: relative; 
 `;
 
 /* 🔹 중앙 이미지 */
-const MainImage = styled.Image`
+// const MainImage = styled.Image`
+//   width: 100%;
+//   z-index: -1;
+//   position: relative;
+//   resize-mode: cover;
+//   margin-top: 10px;
+// `;
+
+const MainImage = styled.Image<{ headerHeight: number }>`
   width: 100%;
   z-index: -1;
-  position: relative;
   resize-mode: cover;
-  margin-top: 10px;
+  position: absolute;
+  top: ${({ headerHeight }) => `${headerHeight}px`}; /* ✅ 헤더 바로 아래 위치 */
+  align-self: center;
 `;
 
 /* 🔹 사용자 정보 */

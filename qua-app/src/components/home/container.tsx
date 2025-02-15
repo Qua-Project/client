@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MyDresser from './commons/MyDresser';
 
+const { height } = Dimensions.get('window');
+const HEADER_HEIGHT = -50; 
 
 const HomeContainer: React.FC = () => {
   const [activeStart, setActiveStart] = useState(false);
@@ -56,7 +58,7 @@ const HomeContainer: React.FC = () => {
               <RegisterText>등록하기</RegisterText>
             </RegisterButton>
           </TabBox>
-          {selectedTab === 'DRESSER' ? <MyDresser /> : <MyCosmetics />}        
+          {selectedTab === 'DRESSER' ? <MyDresser headerHeight={HEADER_HEIGHT} /> : <MyCosmetics />}        
         </SafeContainer>
       </GradientBackground>
     
