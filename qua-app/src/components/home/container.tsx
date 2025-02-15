@@ -6,29 +6,23 @@ import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-nati
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MyDresser from './commons/my-dresser/MyDresser';
+import MyCosmetics from './commons/my-cosmetics/MyCosmetics';
 
 const { height } = Dimensions.get('window');
 const HEADER_HEIGHT = -50; 
 
 const HomeContainer: React.FC = () => {
-  const [activeStart, setActiveStart] = useState(false);
-  const handleButtonClick = () => {
-    setActiveStart(true);
-  };
   const [selectedTab, setSelectedTab] = useState<'DRESSER' | 'COSMETICS'>('DRESSER');
-  const MyCosmetics = () => (
-    <ContentContainer>
-      <Text>내 화장품 콘텐츠</Text>
-    </ContentContainer>
-  );
+  
   const theme = useTheme(); // 테마 값 가져오기
   console.log(theme);
   return (
       <GradientBackground
-        colors={[
-          '#E9F0FF',
-          '#CBDBFF',
-        ]}
+        colors={
+          (selectedTab === 'DRESSER')
+          ?['#E9F0FF','#CBDBFF',]
+          :['#FFFFFF','#FFFFFF']
+        }
         start={{ x: 0, y: 0 }} 
         end={{ x: 0.5, y: 0.5  }}   
       >
