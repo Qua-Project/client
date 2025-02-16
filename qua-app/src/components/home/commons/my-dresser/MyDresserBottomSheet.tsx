@@ -1,19 +1,19 @@
 
 import React, { useCallback } from 'react';
-import { Dimensions, View, Text, Image, ScrollView } from 'react-native';
+import { Dimensions, View, Text, Image, ScrollView, FlatList } from 'react-native';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import styled from '@emotion/native';
 import ProfileContainer from './ProfileContainer';
 import SkinDataContainer from './SkinDataContainer';
 import SolutionContainer from './SolutionContainer';
-import MyDresserRange from './DresserPosition';
+import DresserPosition from './DresserPosition';
 import ExploreDresserContainer from './ExploreDresserContainer';
 import { PROFILE_DATA, SKIN_DATA } from '../../util/constants';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
-const MIN_HEIGHT = SCREEN_HEIGHT * 0.35; // ✅ 기본 상태 높이
-const MAX_HEIGHT = SCREEN_HEIGHT * 0.85; // ✅ 최대 확장 높이
+const MIN_HEIGHT = SCREEN_HEIGHT * 0.4; // ✅ 기본 상태 높이
+const MAX_HEIGHT = SCREEN_HEIGHT * 0.75; // ✅ 최대 확장 높이
 
 const MyDresserBottomSheet = () => {
   const translateY = useSharedValue(SCREEN_HEIGHT - MIN_HEIGHT); // ✅ 기본 위치
@@ -36,32 +36,45 @@ const MyDresserBottomSheet = () => {
     transform: [{ translateY: translateY.value }],
   }));
 
-  return (
-    <GestureDetector gesture={panGesture}>
-      <AnimatedBottomSheet style={animatedStyle}>
-        <DragHandle source={require('@assets/home/back.png')} />
-
-        {/* 🔹 스크롤 가능하도록 ScrollView 적용 */}
-        <ScrollableContent>
-          <ProfileContainer
-            userName={PROFILE_DATA.name}
-            userImage={PROFILE_DATA.image}
-            follower={PROFILE_DATA.follower}
-            following={PROFILE_DATA.followeing}
-          ></ProfileContainer>
-          <SkinDataContainer
+  const data = [
+    {id:'profile', content: <ProfileContainer
+      userName={PROFILE_DATA.name}
+      userImage={PROFILE_DATA.image}
+      follower={PROFILE_DATA.follower}
+      following={PROFILE_DATA.followeing}
+    ></ProfileContainer>},
+    {id: 'skin-data', content: <SkinDataContainer
             total={SKIN_DATA.total}
             moisture={SKIN_DATA.moisture}
             oil={SKIN_DATA.oil}
             sensitivity={SKIN_DATA.sensitivity}
-          ></SkinDataContainer>
-          <SolutionContainer/>
-          <MyDresserRange/>
-          <Divider/>
-          <ExploreDresserContainer/>
-        </ScrollableContent>
-      </AnimatedBottomSheet>
-    </GestureDetector>
+          ></SkinDataContainer>},
+    {id: 'solution', content: <SolutionContainer/>},
+    {id: 'position', content: <DresserPosition/>},
+    {id: 'slider', content: <Divider/>},
+    {id: 'explore', content: <ExploreDresserContainer/>},
+  ]
+
+  return (
+    <Container>
+      <GestureDetector gesture={panGesture}>
+        <AnimatedBottomSheet style={animatedStyle}>
+          <DragHandle source={require('@assets/home/back.png')} />
+          <ContentContainer>
+            <FlatList
+              data={data}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => (
+                item.content
+              )}
+              contentContainerStyle={{ width: "100%", marginBottom: 20 }} 
+              showsVerticalScrollIndicator={false}
+            />
+          </ContentContainer>
+        </AnimatedBottomSheet>
+      </GestureDetector>
+    </Container>
+    
   );
 };
 
@@ -69,16 +82,18 @@ export default MyDresserBottomSheet;
 
 /* 🔹 바텀시트 */
 const AnimatedBottomSheet = styled(Animated.View)`
-  position: absolute;
-  bottom: 0;
   width: 100%;
   height: ${MAX_HEIGHT}px; /* ✅ 전체 높이 */
   background-color: white;
   align-items: center;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  padding: 15px;
+  shadow-color: #AAAAAB;
+  shadow-offset: 0px -4px;
+  shadow-opacity: 0.15;
+  shadow-radius: 15px;
   elevation: 5;
+  padding: 15px;
 `;
 
 /* 🔹 드래그 핸들 */
@@ -86,6 +101,18 @@ const DragHandle = styled.Image`
   width: 34px;
   height: 9px;
   margin-bottom: 10px;
+`;
+
+const ContentContainer = styled.View`  
+  justify-content: center;
+  width: 100%;
+`;
+
+const Container = styled.View` 
+  z-index: 100;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `;
 
 /* 🔹 스크롤 가능한 컨텐츠 */

@@ -40,28 +40,29 @@ const HomeContainer: React.FC = () => {
         </SafeContainer>
 
           {/* 🔹 탭 선택 */}
-          <TabBox>
-            <Tabs>
-              <TabButton active={selectedTab === 'DRESSER'} onPress={() => setSelectedTab('DRESSER')}>
-                <TabText  active={selectedTab === 'DRESSER'}>내 화장대</TabText>
-              </TabButton>
-              <TabButton active={selectedTab === 'COSMETICS'} onPress={() => setSelectedTab('COSMETICS')}>
-                <TabText active={selectedTab === 'COSMETICS'}>내 화장품</TabText>
-              </TabButton>
-            </Tabs>
-            <RegisterButton>
-              <RegisterText>등록하기</RegisterText>
-            </RegisterButton>
-          </TabBox>
-          {selectedTab === 'DRESSER' ? <MyDresser headerHeight={HEADER_HEIGHT} /> : <MyCosmetics />}        
-        
+          <ContentContainer>
+            <TabBox>
+              <Tabs>
+                <TabButton active={selectedTab === 'DRESSER'} onPress={() => setSelectedTab('DRESSER')}>
+                  <TabText  active={selectedTab === 'DRESSER'}>내 화장대</TabText>
+                </TabButton>
+                <TabButton active={selectedTab === 'COSMETICS'} onPress={() => setSelectedTab('COSMETICS')}>
+                  <TabText active={selectedTab === 'COSMETICS'}>내 화장품</TabText>
+                </TabButton>
+              </Tabs>
+              <RegisterButton>
+                <RegisterText>등록하기</RegisterText>
+              </RegisterButton>
+            </TabBox>
+            {selectedTab === 'DRESSER' ? <MyDresser headerHeight={HEADER_HEIGHT} /> : <MyCosmetics />}        
+          </ContentContainer>   
       </GradientBackground>
     
   );
 };
 
 const GradientBackground = styled(LinearGradient)`
-  flex: 1;
+  flex:1;
   justify-content: center;
   align-items: strech;
   width: 100%;
@@ -89,7 +90,7 @@ const Logo = styled.Image`
 const ContentContainer = styled.View`
   flex: 1;
   justify-content: center;
-  align-items: center;
+  align-items: strech;
 `;
 
 const HeaderButtons = styled.View`
@@ -124,11 +125,11 @@ const Tabs = styled.View`
 `;
 
 const TabBox = styled.View`
+  
   flex-direction: row;
   align-items: baseline;
   justify-content: space-between;
   padding-horizontal: 25px;
-  margin-top: -10px;
 `;
 
 

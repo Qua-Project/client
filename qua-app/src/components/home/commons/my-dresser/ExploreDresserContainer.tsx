@@ -45,7 +45,6 @@ const Container = styled.View`
   width: 100%;
   align-items: flex-start;
   padding-vertical: 20px;
-  margin-bottom: 40px;
 `;
 const Title = styled.Text`
   font-size: 16px;

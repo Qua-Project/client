@@ -21,8 +21,9 @@ export default MyDresser;
 const Container = styled.View`
   flex: 1;
   align-items: center;
-  position: relative; 
-`;
+  justify-content: center;
+  width: 100%;
+`;;
 
 const MainImage = styled.Image<{ headerHeight: number }>`
   width: 100%;
