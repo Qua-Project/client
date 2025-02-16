@@ -4,11 +4,13 @@ import styled from '@emotion/native';
 import ProfileContainer from './ProfileContainer';
 import SkinDataContainer from './SkinDataContainer';
 import SolutionContainer from './SolutionContainer';
+import MyDresserRange from './DresserPosition';
+import ExploreDresserContainer from './ExploreDresserContainer';
 import { PROFILE_DATA, SKIN_DATA } from '../../util/constants';
 
 const { height } = Dimensions.get('window');
-const MIN_HEIGHT = -height*0;
-const MAX_HEIGHT = -(height - 480);
+const MIN_HEIGHT = 350;
+const MAX_HEIGHT = -(height - 800);
 
 const MyDresserBottomSheet = () => {
     const [translateY] = useState(new Animated.Value(MIN_HEIGHT)); // ✅ 기본값: 약간 올라온 상태
@@ -59,6 +61,9 @@ const MyDresserBottomSheet = () => {
             sensitivity={SKIN_DATA.sensitivity}
           ></SkinDataContainer>
           <SolutionContainer/>
+          <MyDresserRange/>
+          <Divider/>
+          <ExploreDresserContainer/>
         </ContentContainer>
       </FullContentContainer>
     </AnimatedBottomSheet>    
@@ -99,6 +104,13 @@ const ContentContainer = styled.View`
   flex-direction: col;
   height: 100%;
   gap: 24px;
+`
+
+const Divider = styled.View`
+  height: 0.5px;
+  width: 100%;
+  padding-forizontal: 20px;
+  background-color: #DBDBDB;
 `
 
 

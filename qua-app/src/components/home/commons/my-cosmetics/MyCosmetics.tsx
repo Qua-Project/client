@@ -44,6 +44,7 @@ const MyCosmetics = () => {
         )}
         contentContainerStyle={{ paddingBottom: 20 }} 
         ItemSeparatorComponent={() => <Divider />}
+        showsVerticalScrollIndicator={false}
       />
     </Container>
     

@@ -52,6 +52,7 @@ const Container = styled.View`
   align-items: flex-start;
   padding-vertical: 20px;
 `;
+
 const Title = styled.Text`
   font-size: 16px;
   font-weight: bold;
