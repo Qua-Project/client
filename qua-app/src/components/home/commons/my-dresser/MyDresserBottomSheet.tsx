@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, Dimensions, Animated, PanResponder } fro
 import styled from '@emotion/native';
 import ProfileContainer from './ProfileContainer';
 import SkinDataContainer from './SkinDataContainer';
+import SolutionContainer from './SolutionContainer';
 import { PROFILE_DATA, SKIN_DATA } from '../../util/constants';
 
 const { height } = Dimensions.get('window');
@@ -57,6 +58,7 @@ const MyDresserBottomSheet = () => {
             oil={SKIN_DATA.oil}
             sensitivity={SKIN_DATA.sensitivity}
           ></SkinDataContainer>
+          <SolutionContainer/>
         </ContentContainer>
       </FullContentContainer>
     </AnimatedBottomSheet>    
@@ -76,7 +78,6 @@ const AnimatedBottomSheet = styled(Animated.View)`
   border-top-right-radius: 20px;
   padding: 15px;
   elevation: 5;
-
 `;
 
 /* 🔹 드래그 핸들 */
