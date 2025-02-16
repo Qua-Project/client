@@ -33,7 +33,7 @@ const Container = styled.View`
   flex-direction: col;
   align-items: flex-start;
   gap: 8px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 `;
 
 const Title = styled.Text`

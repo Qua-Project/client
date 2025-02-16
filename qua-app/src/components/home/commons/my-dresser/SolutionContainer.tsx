@@ -50,6 +50,7 @@ const Container = styled.View`
   padding-vertical: 16px;
   padding-horizontal: 32px;
   gap:8px;
+  margin-bottom: 24px;
 `;
 
 const Solution = styled.Text`

@@ -44,7 +44,7 @@ export default ExploreDresserContainer;
 const Container = styled.View`
   width: 100%;
   align-items: flex-start;
-  padding-vertical: 20px;
+  padding-vertical: 15px;
 `;
 const Title = styled.Text`
   font-size: 16px;

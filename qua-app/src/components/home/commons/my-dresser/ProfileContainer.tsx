@@ -40,6 +40,7 @@ const ProfileSection = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 24px;
 `;
 const ProfileBox = styled.View`
   flex-direction: row;

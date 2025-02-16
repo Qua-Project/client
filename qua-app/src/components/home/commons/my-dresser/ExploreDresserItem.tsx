@@ -11,7 +11,7 @@ const ExploreDresserItem:React.FC<ExploreDresserItemProps> =({image, score}) => 
   return (
     <Container>
       <ProfileImage source={image} resizeMode="contain" />
-      <DresserScore>{score}</DresserScore>
+      <DresserScore>{score}점</DresserScore>
     </Container>
   );
 };
@@ -56,7 +56,7 @@ const ProfileImage = styled.Image`
 const DresserScore = styled.Text`
   font-size: 14px;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #F2F2F2;
   padding-vertical: 2px;
   padding-horizontal: 21px;
   background-color: #5D85EE;

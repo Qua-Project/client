@@ -49,6 +49,7 @@ const SkinDataContent = styled.View`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 24px;
 `;
 
 const SkinScoreChart = styled.View`
