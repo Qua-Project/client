@@ -8,40 +8,41 @@ import MyDresserRange from './DresserPosition';
 import ExploreDresserContainer from './ExploreDresserContainer';
 import { PROFILE_DATA, SKIN_DATA } from '../../util/constants';
 
-const { height } = Dimensions.get('window');
-const MIN_HEIGHT = 350;
-const MAX_HEIGHT = -(height - 800);
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+const MIN_HEIGHT = SCREEN_HEIGHT * 0.20;
+const MAX_HEIGHT = SCREEN_HEIGHT * 0.85;
 
 const MyDresserBottomSheet = () => {
-    const [translateY] = useState(new Animated.Value(MIN_HEIGHT)); // ✅ 기본값: 약간 올라온 상태
+  const [translateY] = useState(new Animated.Value(SCREEN_HEIGHT - MIN_HEIGHT));
 
-  // ✅ 바텀시트 드래그 핸들링
   const panResponder = PanResponder.create({
-    onMoveShouldSetPanResponder: (_, gestureState) => Math.abs(gestureState.dy) > 5,
-    onPanResponderMove: (_, gestureState) => {
-      if (gestureState.dy < 0) {
-        translateY.setValue(Math.max(MAX_HEIGHT, gestureState.dy + MIN_HEIGHT)); // ✅ 최대 높이 제한
-      }
-    },
-    onPanResponderRelease: (_, gestureState) => {
-      if (gestureState.dy < -50) {
-        // ✅ 위로 올리면 최대 확장
-        Animated.spring(translateY, {
-          toValue: MAX_HEIGHT, // 확장된 상태
-          friction: 7, // ✅ 부드러운 애니메이션
-          useNativeDriver: true,
-        }).start();
-      } else {
-        // ✅ 기본 상태로 복귀
-        Animated.spring(translateY, {
-          toValue: MIN_HEIGHT,
-          friction: 7, // ✅ 부드러운 애니메이션
-          useNativeDriver: true,
-        }).start();
-      }
-    },
-  });
-  
+  onMoveShouldSetPanResponder: (_, gestureState) => Math.abs(gestureState.dy) > 5,
+  onPanResponderMove: (_, gestureState) => {
+    const newTranslateY = Math.min(
+      SCREEN_HEIGHT - MIN_HEIGHT, // ✅ 최소 위치 제한 (기본 상태)
+      Math.max(SCREEN_HEIGHT - MAX_HEIGHT, gestureState.dy + translateY._value) // ✅ 최대 확장 위치 제한
+    );
+    translateY.setValue(newTranslateY);
+  },
+  onPanResponderRelease: (_, gestureState) => {
+    if (gestureState.dy < -50) {
+      // ✅ 위로 올리면 MAX_HEIGHT로 확장
+      Animated.spring(translateY, {
+        toValue: SCREEN_HEIGHT - MAX_HEIGHT,
+        friction: 7,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      // ✅ 기본 상태 (MIN_HEIGHT)로 복귀
+      Animated.spring(translateY, {
+        toValue: SCREEN_HEIGHT - MIN_HEIGHT,
+        friction: 7,
+        useNativeDriver: true,
+      }).start();
+    }
+  },
+});
+
   return (
     <AnimatedBottomSheet style={{ transform: [{ translateY }] }} {...panResponder.panHandlers}>
       <DragHandle source={require('@assets/home/back.png')} />
