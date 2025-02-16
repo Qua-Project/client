@@ -38,6 +38,7 @@ export default MyCosmeticList;
 
 const Container = styled.View`
   align-items: flex-start;
+  padding-vertical: 20px;
   gap: 16px;
 `;
 
