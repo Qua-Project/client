@@ -5,5 +5,5 @@ interface StartStore {
 }
 
 export const startStore = create<StartStore>(() => ({
-  isStart: true,
+  isStart: false,
 }));

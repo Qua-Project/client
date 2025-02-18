@@ -1,6 +1,12 @@
 import { useState, useRef } from "react";
 import styled from "@emotion/native";
-import { Text, Pressable, TextInput } from "react-native";
+import {
+  Text,
+  Pressable,
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
@@ -25,69 +31,71 @@ export default function BasicContainer() {
     day.length === 2;
 
   return (
-    <Container>
-      <Title2>기본 정보를 입력해주세요</Title2>
-      <Title3>성별</Title3>
-      <GenderContainer>
-        <GenderButton
-          isSelected={gender === "여성"}
-          onPress={() => setGender("여성")}
-        >
-          <GenderText isSelected={gender === "여성"}>여성</GenderText>
-        </GenderButton>
-        <GenderButton
-          isSelected={gender === "남성"}
-          onPress={() => setGender("남성")}
-        >
-          <GenderText isSelected={gender === "남성"}>남성</GenderText>
-        </GenderButton>
-      </GenderContainer>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <Container>
+        <Title2>기본 정보를 입력해주세요</Title2>
+        <Title3>성별</Title3>
+        <GenderContainer>
+          <GenderButton
+            isSelected={gender === "여성"}
+            onPress={() => setGender("여성")}
+          >
+            <GenderText isSelected={gender === "여성"}>여성</GenderText>
+          </GenderButton>
+          <GenderButton
+            isSelected={gender === "남성"}
+            onPress={() => setGender("남성")}
+          >
+            <GenderText isSelected={gender === "남성"}>남성</GenderText>
+          </GenderButton>
+        </GenderContainer>
 
-      <Title3>생년월일</Title3>
-      <BirthdateContainer>
-        <BirthInput
-          placeholder="YYYY"
-          keyboardType="numeric"
-          maxLength={4}
-          value={year}
-          onChangeText={(text) => {
-            setYear(text);
-            if (text.length === 4) monthRef.current?.focus();
-          }}
-        />
-        <Divider></Divider>
-        <BirthInput
-          ref={monthRef}
-          placeholder="MM"
-          keyboardType="numeric"
-          maxLength={2}
-          value={month}
-          onChangeText={(text) => {
-            if (text.length <= 2) setMonth(text);
-            if (text.length === 2) dayRef.current?.focus();
-          }}
-        />
-        <Divider></Divider>
-        <BirthInput
-          ref={dayRef}
-          placeholder="DD"
-          keyboardType="numeric"
-          maxLength={2}
-          value={day}
-          onChangeText={(text) => {
-            if (text.length <= 2) setDay(text);
-          }}
-        />
-      </BirthdateContainer>
+        <Title3>생년월일</Title3>
+        <BirthdateContainer>
+          <BirthInput
+            placeholder="YYYY"
+            keyboardType="numeric"
+            maxLength={4}
+            value={year}
+            onChangeText={(text) => {
+              setYear(text);
+              if (text.length === 4) monthRef.current?.focus();
+            }}
+          />
+          <Divider></Divider>
+          <BirthInput
+            ref={monthRef}
+            placeholder="MM"
+            keyboardType="numeric"
+            maxLength={2}
+            value={month}
+            onChangeText={(text) => {
+              if (text.length <= 2) setMonth(text);
+              if (text.length === 2) dayRef.current?.focus();
+            }}
+          />
+          <Divider></Divider>
+          <BirthInput
+            ref={dayRef}
+            placeholder="DD"
+            keyboardType="numeric"
+            maxLength={2}
+            value={day}
+            onChangeText={(text) => {
+              if (text.length <= 2) setDay(text);
+            }}
+          />
+        </BirthdateContainer>
 
-      <NextButton
-        disabled={!isFormValid}
-        onPress={() => navigation.navigate("basic")}
-        isActive={isFormValid}
-      >
-        <BtnText isActive={isFormValid}>다음</BtnText>
-      </NextButton>
-    </Container>
+        <NextButton
+          disabled={!isFormValid}
+          onPress={() => navigation.navigate("basic")}
+          isActive={isFormValid}
+        >
+          <BtnText isActive={isFormValid}>다음</BtnText>
+        </NextButton>
+      </Container>
+    </TouchableWithoutFeedback>
   );
 }
 
