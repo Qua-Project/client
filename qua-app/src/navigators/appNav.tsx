@@ -6,14 +6,19 @@ import MainNavigator from "./mainNav";
 import OnBoardingNavigator from "./onBoardingNav";
 import { RootParamList } from "../types/type";
 
+import { startStore } from "../stores/startStore";
 const Stack = createStackNavigator<RootParamList>();
 
 export default function AppNavigator() {
+  const isStart = startStore((state) => state.isStart);
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Login" component={LoginScreen} />
-      {/* <Stack.Screen name="OnBoarding" component={OnBoardingNavigator} /> */}
+      {isStart ? (
+        <Stack.Screen name="OnBoarding" component={OnBoardingNavigator} />
+      ) : (
+        <Stack.Screen name="Main" component={MainNavigator} />
+      )}
     </Stack.Navigator>
   );
 }
-
