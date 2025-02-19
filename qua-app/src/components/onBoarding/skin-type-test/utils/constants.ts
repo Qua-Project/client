@@ -16,7 +16,15 @@ export const START_SLIDE_DATA = [
   },
 ];
 
-export const TEST_SLIDE_DATA = [
+export type TestSlideDataType = {
+  id: number;
+  question: string;
+  types: string[];
+  scores: {number: string[]};
+  options: string[];
+}
+
+export const TEST_SLIDE_DATA:TestSlideDataType[] = [
   {
     id: 1,
     question: '스스로가 느끼는\n얼굴 피부는 어떤가요?',

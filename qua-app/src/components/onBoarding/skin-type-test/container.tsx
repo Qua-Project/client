@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '@emotion/react';
 import SkinTypeStartSlider from './commons/SkinTypeStartSlider'
 import SkinTypeTestSlider from './commons/SkinTypeTestSlider';
+import TestSlider from './commons/TestSlider';
 import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { useState } from 'react';
 
@@ -28,7 +29,8 @@ const SkinTypeStartContainer: React.FC = () => {
           <Text style={styles.header}>피부 타입 분석</Text>
           {activeStart 
           ? (<>
-            <SkinTypeTestSlider />
+            {/* <SkinTypeTestSlider /> */}
+            <TestSlider/>
           </>)
           :(<>
             <SkinTypeStartSlider />
