@@ -19,27 +19,29 @@ export const START_SLIDE_DATA = [
 export type TestSlideDataType = {
   id: number;
   question: string;
+  description: string|null;
   types: string[];
-  scores: {number: string[]};
+  scores: { [key: number]: number[] };
   options: string[];
 }
 
 export const TEST_SLIDE_DATA:TestSlideDataType[] = [
   {
     id: 1,
-    question: '스스로가 느끼는\n얼굴 피부는 어떤가요?',
-    types: ['O','M'],
-    scores: {1:[1, 1], 2:[2,3], 3:[3,2], 4:[4,4]},
+    question: '스스로가 느끼는 얼굴 피부는 어떤가요?',
+    types: ['O', 'M'],
+    scores: { 1: [1, 1], 2: [2, 3], 3: [3, 2], 4: [4, 4] },
     options: [
       '건조해요',
       '건조하지도 않고\n기름기도 없어요',
       '기름기가 있고\n건조해요',
       '기름기가 있어요',
     ],
+    description: null
   },
   {
     id: 2,
-    question: '하루를 마치고 집에 돌아왔을 때\n피부가 얼마나 번들거리나요?',
+    question: '하루를 마치고 집에 돌아왔을 때 피부가 얼마나 번들거리나요?',
     types: ['O'],
     scores: {1:[1], 2:[2], 3:[3], 4:[4]},
     options: [
@@ -48,10 +50,11 @@ export const TEST_SLIDE_DATA:TestSlideDataType[] = [
       'T존 부위\n전체가 기름져요',
       '얼굴 전체가\n기름져요',
     ],
+    description: null
   },
   {
     id: 3,
-    question: '얼굴에 모공 수가\n많고 크기가 큰가요?',
+    question: '얼굴에 모공 수가 많고 크기가 큰가요?',
     types: ['O'],
     scores: {1:[1], 2:[2], 3:[3], 4:[4]},
     options: [
@@ -60,10 +63,11 @@ export const TEST_SLIDE_DATA:TestSlideDataType[] = [
       '곳곳에 도드라져\n보여요',
       '얼굴 전체에\n큰 모공이 많아요',
     ],
+    description: null
   },
   {
     id: 4,
-    question: '평소 피부가 얼마나\n건조하게 느껴지시나요?',
+    question: '평소 피부가 얼마나 건조하게 느껴지시나요?',
     types: ['M'],
     scores: {1:[4], 2:[3], 3:[2], 4:[1]},
     options: [
@@ -72,10 +76,11 @@ export const TEST_SLIDE_DATA:TestSlideDataType[] = [
       'U존 부위\n전체가 건조해요',
       '얼굴 전체가\n건조해요',
     ],
+    description: null
   },
   {
     id: 5,
-    question: '세안 후 보습제를\n바르지 않으면\n피부가 얼마나 당기나요?',
+    question: '세안 후 보습제를 바르지 않으면 피부가 얼마나 당기나요?',
     types: ['M'],
     scores: {1:[4], 2:[3], 3:[2], 4:[1]},
     options: [
@@ -84,10 +89,11 @@ export const TEST_SLIDE_DATA:TestSlideDataType[] = [
       '당기지만\n참을만 해요',
       '꽤 당겨서\n견디기 힘들어요',
     ],
+    description: null
   },
   {
     id: 6,
-    question: '피부 겉은 번들거리는데\n속은 건조하거나\n겉보다 속이 더 건조한\n‘속당김’이 있나요?',
+    question: '피부 겉은 번들거리는데 속은 건조하거나 겉보다 속이 더 건조한 ‘속당김’이 있나요?',
     types: ['O','M'],
     scores: {1:[1,4], 2:[2,3], 3:[3,2], 4:[4,1]},
     options: [
@@ -96,10 +102,11 @@ export const TEST_SLIDE_DATA:TestSlideDataType[] = [
       '종종 느껴져요',
       '매일 수시로\n느껴져요',
     ],
+    description: null
   },
   {
     id: 7,
-    question: '아토피성 피부염 또는\n습진 접촉성 피부염\n(알레르기성 피부 발진)에 대한\n진단을 받은 적이 있나요?',
+    question: '아토피성 피부염 또는 습진 접촉성 피부염 (알레르기성 피부 발진) 에 대한 진단을 받은 적이 있나요?',
     types: ['S'],
     scores: {1:[1], 2:[2], 3:[3], 4:[4]},
     options: [
@@ -108,10 +115,11 @@ export const TEST_SLIDE_DATA:TestSlideDataType[] = [
       '진단을 받은\n적이 있어요',
       '심각한 경우에\n해당해요',
     ],
+    description: null
   },
   {
     id: 8,
-    question: '여드름이 얼마나\n자주 생기나요?',
+    question: '여드름이 얼마나 자주 생기나요?',
     types: ['S'],
     scores: {1:[1], 2:[2], 3:[3], 4:[4]},
     options: [
@@ -120,10 +128,11 @@ export const TEST_SLIDE_DATA:TestSlideDataType[] = [
       '항상 몇 개씩은 얼굴에\n여드름이 있어요',
       '여드름이 얼굴 곳곳에\n지속적으로 생겨요',
     ],
+    description: null
   },
   {
     id: 9,
-    question: '금이 아닌 악세서리를\n착용할 경우에 피부 발진이\n자주 발생하나요?',
+    question: '금이 아닌 악세서리를 착용할 경우에 피부 발진이 자주 발생하나요?',
     types: ['S'],
     scores: {1:[1], 2:[2], 3:[3], 4:[4]},
     options: [
@@ -132,10 +141,11 @@ export const TEST_SLIDE_DATA:TestSlideDataType[] = [
       '자주 나타나요',
       '항상 나타나요',
     ],
+    description: null
   },
   {
     id: 10,
-    question: '피부 관리 제품을 사용할 때,\n얼굴에 트러블이나 발진,\n가려움 혹은 따끔거리는 증상이\n나타난 적이 있나요?',
+    question: '피부 관리 제품을 사용할 때, 얼굴에 트러블이나 발진, 가려움 혹은 따끔거리는 증상이 나타난 적이 있나요?',
     types: ['S'],
     scores: {1:[1], 2:[2], 3:[3], 4:[4]},
     options: [
@@ -144,6 +154,7 @@ export const TEST_SLIDE_DATA:TestSlideDataType[] = [
       '자주 있어요',
       '항상 있어요',
     ],
+    description: null
   },
   {
     id: 11,
@@ -160,5 +171,7 @@ export const TEST_SLIDE_DATA:TestSlideDataType[] = [
       '각질',
       '해당없음',
     ],
+    types: [],
+    scores: {}
   },
 ];
