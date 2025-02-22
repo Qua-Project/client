@@ -4,12 +4,21 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '@emotion/react';
 import WaitingCard from './commons/WaitingCard';
 import { useEffect, useState } from 'react';
-
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootParamList } from '@/src/types/type';
 interface SkinTypeResultContainerProps{
   skinType: string;
 }
 
 const SkinTypeResultContainer: React.FC<SkinTypeResultContainerProps> = ({skinType}) => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'SkinTypeResult'>>(); 
+  const handleReTest = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'SkinTypeTest' }], // ✅ 테스트 화면으로 이동 & 스택 초기화
+    });
+  };
   const theme = useTheme(); // 테마 값 가져오기
   const [isWaiting, setIsWaiting] = useState(true);
 
@@ -106,10 +115,10 @@ const SkinTypeResultContainer: React.FC<SkinTypeResultContainerProps> = ({skinTy
           </TypeBoxRow>
         </TypeContainer>
 
-        <Button onPress={() => console.log('리포트 보기')}>
+        <Button onPress={() => navigation.push('SkinTypeReport')}>
           <ButtonText>피부타입 분석 리포트 보기</ButtonText>
         </Button>
-        <ReTestButton onPress={() => console.log('다시 분석')}>
+        <ReTestButton onPress={handleReTest}>
           <ReTestText>피부타입 분석 다시하기</ReTestText>
         </ReTestButton>
         

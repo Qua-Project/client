@@ -4,5 +4,6 @@ export type RootParamList = {
   Main: undefined;
   SkinTypeTest: undefined;
   SkinTypeResult: { skinType: string };
+  SkinTypeReport: undefined;
   OnBoarding: undefined;
 };
