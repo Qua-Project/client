@@ -11,25 +11,35 @@ interface TestItemProps{
   item: TestSlideDataType;
   index: number;
   scrollX: SharedValue<number>;
+  selectedOptions: { [key: number]: number | null }; 
+  onSelectOption: (questionId: number, optionIndex: number) => void; 
 }
 const {width} = Dimensions.get('screen');
-const TestItem:React.FC<TestItemProps> = ({item, index, scrollX}) => {
-  const rnAnimatedStyle = useAnimatedStyle(() => {
-    return{
-      transform: [
-        {
-          translateX: interpolate(
-            scrollX.value,
-            [(index-1) * width, index*width, (index+1)*width],
-            [-width *0.25, 0, width*0.25],
-            Extrapolation.CLAMP
-          ),
-        }
-      ]
-    }
-  })
+const TestItem:React.FC<TestItemProps> = ({item, index, scrollX, selectedOptions, onSelectOption }) => {
+  // const rnAnimatedStyle = useAnimatedStyle(() => {
+  //   return{
+  //     transform: [
+  //       {
+  //         translateX: interpolate(
+  //           scrollX.value,
+  //           [(index-1) * width, index*width, (index+1)*width],
+  //           [-width *0.25, 0, width*0.25],
+  //           Extrapolation.CLAMP
+  //         ),
+  //       },
+  //       {
+  //         scale: interpolate(
+  //           scrollX.value,
+  //           [(index-1) * width, index*width, (index+1)*width],
+  //           [0.9, 1, 0.9],
+  //           Extrapolation.CLAMP
+  //         ),
+  //       }
+  //     ],
+  //   };
+  // });
   return (
-    <Animated.View style={[styles.itemContainer, rnAnimatedStyle]}>
+    <Animated.View style={styles.itemContainer}>
       <AnimatedCardContainer
         colors={[
           'rgba(255, 255, 255, 0.8)',
@@ -46,14 +56,19 @@ const TestItem:React.FC<TestItemProps> = ({item, index, scrollX}) => {
                 {word}{" "}
               </Question>
             ))}
-            {(item.description != null ? <DescriptionText>{item.description}</DescriptionText>: <></>)}
+            {(item.description && <DescriptionText>{item.description}</DescriptionText>)}
           </QuestionContainer>
         </OuterContainer>
 
         <OptionContainer index={item.id}>
           {item.options.map((option, index) => (
-            <Option key={index} index={item.id}>
-              <OptionText >
+            <Option 
+              key={index} 
+              index={item.id}
+              selected={selectedOptions[item.id] === index + 1}
+              onPress={() => onSelectOption(item.id, index)}
+            >
+              <OptionText selected={selectedOptions[item.id] === index + 1}>
                 {option}
               </OptionText>
             </Option>
@@ -120,8 +135,8 @@ const DescriptionText = styled.Text`
   text-align: center;
 `
 
-const OptionText = styled.Text`
-  color: #081533;
+const OptionText = styled.Text<{ selected: boolean }>`
+  color: ${({ selected }) => (selected ? '#FFFFFF' : '#081533')};
   font-size: 12px;
   font-weight: regular;
   font-family: Pretendard;
@@ -134,8 +149,8 @@ const OptionContainer = styled.View<{index: number}>`
   height: 70%;
   gap: ${({ index }) => index==11?'8px':'12px'};
 `;
-const Option = styled.TouchableOpacity<{index: number}>`
-  backgroundColor: 'rgba(255, 255, 255, 0.7)';
+const Option = styled.TouchableOpacity<{index: number; selected: boolean}>`
+  background-color: ${({ selected }) => (selected ? '#5D85EE' : 'rgba(255, 255, 255, 0.7)')};
   align-items: center;
   justify-content: center;
   width: ${({ index }) => index==11?'85px':'125px'};
