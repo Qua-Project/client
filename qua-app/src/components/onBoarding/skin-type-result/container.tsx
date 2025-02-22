@@ -2,14 +2,30 @@
 import styled from '@emotion/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '@emotion/react';
+import WaitingCard from './commons/WaitingCard';
+import { useEffect, useState } from 'react';
 
+interface SkinTypeResultContainerProps{
+  skinType: string;
+}
 
-const SkinTypeResultcContainer: React.FC = () => {
+const SkinTypeResultContainer: React.FC<SkinTypeResultContainerProps> = ({skinType}) => {
   const theme = useTheme(); // 테마 값 가져오기
+  const [isWaiting, setIsWaiting] = useState(true);
 
-  const skinType = 'OMS';
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsWaiting(false); // ✅ 3초 후 상태 변경
+    }, 3000);
+
+    return () => clearTimeout(timer); // ✅ 메모리 정리
+  }, []);
+
   return (
-      <GradientBackground
+    <>
+    {isWaiting 
+    ? <WaitingCard/> 
+    :<GradientBackground
         colors={[
           'rgba(233, 240, 255, 1)',
           'rgba(203, 219, 255, 1)',
@@ -98,7 +114,9 @@ const SkinTypeResultcContainer: React.FC = () => {
         </ReTestButton>
         
       </GradientBackground>
-    
+    } 
+    </>
+
   );
 };
 
@@ -242,4 +260,4 @@ const ReTestText = styled.Text`
 `;
 
 
-export default SkinTypeResultcContainer;
+export default SkinTypeResultContainer;

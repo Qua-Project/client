@@ -2,6 +2,7 @@
 export type RootParamList = {
   Login: undefined;
   Main: undefined;
-  SkinTypeStart: undefined;
+  SkinTypeTest: undefined;
+  SkinTypeResult: { skinType: string };
   OnBoarding: undefined;
 };

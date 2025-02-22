@@ -11,7 +11,7 @@ enum TabType {
   SKIN_CARE = '스킨 케어 팁',
 }
 
-const SkinTypeResultcContainer: React.FC = () => {
+const SkinTypeReportContainer: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<TabType>(TabType.DESCRIPTION);
   const { width, height } = Dimensions.get('window');
 
@@ -144,4 +144,4 @@ const ContentContainer = styled.View`
   max-width: 350px;
 `;
 
-export default SkinTypeResultcContainer;
+export default SkinTypeReportContainer;

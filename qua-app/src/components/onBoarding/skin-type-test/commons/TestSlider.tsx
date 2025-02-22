@@ -7,9 +7,13 @@ import styled from '@emotion/native';
 import { TEST_SLIDE_DATA } from '../utils/constants';
 import TestItem from './TestItem';
 import { calculateSkinType } from '../utils/calculateSkinType';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootParamList } from '@/src/types/type'; 
+import { useNavigation } from '@react-navigation/native';
 
 const {width} = Dimensions.get('window');
 const TestSlider:React.FC = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'SkinTypeTest'>>();
   const scrollX = useSharedValue(0);
   const [selectedOptions, setSelectedOptions] = useState<Record<number, number>>({});
   const [currentPage, setCurrentPage] = useState(0); 
@@ -22,6 +26,7 @@ const TestSlider:React.FC = () => {
   const handleButtonClick = () => {
     const skinType = calculateSkinType(selectedOptions);
     console.log(skinType); 
+    navigation.navigate('SkinTypeResult', {skinType}); 
   };
 
   const handleOptionSelect = (questionId: number, optionIndex: number) => {
@@ -65,7 +70,7 @@ const TestSlider:React.FC = () => {
       </Container>
       {(currentPage == 11) && 
         <Button onPress={handleButtonClick}>
-          <ButtonText>시작하기</ButtonText>
+          <ButtonText>완료</ButtonText>
         </Button>
       }
     </>
@@ -84,8 +89,6 @@ const Button = styled.TouchableOpacity`
   border-radius: 28px;
   margin-top: 30px;
   height: 43px;
-  // justify-content: baseline;
-
 `
 
 const ButtonText = styled.Text`
