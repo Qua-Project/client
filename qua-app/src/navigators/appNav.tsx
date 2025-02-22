@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { useUserStore } from "../hooks/stores/user";
+import { useUserStore } from "../shared/hooks/stores/user";
 import LoginScreen from "../screens/onBoarding/login";
 import MainNavigator from "./mainNav";
 import OnBoardingNavigator from "./onBoardingNav";
