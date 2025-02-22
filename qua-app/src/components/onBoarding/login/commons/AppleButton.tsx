@@ -31,11 +31,8 @@ const AppleLoginButton = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-      }).post('api/user/login/apple', {
-        code: credential.identityToken, // 🔹 API 요청 시 `code`에 전달
-      });
-      console.log(BASEURL);
-
+      }).get('api/user/login/apple', { params: { code: credential.identityToken }})
+  
       console.log(response.headers);
       const accessToken = response.headers.authorization.split('Bearer ')[1];
 
@@ -49,7 +46,7 @@ const AppleLoginButton = () => {
       // console.log('Apple Credential:', credential);
       // Alert.alert('로그인 성공!', `User: ${credential.identityToken}`);
     } catch (error) {
-      Alert.alert(`${error}`)
+      console.log(error);
     }
   };
 
