@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "@emotion/native";
-import BackButton from "../../commons/backButton";
+import BackButton from "../../commons/ui/backButton";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import {
   Image,
