@@ -2,7 +2,7 @@ import styled from '@emotion/native';
 import SkinTypeDescription from './SkinTypeDesciption';
 import SkinBalance from './SkinBalance';
 import SkinTypeDetail from './SkinTypeDetail';
-import { startStore } from '@/src/hooks/stores/start';
+import { startStore } from '@/src/shared/hooks/stores/start';
 
 const SkinTypeDescriptionContainer:React.FC = () => {
   const {isStart, setStart} = startStore();

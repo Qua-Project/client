@@ -1,8 +1,20 @@
 import React from 'react';
 import { View, Alert } from 'react-native';
 import * as AppleAuthentication from 'expo-apple-authentication';
+import API from '../../../../shared/configs/axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useUserStore } from '../../../../shared/hooks/stores/user';
+import { useNavigation } from '@react-navigation/native';
+import { UserRscService } from '../../../../shared/hooks/services/UserService';
+import axios from 'axios';
+import { BASEURL } from '../../../../shared';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootParamList } from '@/src/types/type';
 
-const AppleLoginButton:React.FC = () => {
+const AppleLoginButton = () => {
+  const { setLoggedIn, setUserInfo } = useUserStore();
+  const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'Nickname'>>(); 
+  const {getUserInfo} = UserRscService();
   const handleAppleLogin = async () => {
     try {
       const credential = await AppleAuthentication.signInAsync({
@@ -11,11 +23,31 @@ const AppleLoginButton:React.FC = () => {
           AppleAuthentication.AppleAuthenticationScope.EMAIL,
         ],
       });
-
       console.log('Apple Credential:', credential);
-      Alert.alert('로그인 성공!', `User: ${credential.authorizationCode}`);
+      
+      console.log(BASEURL);
+
+      const response = await axios.create({
+        baseURL: BASEURL,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).get('api/user/login/apple', { params: { code: credential.identityToken }})
+  
+      console.log(response.headers);
+      const accessToken = response.headers.authorization.split('Bearer ')[1];
+
+      await AsyncStorage.setItem('accessToken', accessToken);
+      console.log('✅ 로그인 성공! 저장된 토큰:', accessToken);
+      const userInfo = await getUserInfo();
+      console.log(userInfo);
+      setUserInfo(userInfo);
+      setLoggedIn(true);
+      navigation.navigate('Nickname');
+      // console.log('Apple Credential:', credential);
+      // Alert.alert('로그인 성공!', `User: ${credential.identityToken}`);
     } catch (error) {
-      Alert.alert(`${error}`)
+      console.log(error);
     }
   };
 

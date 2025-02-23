@@ -1,7 +1,7 @@
 import styled from '@emotion/native';
 import SkincareStepNavigator from './SkinCareStepNavigator';
 import { SKIN_CARE_STEP_TIPS } from '../utils/constants';
-import { startStore } from '@/src/hooks/stores/start';
+import { startStore } from '@/src/shared/hooks/stores/start';
 
 const SkinCareTipContainer:React.FC = () => {
   const {isStart, setStart} = startStore();

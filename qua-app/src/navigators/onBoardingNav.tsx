@@ -16,14 +16,12 @@ const OnBoardingNavigator = () => {
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
     >
+      <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Nickname" component={NicknameScreen} />
       <Stack.Screen name="Basic" component={BasicScreen} />
       <Stack.Screen name="SkinTypeTest" component={SkinTypeStartScreen} />
       <Stack.Screen name="SkinTypeResult" component={SkinTypeResultScreen} />
       <Stack.Screen name="SkinTypeReport" component={SkinTypeReportScreen} />
-      {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
-      {/* <Stack.Screen name="SkinTypeStart" component={SkinTypeStartScreen} /> */}
-      {/* <Stack.Screen name="Start" component={StartScreen} /> */}
     </Stack.Navigator>
   );
 };

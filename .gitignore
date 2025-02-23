@@ -6,6 +6,7 @@
 
 .expo
 __generated__
+.env
 
 ### ReactNative.Node Stack ###
 # Logs

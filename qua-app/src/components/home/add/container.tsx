@@ -174,7 +174,8 @@ const Search = styled.TextInput`
   height: 100%;
   padding: 0 40px 0 10px;
   font-size: 14px;
-  color: #818182;
+  font-weight: 700;
+  color: #081533;
 `;
 
 const SearchBtn = styled.Pressable`
