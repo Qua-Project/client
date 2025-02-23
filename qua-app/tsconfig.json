@@ -16,7 +16,8 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["*"],
+      "@assets/*": ["./assets/*"],
     }
   },
   "include": ["src/**/*"],

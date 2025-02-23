@@ -13,7 +13,7 @@ import ProfileNavigator from "./profileNav";
 
 const Tab = createBottomTabNavigator();
 
-export default function MainNavigator() {
+export default function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({

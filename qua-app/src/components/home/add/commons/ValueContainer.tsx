@@ -28,7 +28,7 @@ export default function ValueContainer({
             </TextContainer>
             <PlusBtn onPress={() => onAdd(item)}>
               <Image
-                source={require("./images/plusBtn.png")}
+                source={require("@assets/home/add/plusBtn.png")}
                 style={{ width: 36, height: 36 }}
               />
             </PlusBtn>

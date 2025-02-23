@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "@emotion/native";
-import BackButton from "../../commons/backButton";
+import BackButton from "../../commons/BackButton";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import {
   Image,
@@ -8,23 +8,25 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import ValueContainer from "./valueContainer"; // plus 버튼이 있는 컴포넌트
-
+import ValueContainer from "./commons/ValueContainer";
+import { RootParamList } from "@/src/types/type";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
 const valueData = [
   {
-    img: require("./images/example01.png"),
+    img: require("@assets/home/add/example01.png"),
     brand: "라운드랩",
     name: "소나무 진정",
     type: "토너",
   },
   {
-    img: require("./images/example02.png"),
+    img: require("@assets/home/add/example02.png"),
     brand: "라운드랩",
     name: "소나무 수분",
     type: "앰플",
   },
   {
-    img: require("./images/example03.png"),
+    img: require("@assets/home/add/example03.png"),
     brand: "라운드랩",
     name: "소나무 토너",
     type: "토너",
@@ -32,6 +34,7 @@ const valueData = [
 ];
 
 export default function AddContainer() {
+  const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'Add'>>(); 
   const [inputValue, setInputValue] = useState("");
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [searchResult, setSearchResult] = useState<any[]>([]);
@@ -107,7 +110,7 @@ export default function AddContainer() {
                 </TextContainer>
                 <CloseButton onPress={() => handleRemoveItem(index)}>
                   <Image
-                    source={require("./images/close.png")}
+                    source={require("@assets/home/add/close.png")}
                     style={{ width: 14, height: 14 }}
                   />
                 </CloseButton>
