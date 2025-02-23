@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-export default function BackButton() {
+const BackButton:React.FC=()=> {
   const navigation = useNavigation();
 
   return (
@@ -12,7 +12,8 @@ export default function BackButton() {
     </Btn>
   );
 }
-
+export default BackButton;
 const Btn = styled.Pressable`
-  margin-left: 5px;
+  margin-left: 20px;
+  margin-top: 10px;
 `;

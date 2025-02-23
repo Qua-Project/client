@@ -6,7 +6,7 @@ interface StartState {
 }
 
 export const startStore = create<StartState>((set) => ({
-  isStart: true, // 초기값: OnBoarding 진행 중
+  isStart: false, // 초기값: OnBoarding 진행 중
   setStart: (status) => set({ isStart: status }),
 }));
 

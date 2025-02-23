@@ -144,15 +144,16 @@ const TitleContainer = styled.View`
 `;
 
 const Title = styled.Text`
-  font-family: "pretendard";
+  font-family: Pretendard;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 700;
   margin: 7px;
 `;
 
 const SubTitle = styled.Text`
-  font-family: "pretendard";
+  font-family: Pretendard;
   font-size: 14px;
+  fong-weight: 500;
   color: #5d85ee;
 `;
 
