@@ -12,22 +12,21 @@ import ExploreDresserContainer from './ExploreDresserContainer';
 import { PROFILE_DATA, SKIN_DATA } from '../../util/constants';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
-const MIN_HEIGHT = SCREEN_HEIGHT * 0.4; // ✅ 기본 상태 높이
-const MAX_HEIGHT = SCREEN_HEIGHT * 0.75; // ✅ 최대 확장 높이
+const MIN_HEIGHT = SCREEN_HEIGHT * 0.4; 
+const MAX_HEIGHT = SCREEN_HEIGHT * 0.75; 
 
-const MyDresserBottomSheet = () => {
-  const translateY = useSharedValue(SCREEN_HEIGHT - MIN_HEIGHT); // ✅ 기본 위치
+const MyDresserBottomSheet:React.FC = () => {
+  const translateY = useSharedValue(SCREEN_HEIGHT - MIN_HEIGHT); 
 
-  // ✅ 드래그 제스처
   const panGesture = Gesture.Pan()
     .onUpdate((event) => {
       translateY.value = Math.max(SCREEN_HEIGHT - MAX_HEIGHT, Math.min(SCREEN_HEIGHT - MIN_HEIGHT, translateY.value + event.translationY));
     })
     .onEnd((event) => {
       if (event.velocityY < -500 || event.translationY < -50) {
-        translateY.value = withSpring(SCREEN_HEIGHT - MAX_HEIGHT); // ✅ 위로 올리기
+        translateY.value = withSpring(SCREEN_HEIGHT - MAX_HEIGHT);
       } else {
-        translateY.value = withSpring(SCREEN_HEIGHT - MIN_HEIGHT); // ✅ 기본 위치로 돌아오기
+        translateY.value = withSpring(SCREEN_HEIGHT - MIN_HEIGHT); 
       }
     });
 
@@ -80,7 +79,6 @@ const MyDresserBottomSheet = () => {
 
 export default MyDresserBottomSheet;
 
-/* 🔹 바텀시트 */
 const AnimatedBottomSheet = styled(Animated.View)`
   width: 100%;
   height: ${MAX_HEIGHT}px; /* ✅ 전체 높이 */
@@ -96,7 +94,6 @@ const AnimatedBottomSheet = styled(Animated.View)`
   padding: 15px;
 `;
 
-/* 🔹 드래그 핸들 */
 const DragHandle = styled.Image`
   width: 34px;
   height: 9px;
@@ -115,12 +112,10 @@ const Container = styled.View`
   width: 100%;
 `;
 
-/* 🔹 스크롤 가능한 컨텐츠 */
 const ScrollableContent = styled(ScrollView)`
   width: 100%;
   height: ${MAX_HEIGHT - 100}px; /* ✅ 바텀시트 내에서 스크롤 가능하도록 조정 */
 `;
-
 
 const Divider = styled.View`
   height: 0.5px;

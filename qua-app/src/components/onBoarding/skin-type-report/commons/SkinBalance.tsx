@@ -1,16 +1,13 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
-import Svg, { Polygon, Line, Circle, Text as SvgText } from 'react-native-svg';
+import Svg, { Polygon, Line, Text as SvgText } from 'react-native-svg';
 import styled from '@emotion/native';
-
-// :React.FC<RadarChartProps> = ({ myData, avgData })
 
 interface RadarChartProps {
   myData: { moisture: number; oil: number; sensitivity: number };
   avgData: { moisture: number; oil: number; sensitivity: number };
 }
 
-const SkinBalance = () => {
+const SkinBalance:React.FC = () => {
   const data = {
     myData: {moisture: 65, oil: 78, sensitivity: 50},
     avgData: {moisture: 70, oil: 60, sensitivity: 80}
@@ -30,14 +27,12 @@ const SkinBalance = () => {
     };
   };
 
-  // 각 데이터의 각도 (120도씩 배치)
   const angles = [
-    (Math.PI / 2), // 수분도 (위쪽)
-    (-Math.PI / 6), // 민감도 (오른쪽)
-    (-5 * Math.PI) / 6, // 유분도 (왼쪽)
+    (Math.PI / 2), 
+    (-Math.PI / 6),
+    (-5 * Math.PI) / 6,
   ];
 
-  // "나"와 "평균"의 좌표 계산
   const myPoints = angles.map((angle, i) =>
     getPoint([data.myData.moisture, data.myData.sensitivity, data.myData.oil][i], angle)
   );
@@ -52,29 +47,25 @@ const SkinBalance = () => {
       <SmallText>피부 상태에 대한 이해는 균형 잡힌 관리로 이어집니다</SmallText>
       <DescriptionBox>
         <Svg x={center} y={center+30} width={size} height={size} >
-          {/* 🔹 레이더 차트의 축선 */}
           {angles.map((angle, i) => {
             const { x, y } = getPoint(maxValue, angle);
             return <Line key={i} x1={center} y1={center} x2={x} y2={y} stroke="#081533" strokeWidth={1} />;
           })}
 
-          {/* 🔹 "평균" 데이터 삼각형 (연핑크) */}
           <Polygon
             points={avgPoints.map((p) => `${p.x},${p.y}`).join(' ')}
-            fill="rgba(255, 182, 226, 0.5)" // 연한 분홍색
+            fill="rgba(255, 182, 226, 0.5)" 
             stroke="transparent"
             strokeWidth={0}
           />
 
-          {/* 🔹 "나" 데이터 삼각형 (연파랑) */}
           <Polygon
             points={myPoints.map((p) => `${p.x},${p.y}`).join(' ')}
-            fill="rgba(121, 163, 255, 0.5)" // 연한 파란색
+            fill="rgba(121, 163, 255, 0.5)" 
             stroke="transparent"
             strokeWidth={0}
           />
 
-          {/* 🔹 축 레이블 (수분도, 유분도, 민감도) */}
           <SvgText x={center} y={8} fontSize="10" fill="#081533" textAnchor="middle" >
             수분도
           </SvgText>
@@ -97,7 +88,6 @@ const SkinBalance = () => {
           </SvgText>
         </Svg>
 
-        {/* 🔹 범례 (Legend) */}
         <LegendContainer>
           <LegendItem>
             <LegendCircle color="#79A3FF" />

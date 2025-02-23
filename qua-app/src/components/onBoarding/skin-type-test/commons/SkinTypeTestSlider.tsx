@@ -10,12 +10,6 @@ const gap = 6;
 const pageWidth = 328;
 const offset = (screenWidth - pageWidth - gap) / 2;
 
-const Container = styled.View`
-  height: 60%;
-  justify-content: center;
-  align-items: center;
-`;
-
 const SkinTeypTestSlider:React.FC = () => {
   const [page, setPage] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
@@ -83,6 +77,11 @@ const SkinTeypTestSlider:React.FC = () => {
   );
 }
 
+const Container = styled.View`
+  height: 60%;
+  justify-content: center;
+  align-items: center;
+`;
 
 const AnimatedCardContainer = styled(LinearGradient)`
   border-radius: 10px;
@@ -96,31 +95,6 @@ const AnimatedCardContainer = styled(LinearGradient)`
   margin-horizontal: 6px;
 `;
 
-
-const Button = styled.TouchableOpacity<{last: boolean}>`
-  background-color: ${({last}) => (last? 'white': 'transparent')};
-  padding-vertical: 8px;
-  padding-horizontal: 60px;
-  border-radius: 28px;
-  margin-top: 30px;
-  height: 43px;
-  justify-content: center;
-`
-
-const ButtonText = styled.Text<{last: boolean}>`
-  color: ${({last}) => (last? '#081533': 'transparent')};
-  font-size: 16px;
-  font-weight: bold;
-  font-family: Pretendard;
-`
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 export default SkinTeypTestSlider;
 
 

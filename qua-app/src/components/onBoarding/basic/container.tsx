@@ -8,11 +8,10 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
 import { RootParamList } from "@/src/types/type";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-export default function BasicContainer() {
+const BasicContainer:React.FC = ()=> {
   const [gender, setGender] = useState<"남성" | "여성" | "">("");
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
@@ -97,6 +96,7 @@ export default function BasicContainer() {
   );
 }
 
+export default BasicContainer;
 const Container = styled.View`
   flex: 1;
   background-color: white;

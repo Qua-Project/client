@@ -4,8 +4,7 @@ import SkinBalance from './SkinBalance';
 import SkinTypeDetail from './SkinTypeDetail';
 import { startStore } from '@/src/hooks/stores/start';
 
-const SkinTypeDescriptionContainer = () => {
-  // const isStart = startStore((state) => state.isStart);
+const SkinTypeDescriptionContainer:React.FC = () => {
   const {isStart, setStart} = startStore();
   return (
     <Container>

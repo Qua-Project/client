@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { RootParamList } from "@/src/types/type";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-export default function NicknameContainer() {
+const NicknameContainer:React.FC = () => {
   const [nickname, setNickname] = useState("");
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'Nickname'>>(); 
 
@@ -28,7 +28,7 @@ export default function NicknameContainer() {
     </Container>
   );
 }
-
+export default NicknameContainer;
 const Container = styled.View`
   flex: 1;
   background-color: white;

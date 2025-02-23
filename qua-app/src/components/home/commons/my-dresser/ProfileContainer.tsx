@@ -1,6 +1,4 @@
-import {Image, View, Text, StyleSheet} from 'react-native'
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, PanResponder, Dimensions } from 'react-native';
+import React from 'react';
 import styled from '@emotion/native';
 
 interface ProfileProps {
@@ -34,7 +32,6 @@ const ProfileContainer: React.FC<ProfileProps> = ({userImage, follower, followin
 
 export default ProfileContainer;
 
-/* 🔹 프로필 섹션 */
 const ProfileSection = styled.View`
   width: 100%;
   flex-direction: row;

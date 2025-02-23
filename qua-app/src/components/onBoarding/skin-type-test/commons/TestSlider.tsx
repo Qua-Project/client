@@ -12,6 +12,7 @@ import { RootParamList } from '@/src/types/type';
 import { useNavigation } from '@react-navigation/native';
 
 const {width} = Dimensions.get('window');
+
 const TestSlider:React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'SkinTypeTest'>>();
   const scrollX = useSharedValue(0);

@@ -1,5 +1,4 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
 import styled from '@emotion/native';
 
 interface ExploreDresserItemProps{
@@ -18,18 +17,6 @@ const ExploreDresserItem:React.FC<ExploreDresserItemProps> =({image, score}) => 
 
 export default ExploreDresserItem;
 
-// const Container = styled.View`
-//   width: 110px;
-//   height: 180px;
-//   background-color: white;
-//   border-radius: 10px;
-//   border: 1px solid #E0E0E0;
-//   align-items: center;
-//   justify-content: center;
-//   margin-right: 10px;
-//   padding: 10px;
-// `;
-
 const Container = styled.View`
   flex-direcotion: col;
   backgorund-color: #000000;
@@ -43,7 +30,6 @@ const Container = styled.View`
   border-radius: 10px;
 `;
 
-/* 🔹 제품 이미지 */
 const ProfileImage = styled.Image`
   width: 70px;
   height: 70px;

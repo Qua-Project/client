@@ -1,5 +1,5 @@
 import styled from "@emotion/native";
-import { Image, Text } from "react-native";
+import { Image } from "react-native";
 
 interface ValueContainerProps {
   searchResult: { img: any; name: string; brand: string; type: string }[];
@@ -11,10 +11,10 @@ interface ValueContainerProps {
   }) => void;
 }
 
-export default function ValueContainer({
+const ValueContainer:React.FC<ValueContainerProps> = ({
   searchResult,
   onAdd,
-}: ValueContainerProps) {
+}: ValueContainerProps) => {
   return (
     <Container>
       {searchResult.length > 0 ? (
@@ -40,6 +40,7 @@ export default function ValueContainer({
     </Container>
   );
 }
+export default ValueContainer;
 
 const Container = styled.View`
   padding: 20px;

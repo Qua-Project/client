@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Button, Alert } from 'react-native';
+import { View, Alert } from 'react-native';
 import * as AppleAuthentication from 'expo-apple-authentication';
 
-const AppleLoginButton = () => {
+const AppleLoginButton:React.FC = () => {
   const handleAppleLogin = async () => {
     try {
       const credential = await AppleAuthentication.signInAsync({

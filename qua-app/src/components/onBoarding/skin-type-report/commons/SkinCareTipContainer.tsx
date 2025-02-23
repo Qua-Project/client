@@ -3,7 +3,7 @@ import SkincareStepNavigator from './SkinCareStepNavigator';
 import { SKIN_CARE_STEP_TIPS } from '../utils/constants';
 import { startStore } from '@/src/hooks/stores/start';
 
-const SkinCareTipContainer = () => {
+const SkinCareTipContainer:React.FC = () => {
   const {isStart, setStart} = startStore();
   return (
     <Container>

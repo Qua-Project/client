@@ -5,13 +5,12 @@ import styled from '@emotion/native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 interface DresserPostionProgressBarProps {
-  score: number; // ✅ 0~100 값 입력
+  score: number; 
 }
 
 const DresserPostionProgressBar: React.FC<DresserPostionProgressBarProps> = ({ score }) => {
   return (
     <Container>
-      {/* 🔹 Progress Bar */}
       <ProgressBarContainer>
         <Svg width="100%" height="12">
           <Defs>
@@ -20,10 +19,10 @@ const DresserPostionProgressBar: React.FC<DresserPostionProgressBarProps> = ({ s
               <Stop offset="100%" stopColor="#3A54AA" />
             </SvgGradient>
           </Defs>
-          {/* 🔹 채워진 바 (그라데이션) */}
+          
           <Rect x="0" y="0" width="100%" height="12" rx="6" fill="url(#progressGradient)" />
         </Svg>
-        {/* 🔹 점수 Bubble */}
+        
         <ScoreBubble 
           style={{ left: (324 * (100-score)/100 - 15) }}
           colors= {['#F2F6FF', '#CBDBFF']}
@@ -47,13 +46,11 @@ const Container = styled.View`
   margin-top: 3px;
 `;
 
-/* 🔹 Progress Bar 컨테이너 */
 const ProgressBarContainer = styled.View`
   position: relative;
   width: 324px;
 `;
 
-/* 🔹 점수 표시 Bubble */
 const ScoreBubble = styled(LinearGradient)`
   position: absolute;
   top: -6px;

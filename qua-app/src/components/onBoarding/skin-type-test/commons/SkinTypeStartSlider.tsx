@@ -5,22 +5,18 @@ import { LinearGradient } from 'expo-linear-gradient';
 import styled from '@emotion/native';
 import { START_SLIDE_DATA } from '../utils/constants';
 
-const { width: screenWidth } = Dimensions.get('window');
-
 const SkinTypeSlider: React.FC = () => {
   const scrollRef = useRef<ScrollView>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [cardWidth, setCardWidth] = useState(0); // CardContainer의 width 저장
+  const [cardWidth, setCardWidth] = useState(0); 
 
-  // 카드 크기 측정
   const handleCardLayout = (event: any) => {
     const { width } = event.nativeEvent.layout;
-    console.log(width);
-    setCardWidth(width); // 측정된 width를 상태로 저장
+    setCardWidth(width); 
   };
   const handleScroll = (event: any) => {
     const offsetX = event.nativeEvent.contentOffset.x;
-    const currentIndex = Math.round(offsetX / cardWidth); // 동적 cardWidth 사용
+    const currentIndex = Math.round(offsetX / cardWidth);
     setActiveIndex(currentIndex);
   };
 
@@ -43,7 +39,7 @@ const SkinTypeSlider: React.FC = () => {
           {START_SLIDE_DATA.map((_, index) => (
             <Dot
               key={index}
-              dotColor={getDotColor(index, activeIndex)} // 동적으로 색상 결정
+              dotColor={getDotColor(index, activeIndex)} 
             />
           ))}
         </View>

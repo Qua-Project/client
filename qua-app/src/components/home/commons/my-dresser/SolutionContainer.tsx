@@ -1,15 +1,6 @@
 import styled from "@emotion/native";
-import SkinCircularChart from "./SkinCircularChart";
-import ProgressBar from "./ProgressBar";
 
-interface SolutionContainerProps{
-  total: number;
-  oil: number; 
-  moisture: number;
-  sensitivity: number;
-}
-
-const SolutionContainer=() => {
+const SolutionContainer:React.FC=() => {
   return (
     <Container>
       <Solution>솔루션</Solution>

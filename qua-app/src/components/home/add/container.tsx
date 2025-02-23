@@ -2,16 +2,12 @@ import { useState } from "react";
 import styled from "@emotion/native";
 import BackButton from "../../commons/BackButton";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
-import {
-  Image,
-  Pressable,
-  Keyboard,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { Image, Keyboard, TouchableWithoutFeedback,} from "react-native";
 import ValueContainer from "./commons/ValueContainer";
 import { RootParamList } from "@/src/types/type";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
+
 const valueData = [
   {
     img: require("@assets/home/add/example01.png"),
@@ -33,7 +29,7 @@ const valueData = [
   },
 ];
 
-export default function AddContainer() {
+const AddContainer:React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'Add'>>(); 
   const [inputValue, setInputValue] = useState("");
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
@@ -133,6 +129,7 @@ export default function AddContainer() {
     </TouchableWithoutFeedback>
   );
 }
+export default AddContainer;
 
 const Container = styled.View`
   background-color: white;

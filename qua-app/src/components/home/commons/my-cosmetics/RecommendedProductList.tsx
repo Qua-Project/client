@@ -22,7 +22,7 @@ const recommendedProducts = [
   },
 ];
 
-const RecommendedProductList = () => {
+const RecommendedProductList:React.FC = () => {
   return (
     <Container>
       <Title>스킨/토너 추천</Title>
@@ -38,7 +38,7 @@ const RecommendedProductList = () => {
             imageSource={item.imageSource}
           />
         )}
-        horizontal // ✅ 가로 스크롤
+        horizontal 
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingRight: 10 }}
       />

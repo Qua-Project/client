@@ -1,5 +1,4 @@
 import styled from "@emotion/native";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function MainHeader() {

@@ -12,10 +12,8 @@ const RecommendedProductItem: React.FC<RecommendedProductItemProps> = ({ brand, 
   return (
     <>
       <Container>
-        {/* 🔹 제품 이미지 */}
         <ProductImage source={imageSource} resizeMode="contain" />
-        
-        {/* 🔹 제품 정보 */}
+    
         <ProductInfo>
           <Brand>{brand}</Brand>
           <ProductName>{name}</ProductName>
@@ -29,18 +27,6 @@ const RecommendedProductItem: React.FC<RecommendedProductItemProps> = ({ brand, 
 
 export default RecommendedProductItem;
 
-// const Container = styled.View`
-//   width: 110px;
-//   height: 180px;
-//   background-color: white;
-//   border-radius: 10px;
-//   border: 1px solid #E0E0E0;
-//   align-items: center;
-//   justify-content: center;
-//   margin-right: 10px;
-//   padding: 10px;
-// `;
-
 const Container = styled.View`
   flex-direcotion: col;
   align-items: flex-start;
@@ -49,7 +35,6 @@ const Container = styled.View`
   gap:12px;
 `;
 
-/* 🔹 제품 이미지 */
 const ProductImage = styled.Image`
   width: 150px;
   height: 150px;
@@ -61,7 +46,6 @@ const ProductImage = styled.Image`
   padding: 10px;;
 `;
 
-/* 🔹 제품 정보 */
 const ProductInfo = styled.View`
   align-items: flex-start;
   gap: 4px;

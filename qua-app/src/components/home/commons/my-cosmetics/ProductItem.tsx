@@ -1,5 +1,4 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
 import styled from '@emotion/native';
 
 interface ProductItemProps {
@@ -12,17 +11,13 @@ interface ProductItemProps {
 const ProductItem: React.FC<ProductItemProps> = ({ brand, name, matchLevel, imageSource }) => {
   return (
     <Container>
-      {/* 🔹 제품 이미지 */}
       <ProductImage source={imageSource} />
-
-      {/* 🔹 제품 정보 */}
       <ProductInfo>
         <Brand>{brand}</Brand>
         <ProductName>{name}</ProductName>
         <Tag>토너</Tag>
       </ProductInfo>
 
-      {/* 🔹 적합도 배지 */}
       <MatchContainer match={matchLevel}>
         <MatchBadge >{matchLevel}</MatchBadge>
       </MatchContainer>
@@ -44,7 +39,6 @@ const Container = styled.View`
   padding-bottom: 16px;
 `;
 
-/* 🔹 제품 이미지 */
 const ProductImage = styled.Image`
   width: 68px;
   height: 68px;
@@ -52,7 +46,6 @@ const ProductImage = styled.Image`
   margin-right: 8px;
 `;
 
-/* 🔹 제품 정보 */
 const ProductInfo = styled.View`
   flex:1;
   flex-direction: col;
@@ -60,21 +53,18 @@ const ProductInfo = styled.View`
   gap: 6px;
 `;
 
-/* 🔹 브랜드명 */
 const Brand = styled.Text`
   font-size: 12px;
   font-weight: 500;
   color: #818182;
 `;
 
-/* 🔹 제품명 */
 const ProductName = styled.Text`
   font-size: 14px;
   font-weight: 600;
   color: #081533;
 `;
 
-/* 🔹 태그 */
 const Tag = styled.Text`
   font-size: 10px;
   font-weight: 600;
@@ -99,7 +89,7 @@ const MatchContainer = styled.View<{ match: string }>`
   justify-content: center;
   align-items: center;
 `;
-/* 🔹 적합도 배지 */
+
 const MatchBadge = styled.Text`
   font-size: 15px;
   font-weight: 600;

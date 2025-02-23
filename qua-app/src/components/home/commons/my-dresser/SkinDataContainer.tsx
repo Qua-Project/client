@@ -41,8 +41,6 @@ const SkinDataContainer: React.FC<SkinDataProps> = ({total, oil, moisture, sensi
 
 export default SkinDataContainer;
 
-
-/* 🔹 피부 데이터 */
 const SkinDataContent = styled.View`
   flex: 1;
   flex-direction: row;

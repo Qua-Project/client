@@ -1,23 +1,18 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
 import styled from '@emotion/native';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const SkinTypeDescription = () => {
+const SkinTypeDescription:React.FC = () => {
   
   return (
     <Container>
-      {/* 🔹 피부 타입 이미지 */}
       <SkinImage source={require('@/assets/onBoarding/skintype_oms.png')} resizeMode="cover" />
 
-      {/* 🔹 피부 타입 텍스트 */}
       <SkinTypeText>OMS</SkinTypeText>
 
-      {/* 🔹 해시태그 */}
       <HashtagText># 지성   # 수분충분   # 민감</HashtagText>
 
-      {/* 🔹 설명 박스 */}
       <DescriptionBox>
         <DescriptionTextBox>
           <DescriptionText>
@@ -42,7 +37,7 @@ const SkinTypeDescription = () => {
         <FinalRow>
           <MaskedView maskElement={<FinalText style={{width:8, fontSize: 16, fontWeight: 500 }}>"</FinalText>}>
             <LinearGradient
-              colors={['#5D85EE', '#3A54AA']} // 🔥 원하는 그라데이션 색상
+              colors={['#5D85EE', '#3A54AA']} 
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
             >
@@ -51,7 +46,7 @@ const SkinTypeDescription = () => {
           </MaskedView>
           <MaskedView maskElement={<FinalText style={{width:170}}>이러한 피부는 유분과 민감성에 맞춘 균형 잡힌 관리가 필요합니다!</FinalText>}>
             <LinearGradient
-              colors={['#5D85EE', '#3A54AA']} // 🔥 원하는 그라데이션 색상
+              colors={['#5D85EE', '#3A54AA']} 
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
             >
@@ -60,7 +55,7 @@ const SkinTypeDescription = () => {
           </MaskedView>
           <MaskedView maskElement={<FinalText style={{width:8, fontSize: 16, fontWeight: 500}}>"</FinalText>}>
             <LinearGradient
-              colors={['#5D85EE', '#3A54AA']} // 🔥 원하는 그라데이션 색상
+              colors={['#5D85EE', '#3A54AA']} 
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
             >

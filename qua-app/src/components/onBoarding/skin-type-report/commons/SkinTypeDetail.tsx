@@ -1,13 +1,12 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
 import styled from '@emotion/native';
 import Slider from '@react-native-community/slider';
 import { LinearGradient } from 'expo-linear-gradient';
-import Animated, { interpolateColor, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import Animated, { interpolateColor } from 'react-native-reanimated';
 
 
 
-const SkinTypeDetail = () => {
+const SkinTypeDetail:React.FC = () => {
   const myData= {moisture: 65, oil: 78, sensitivity: 50};
   const effectList = [
   { active: false, label: '보습', icon: require('@/assets/onBoarding/moisturizing.png') },
@@ -86,11 +85,9 @@ const SkinTypeDetail = () => {
               maximumValue={1}
               disabled
             />
-            {/* ✅ 커스텀 썸네일 (하얀색 원 + 테두리) */}
             <ThumbMarker style={{ left: `${myData.moisture}%`, backgroundColor: `${interpolateColor(myData.moisture / 100, [0, 1], ['rgba(203, 219, 255, 0.5)','rgba(203, 219, 255, 1)'])}` }} />
           </SliderWrapper>
 
-          {/* 🔹 레이블 (건성 - 지성) */}
           <LabelRow>
             <LabelText>수분부족</LabelText>
             <LabelText>수분충분</LabelText>

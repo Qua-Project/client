@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from '@emotion/native';
-import MyDresserBottomSheet from './MyDresserBottomSheet';
 interface MyDresserProps {
   headerHeight: number; 
 }
@@ -8,7 +7,6 @@ interface MyDresserProps {
 const MyDresser: React.FC<MyDresserProps> = ({headerHeight}) => {  
   return (
     <Container>
-      {/* 🔹 중앙 메인 이미지 */}
       <MainImage source={require('@assets/home/dressing_table.png')} headerHeight={headerHeight}/>
       {/* <MyDresserBottomSheet/> */}
     </Container>

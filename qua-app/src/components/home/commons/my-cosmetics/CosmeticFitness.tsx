@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import React from 'react';
 import styled from '@emotion/native';
-import { MOCK_DATA } from '../../util/constants';
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 
 interface CosmeticFitnessProps {
@@ -24,8 +22,6 @@ const GradientBar: React.FC<{ progress: number }> = ({ progress }) => {
   );
 };
 
-
-// :React.FC<MyCosmeticListProps> = ({ selectedType })
 const CosmeticFitness:React.FC<CosmeticFitnessProps> = ({ matchLevel, matchData }) => {  
   return (
     <Container>
@@ -38,10 +34,7 @@ const CosmeticFitness:React.FC<CosmeticFitnessProps> = ({ matchLevel, matchData 
           </Background>
           <MatchBadge match={matchLevel}>{matchLevel}</MatchBadge>
         </ProductContainer>
-        {/* 🔹 제품 이미지 */}
-        
 
-        {/* 🔹 적합도 바 */}
         <MatchBars>
           {matchData.map((item, index) => (
             <MatchCol key={index}>

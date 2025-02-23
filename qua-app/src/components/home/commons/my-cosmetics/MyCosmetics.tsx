@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { FlatList } from 'react-native';
 import styled from '@emotion/native';
 import { MOCK_DATA } from '../../util/constants';
 import MyCosmeticList from './MyCosmeticsList';
@@ -11,7 +11,7 @@ interface MyDresserProps {
 }
 const TABS = ['스킨', '앰플', '로션', '기타']; 
 
-const MyCosmetics = () => {  
+const MyCosmetics:React.FC = () => {  
   const [selectedTab, setSelectedTab] = useState<'스킨' | '앰플' | '로션' | '기타'>('스킨');
   const data = [
     {id:'fit', content: <CosmeticFitness

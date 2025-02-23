@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Image, Text } from 'react-native';
 import styled from '@emotion/native';
 import SkinCareTip from './SkinCareTip';
 import { TipType } from '../utils/constants';
@@ -27,7 +26,7 @@ const SkinCareStepNavigator: React.FC<SkinCareStepNavigatorProps> = ({ steps }) 
           ))}
         </DotContainer>
       </ProgressBarWrapper>
-      {/* 🔹 아이콘 + 텍스트 리스트 */}
+
       <StepContainer>
         {steps.map((step, index) => (
           <StepButton key={index} onPress={() => setCurrentStep(index)} >
@@ -74,7 +73,7 @@ const ProgressLine = styled.View`
   position: absolute;
   width: 100%;
   height: 1px;
-  background-color: rgba(170, 170, 171, 1); /* 기본 회색 라인 */
+  background-color: rgba(170, 170, 171, 1);
   top: 2.5px;
 `;
 
@@ -82,7 +81,7 @@ const DotContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  align-items: center; /* ✅ 중앙 정렬 */
+  align-items: center; 
 `;
 
 const Dot = styled.View<{ active: boolean }>`

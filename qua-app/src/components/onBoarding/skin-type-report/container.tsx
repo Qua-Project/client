@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styled from '@emotion/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import SkinTypeDescriptionContainer from './commons/SkinTypeDescriptionContainer';
-import { Dimensions, Text, FlatList } from 'react-native';
+import { Dimensions, FlatList } from 'react-native';
 import SkinCareTipContainer from './commons/SkinCareTipContainer';
 
 enum TabType {

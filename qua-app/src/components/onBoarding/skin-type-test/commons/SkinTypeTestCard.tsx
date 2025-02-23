@@ -1,20 +1,12 @@
 import styled from '@emotion/native';
 import React from 'react';
-import { ViewStyle, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 interface SkinTypeTestCardProps {
-  question: string; // 질문 텍스트
-  options: string[]; // 옵션 리스트
-  selectedOptionIndex: number | undefined; // 선택된 옵션 인덱스
-  onSelect: (optionIndex: number) => void; // 선택 이벤트 핸들러
-  //style: ViewStyle;
+  question: string; 
+  options: string[]; 
+  selectedOptionIndex: number | undefined; 
+  onSelect: (optionIndex: number) => void; 
 }
-
-// const PageItem = styled.View`
-//   justify-content: center;
-//   align-items: center;
-//   border-radius: 20px;
-// `;
 
 const SkinTypeTestCard: React.FC<SkinTypeTestCardProps> = ({
   question,
@@ -30,7 +22,7 @@ const SkinTypeTestCard: React.FC<SkinTypeTestCardProps> = ({
           <Option
             selected={selectedOptionIndex === index}
             key={index}
-            onPress={() => onSelect(index)} // 선택 이벤트 호출
+            onPress={() => onSelect(index)} 
           >
             <OptionText selected={selectedOptionIndex === index}>
               {option}

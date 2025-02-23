@@ -1,14 +1,7 @@
-import {Image, View, Text, StyleSheet, FlatList} from 'react-native'
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, PanResponder, Dimensions } from 'react-native';
+import {FlatList} from 'react-native'
+import React from 'react';
 import styled from '@emotion/native';
 import ExploreDresserItem from './ExploreDresserItem';
-
-
-interface ProfileItem {
-  id: string;
-  content: () => JSX.Element; 
-}
 
 const profileData = [
   { id: '1', image: require('@assets/home/profile/profile.png'), score: 95},
@@ -16,7 +9,7 @@ const profileData = [
   { id: '3', image: require('@assets/home/profile/profile.png'), score: 95},
   { id: '4', image: require('@assets/home/profile/profile.png'), score: 95},
 ];
-const ExploreDresserContainer=() => {  
+const ExploreDresserContainer:React.FC=() => {  
   return (
     <Container>
       <Title>상위권 화장대 구경하기</Title>
@@ -31,7 +24,7 @@ const ExploreDresserContainer=() => {
             score={item.score}
           />
         )}
-        horizontal // ✅ 가로 스크롤
+        horizontal 
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ paddingRight: 8 }}
       />

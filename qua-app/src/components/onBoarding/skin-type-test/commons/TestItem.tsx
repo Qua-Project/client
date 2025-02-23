@@ -1,10 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ScrollView, Dimensions, View, StyleSheet, Text, Animated, FlatList} from 'react-native';
-import SkinTypeTestCard from './SkinTypeTestCard';
+import React from 'react';
+import { Dimensions, StyleSheet, Animated} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styled from '@emotion/native';
-import { TEST_SLIDE_DATA,TestSlideDataType } from '../utils/constants';
-const screenWidth = Math.round(Dimensions.get('window').width);
+import { TestSlideDataType } from '../utils/constants';
 import { Extrapolation, interpolate, SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 
 interface TestItemProps{
@@ -16,30 +14,28 @@ interface TestItemProps{
 }
 const {width} = Dimensions.get('screen');
 const TestItem:React.FC<TestItemProps> = ({item, index, scrollX, selectedOptions, onSelectOption }) => {
-  // const rnAnimatedStyle = useAnimatedStyle(() => {
-  //   return{
-  //     transform: [
-  //       {
-  //         translateX: interpolate(
-  //           scrollX.value,
-  //           [(index-1) * width, index*width, (index+1)*width],
-  //           [-width *0.25, 0, width*0.25],
-  //           Extrapolation.CLAMP
-  //         ),
-  //       },
-  //       {
-  //         scale: interpolate(
-  //           scrollX.value,
-  //           [(index-1) * width, index*width, (index+1)*width],
-  //           [0.9, 1, 0.9],
-  //           Extrapolation.CLAMP
-  //         ),
-  //       }
-  //     ],
-  //   };
-  // });
+  const rnAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      {
+        translateX: interpolate(
+          scrollX.value,
+          [(index-1) * width, index*width, (index+1)*width],
+          [-width *0.25, 0, width*0.25],
+          Extrapolation.CLAMP
+        ),
+      },
+      {
+        scale: interpolate(
+          scrollX.value,
+          [(index-1) * width, index*width, (index+1)*width],
+          [0.9, 1, 0.9],
+          Extrapolation.CLAMP
+        ),
+      }
+    ],
+  }));
   return (
-    <Animated.View style={styles.itemContainer}>
+    <Container width={width} style={rnAnimatedStyle}>
       <AnimatedCardContainer
         colors={[
           'rgba(255, 255, 255, 0.8)',
@@ -75,22 +71,13 @@ const TestItem:React.FC<TestItemProps> = ({item, index, scrollX, selectedOptions
           ))}
         </OptionContainer>
       </AnimatedCardContainer>
-    </Animated.View>
+    </Container>
   );
 }
 
 export default TestItem;
 
-const styles = StyleSheet.create({
-  itemContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: width,
-    height: '100%',
-    paddingHorizontal: 30
-  }
-})
-const Container = styled.View<{width: number}>`
+const Container = styled(Animated.View)<{width: number}>`
   justify-content: center;
   align-items: center;
   width: ${({ width }) => width+'px'};

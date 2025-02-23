@@ -14,7 +14,7 @@ const KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize";
 
 type LoginScreenNavigationProp = StackNavigationProp<RootParamList, "Login">;
 
-const LoginScreen = () => {
+const LoginScreen:React.FC = () => {
   const navigation = useNavigation<LoginScreenNavigationProp>();
   const { setLoggedIn, setUserInfo, userInfo } = useUserStore();
   console.log(userInfo);

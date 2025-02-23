@@ -1,5 +1,4 @@
 import styled from "@emotion/native";
-import Svg, { Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 import DresserPostionProgressBar from "./DresserPositionProgreeBar";
 interface DresserPositionProps{
   total: number;
@@ -8,15 +7,13 @@ interface DresserPositionProps{
   sensitivity: number;
 }
 
-const DresserPosition=() => {
+const DresserPosition:React.FC=() => {
   return (
     <Container>
       <Title>내 화장대 위치</Title>
       <Description>OMS 타입 화장대들의 점수를 상대적으로 비교한 결과입니다.</Description>
       <DresserPostionProgressBar score={25} />
 
-
-      {/* 🔹 하위권 / 상위권 라벨 */}
       <LabelContainer>
         <LabelText>하위권</LabelText>
         <LabelText>상위권</LabelText>
@@ -27,8 +24,6 @@ const DresserPosition=() => {
 
 export default DresserPosition;
 
-
-/* 🔹 피부 데이터 */
 const Container = styled.View`
   flex-direction: col;
   align-items: flex-start;
@@ -49,7 +44,6 @@ const Description = styled.Text`
   line-height: 18px;
   color: #818182;
 `
-/* 🔹 하위권 / 상위권 라벨 */
 const LabelContainer = styled.View`
   width:100%;
   flex-direction: row;

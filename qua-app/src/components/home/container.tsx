@@ -2,9 +2,7 @@
 import styled from '@emotion/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '@emotion/react';
-import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import MyDresser from './commons/my-dresser/MyDresser';
 import MyCosmetics from './commons/my-cosmetics/MyCosmetics';
 import { useNavigation } from '@react-navigation/native';
@@ -12,15 +10,14 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootParamList } from '@/src/types/type';
 import MainHeader from '../commons/MainHeader';
 
-const { height } = Dimensions.get('window');
 const HEADER_HEIGHT = -50; 
 
 const HomeContainer: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'Home'>>(); 
   const [selectedTab, setSelectedTab] = useState<'DRESSER' | 'COSMETICS'>('DRESSER');
   
-  const theme = useTheme(); // 테마 값 가져오기
-  console.log(theme);
+  const theme = useTheme(); 
+  
   return (
       <GradientBackground
         colors={
@@ -32,24 +29,22 @@ const HomeContainer: React.FC = () => {
         end={{ x: 0.5, y: 0.5  }}   
       >
         <MainHeader/>
-
-          {/* 🔹 탭 선택 */}
-          <ContentContainer>
-            <TabBox>
-              <Tabs>
-                <TabButton active={selectedTab === 'DRESSER'} onPress={() => setSelectedTab('DRESSER')}>
-                  <TabText  active={selectedTab === 'DRESSER'}>내 화장대</TabText>
-                </TabButton>
-                <TabButton active={selectedTab === 'COSMETICS'} onPress={() => setSelectedTab('COSMETICS')}>
-                  <TabText active={selectedTab === 'COSMETICS'}>내 화장품</TabText>
-                </TabButton>
-              </Tabs>
-              <RegisterButton onPress={()=>{navigation.push("Add")}}>
-                <RegisterText>등록하기</RegisterText>
-              </RegisterButton>
-            </TabBox>
-            {selectedTab === 'DRESSER' ? <MyDresser headerHeight={HEADER_HEIGHT} /> : <MyCosmetics />}        
-          </ContentContainer>   
+        <ContentContainer>
+          <TabBox>
+            <Tabs>
+              <TabButton active={selectedTab === 'DRESSER'} onPress={() => setSelectedTab('DRESSER')}>
+                <TabText  active={selectedTab === 'DRESSER'}>내 화장대</TabText>
+              </TabButton>
+              <TabButton active={selectedTab === 'COSMETICS'} onPress={() => setSelectedTab('COSMETICS')}>
+                <TabText active={selectedTab === 'COSMETICS'}>내 화장품</TabText>
+              </TabButton>
+            </Tabs>
+            <RegisterButton onPress={()=>{navigation.push("Add")}}>
+              <RegisterText>등록하기</RegisterText>
+            </RegisterButton>
+          </TabBox>
+          {selectedTab === 'DRESSER' ? <MyDresser headerHeight={HEADER_HEIGHT} /> : <MyCosmetics />}        
+        </ContentContainer>   
       </GradientBackground>
     
   );
@@ -69,7 +64,6 @@ const ContentContainer = styled.View`
   align-items: strech;
 `;
 
-/* 🔹 탭 */
 const Tabs = styled.View`
   flex-direction: row;
   align-items: flex-start;
@@ -84,7 +78,6 @@ const TabBox = styled.View`
   padding-horizontal: 25px;
 `;
 
-
 const TabButton = styled.TouchableOpacity<{ active?: boolean }>`
   padding: 1px 1px;
   border-bottom-width: ${({ active }) => (active ? '1.5px' : '0px')};
@@ -98,7 +91,6 @@ const TabText = styled.Text<{ active?: boolean }>`
   color: ${({ active }) => (active ? '#081533' : '#818182')};
 `;
 
-/* 🔹 등록 버튼 */
 const RegisterButton = styled.TouchableOpacity`
   background-color: #3A54AA;
   padding: 4px 16px;
