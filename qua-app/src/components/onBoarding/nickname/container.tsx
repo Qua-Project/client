@@ -2,15 +2,12 @@ import { useState } from "react";
 import styled from "@emotion/native";
 import { Text, TextInput, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-
-type RootStackParamList = {
-  basic: undefined;
-};
+import { RootParamList } from "@/src/types/type";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export default function NicknameContainer() {
   const [nickname, setNickname] = useState("");
-  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'Nickname'>>(); 
 
   const isNicknameValid = nickname.length > 0 && nickname.length <= 10;
 
@@ -23,7 +20,7 @@ export default function NicknameContainer() {
       <Description>10자 이내로 작성해주세요.</Description>
       <NextButton
         disabled={!isNicknameValid}
-        onPress={() => navigation.navigate("basic")}
+        onPress={() => navigation.navigate("Basic")}
         isActive={isNicknameValid}
       >
         <BtnText isActive={isNicknameValid}>다음</BtnText>

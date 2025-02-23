@@ -1,13 +1,14 @@
 import styled from '@emotion/native';
 import SkincareStepNavigator from './SkinCareStepNavigator';
 import { SKIN_CARE_STEP_TIPS } from '../utils/constants';
+import { startStore } from '@/src/hooks/stores/start';
 
 const SkinCareTipContainer = () => {
-
+  const {isStart, setStart} = startStore();
   return (
     <Container>
       <SkincareStepNavigator steps={SKIN_CARE_STEP_TIPS} />
-      <ButtonContainer onPress={() => {}}>
+      <ButtonContainer onPress={(isStart) => {setStart(!isStart)}}>
         <ButtonText>확인</ButtonText>
       </ButtonContainer>
     </Container>

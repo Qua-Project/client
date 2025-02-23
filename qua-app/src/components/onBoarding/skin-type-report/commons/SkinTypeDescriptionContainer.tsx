@@ -2,15 +2,17 @@ import styled from '@emotion/native';
 import SkinTypeDescription from './SkinTypeDesciption';
 import SkinBalance from './SkinBalance';
 import SkinTypeDetail from './SkinTypeDetail';
+import { startStore } from '@/src/hooks/stores/start';
 
 const SkinTypeDescriptionContainer = () => {
-  
+  // const isStart = startStore((state) => state.isStart);
+  const {isStart, setStart} = startStore();
   return (
     <Container>
       <SkinTypeDescription/>
       <SkinBalance/>
       <SkinTypeDetail/>
-      <ButtonContainer onPress={() => {}}>
+      <ButtonContainer onPress={() => {setStart(!isStart)}}>
         <ButtonText>확인</ButtonText>
       </ButtonContainer>
     </Container>

@@ -115,7 +115,7 @@ const SkinTypeResultContainer: React.FC<SkinTypeResultContainerProps> = ({skinTy
           </TypeBoxRow>
         </TypeContainer>
 
-        <Button onPress={() => navigation.push('SkinTypeReport')}>
+        <Button onPress={() => navigation.navigate('SkinTypeReport')}>
           <ButtonText>피부타입 분석 리포트 보기</ButtonText>
         </Button>
         <ReTestButton onPress={handleReTest}>

@@ -9,17 +9,15 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-
-type RootStackParamList = {
-  basic: undefined;
-};
+import { RootParamList } from "@/src/types/type";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export default function BasicContainer() {
   const [gender, setGender] = useState<"남성" | "여성" | "">("");
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
-  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'Basic'>>(); 
 
   const monthRef = useRef<TextInput>(null);
   const dayRef = useRef<TextInput>(null);
@@ -89,7 +87,7 @@ export default function BasicContainer() {
 
         <NextButton
           disabled={!isFormValid}
-          onPress={() => navigation.navigate("basic")}
+          onPress={() => navigation.navigate("SkinTypeTest")}
           isActive={isFormValid}
         >
           <BtnText isActive={isFormValid}>다음</BtnText>

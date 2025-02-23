@@ -6,12 +6,12 @@ import MainNavigator from "./mainNav";
 import OnBoardingNavigator from "./onBoardingNav";
 import { RootParamList } from "../types/type";
 
-import { startStore } from "../stores/startStore";
+import { startStore } from "../hooks/stores/start";
 const Stack = createStackNavigator<RootParamList>();
 
 export default function AppNavigator() {
   const isStart = startStore((state) => state.isStart);
-
+  console.log(isStart);
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {isStart ? (
