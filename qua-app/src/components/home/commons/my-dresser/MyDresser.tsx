@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/native';
+import MyDresserBottomSheet from './MyDresserBottomSheet';
 interface MyDresserProps {
   headerHeight: number; 
 }

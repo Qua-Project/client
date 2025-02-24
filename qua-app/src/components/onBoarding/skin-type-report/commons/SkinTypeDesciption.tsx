@@ -17,7 +17,7 @@ const SkinTypeDescription:React.FC = () => {
         <DescriptionTextBox>
           <DescriptionText>
             OMS 피부 타입은 <HighlightText>유분과 수분이 풍부</HighlightText>하지만,{' '}
-            <HighlightText>{'\n'}외부 자극에 민감</HighlightText>한 피부를 말해요.
+            <HighlightText>외부 자극에 민감</HighlightText>한 피부를 말해요.
           </DescriptionText>
         </DescriptionTextBox>
         <ListCol>
@@ -31,7 +31,7 @@ const SkinTypeDescription:React.FC = () => {
           </ListRow>
           <ListRow>
             <ListItem>🌟</ListItem>
-            <ListItem>민감하여 특정 성분이나 환경 변화로 쉽게 자극 받아{'\n'}붉어지거나 따가움을 느낄 수 있어요.</ListItem>
+            <ListItem>민감하여 특정 성분이나 환경 변화로 쉽게 자극 받아 붉어지거나 따가움을 느낄 수 있어요.</ListItem>
           </ListRow>
         </ListCol>
         <FinalRow>

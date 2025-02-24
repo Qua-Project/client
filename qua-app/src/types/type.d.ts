@@ -11,5 +11,7 @@ export type RootParamList = {
   Home: undefined;
   Add: undefined;
   Login: undefined;
+  Search: undefined;
+  SearchProduct: undefined;
 };
 export type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;

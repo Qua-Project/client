@@ -1,6 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import MainScreen from "../screens/search/main";
+import SearchScreen from "../screens/search/searchMain";
+import SearchProductScreen from "../screens/search/searchProduct";
 
 const SearchStack = createStackNavigator();
 
@@ -11,7 +12,8 @@ export default function SearchNavigator() {
         headerShown: false,
       }}
     >
-      <SearchStack.Screen name="main" component={MainScreen} />
+      <SearchStack.Screen name="Search" component={SearchScreen} />
+      <SearchStack.Screen name="SearchProduct" component={SearchProductScreen} />
     </SearchStack.Navigator>
   );
 }

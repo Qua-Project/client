@@ -53,6 +53,7 @@ const SkinTypeButton = styled.TouchableOpacity`
 const SkinTypeText = styled.Text`
   font-size: 14px;
   color: #818182;
+  font-weight: 600;
 `;
 
 const NotificationIcon = styled.Image`
