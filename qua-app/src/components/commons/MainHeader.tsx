@@ -20,7 +20,7 @@ export default function MainHeader() {
 
 const SafeContainer = styled(SafeAreaView)`
   background-color: transparent;
-  padding: 0px;
+  margin-vertical: 10px;
 `;
 
 const Header = styled.View`

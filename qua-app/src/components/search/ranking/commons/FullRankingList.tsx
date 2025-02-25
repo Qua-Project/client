@@ -1,9 +1,8 @@
 import styled from "@emotion/native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
-import { rankingData } from "../utils/constants";
-import RankingItem from "./RankingItem";
-
+import { rankingData } from "../../utils/constants";
+import FullRankingItem from "./FullRankingItem";
 const categoryMap: Record<string, number> = {
   '스킨 / 토너': 1,
   '앰플 / 에센스 / 세럼': 2,
@@ -31,29 +30,24 @@ type ProductData = {
   image: any;
 };
 
-interface RankingListProps{
-  handleFull: () => void;
-}
-
-const RankingList: React.FC<RankingListProps> = ({handleFull}) => {
+const FullRankingList: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('스킨 / 토너');
   const [selectedFilter, setSelectedFilter] = useState('전체');
   const [products, setProducts] = useState<ProductData[]>([]);
-
+  const flatListRef = useRef<FlatList>(null);
+  
   useEffect(() => {
     const updatedProducts:ProductData[] = getFilteredProducts(selectedCategory, selectedFilter);
     setProducts(updatedProducts);
-  }, [selectedCategory, selectedFilter]); // ✅ 카테고리 or 필터 변경 시 실행
+  }, [selectedCategory, selectedFilter]); 
 
   const getFilteredProducts = (category: string, filter: string) => {
-    const categoryKey = categoryMap[category]; // 카테고리 매핑
-    const filterKey = filterMap[filter]; // 필터 매핑
+    const categoryKey = categoryMap[category]; 
+    const filterKey = filterMap[filter]; 
 
-    // 해당 카테고리 찾기
     const categoryData = rankingData.find((item) => item.type === categoryKey);
     if (!categoryData) return [];
 
-    // 해당 스킨 타입의 제품 리스트 찾기
     const skinTypeData = categoryData.skinTypeProducts.find((item) => item.skinType === filterKey);
     
     return skinTypeData ? skinTypeData.products : [];
@@ -62,7 +56,6 @@ const RankingList: React.FC<RankingListProps> = ({handleFull}) => {
 
   return (
     <SectionContainer>
-      <SectionTitle>랭킹</SectionTitle>
       <ContentContainer>
         <FlatList
           style={styles.flatCategory}
@@ -91,47 +84,37 @@ const RankingList: React.FC<RankingListProps> = ({handleFull}) => {
           )}
         />
         <Divider/>
+        <HeaderContainer>
+          <HeaderText>인기순</HeaderText>
+        </HeaderContainer>
         <FlatList
-          ListHeaderComponent={
-            <HeaderContainer>
-              <HeaderText>인기순</HeaderText>
-            </HeaderContainer>
-          }
-          ListFooterComponent={
-            <FooterContainer onPress={handleFull}>
-              <FooterText>전체보기 {'>'}</FooterText>
-            </FooterContainer>
-          }
-          data={products.slice(0,3)}
+          data={products}
           keyExtractor={(item) => item.id}
           renderItem={({ item, index }) => (
-            <RankingItem brand={item.brand} name={item.name} image={item.image} price={item.price} rank={index+1}/>
+            <FullRankingItem brand={item.brand} name={item.name} image={item.image} price={item.price} rank={index+1}/>
           )}
-          ItemSeparatorComponent={()=><Divider/>}
+          ItemSeparatorComponent={()=><Divider/>}    
+          ListFooterComponent={<FooterContainer/>}
+          showsVerticalScrollIndicator={false}
         />
       </ContentContainer>
     </SectionContainer>
   );
 };
 
-export default RankingList;
+export default FullRankingList;
 
 const SectionContainer = styled.View`
   margin-bottom: 20px;
   padding-horizontal: 17px;
-`;
-
-const SectionTitle = styled.Text`
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  padding-left: 8px;
+  flex:1;
+  margin-top: 20px;
 `;
 
 const styles = StyleSheet.create({
   flatCategory: {
-    marginTop: 14,
-    marginBottom: 11, 
+    marginTop: 6,
+    paddingTop: 10,
   },
   flatSkinType: {
     marginVertical: 10,
@@ -143,8 +126,6 @@ const styles = StyleSheet.create({
 
 const ContentContainer = styled.View`
   width: 100%;
-  background-color: white;
-  border-radius: 10px;
   margin-horizontal: 1px;
 `
 
@@ -152,18 +133,21 @@ const CategoryItem = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   margin-horizontal: 10px;
+  padding-bottom: 10px;
 `;
 
 const CategoryText = styled.Text<{ selected: boolean }>`
   font-size: 15px;
   font-weight: ${({ selected }) => (selected ? '600' : '500')};
   color: ${({ selected }) => (selected ? '#5D85EE' : '#AAAAAB')};
+  text-align: center;
+  padding-bottom: 2px;
   position: relative;
 `;
 
 const CategoryIndicator = styled.View`
   position: absolute;
-  top: -8px;
+  top: -10px;
   width: 3px;
   height: 3px;
   background-color: #3A54AA;
@@ -183,11 +167,13 @@ const FilterText = styled.Text<{ selected: boolean }>`
 `;
 const HeaderContainer = styled.View`
   width: 100%;
+  background-color: white;
   margin-top: 14px;
   flex-direction: row;
   justify-content: flex-end;
   padding-right: 15px;
   margin-bottom: -9px;
+  z-index: 100;
 `
 const HeaderText = styled.Text`
   font-family: Pretendard;
@@ -195,23 +181,15 @@ const HeaderText = styled.Text`
   font-weight: 500;
   color: #081533;
 `
-const FooterContainer = styled.TouchableOpacity`
-  width: 100%;
-  margin-bottom: 15px;
-  flex-direction: row;
-  justify-content: flex-end;
-  padding-right: 15px;
-`
-const FooterText = styled.Text`
-  font-family: Pretendard;
-  font-size: 11px;
-  font-weight: 500;
-  color: #AAAAAB;
-`
 
 const Divider = styled.View`
   height: 0.7px;
   background-color: #5D85EE;
   width: 100%;
-  margin-vertical: 0.5px;
+  margin-vertical: 1px;
+`
+
+const FooterContainer = styled.View`
+  height: 90px;
+  width: 100%;
 `

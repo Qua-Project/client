@@ -1,23 +1,22 @@
 import styled from "@emotion/native";
 import React from "react";
 import { FlatList } from "react-native";
-import { rankingData } from "../utils/constants";
 
-interface RankingItemProps{
+interface FullRankingItemProps{
   rank: number;
   brand: string;
   name: string;
   price: string;
   image: any;
 }
-const RankingItem: React.FC<RankingItemProps> = ({brand, image, name, price, rank}) => {
+const FullRankingItem: React.FC<FullRankingItemProps> = ({brand, image, name, price, rank}) => {
   return (
     <RankingItemContainer>
+      <RankingContainer>
+        <RankingText>{rank}</RankingText>
+      </RankingContainer>
       <ProductImageContainer>
         <ProductImage source={image}/>
-        <RankBadgeContainer>
-          <RankBadge>{rank}</RankBadge>
-        </RankBadgeContainer>
       </ProductImageContainer>
       <ProductInfo>
         <ProductBrand>{brand}</ProductBrand>
@@ -31,13 +30,24 @@ const RankingItem: React.FC<RankingItemProps> = ({brand, image, name, price, ran
   );
 };
 
-export default RankingItem;
+export default FullRankingItem;
 
 const RankingItemContainer = styled.View`
   width: 100%;
   flex-direction: row;
-  margin-top: 8px;
+  margin-top: 12px;
   margin-bottom: 8px;
+`
+const RankingContainer = styled.View`
+  align-items: center;
+  justify-content: center;
+`
+
+const RankingText = styled.Text`
+  font-size: 18px;
+  font-weight: 400;
+  color: #081533;
+  margin-left: 7px;
 `
 const DynamicSpacer = styled.View`
   flex: 1;  
@@ -45,16 +55,15 @@ const DynamicSpacer = styled.View`
 `;
 
 const ProductInfo = styled.View`
-  padding-top: 15px;
+  padding-top: 10px;
   margin-left: 7px;
   flex-direction: col;
   gap: 3px;
 `
 const ProductImageContainer = styled.View`
   margin-left: 12px;
-  position: relative;
-  align-items: flex-end;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
   width: 70px;
   height: 70px;
 `
@@ -82,21 +91,4 @@ const ProductPrice = styled.Text`
   font-weight: 600;
   color: #3A54AA;
   margin-right: 30px;
-`;
-const RankBadgeContainer = styled.View`
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  align-items: center;
-  justify-content: center;
-  top: 0px;
-  left: 0px;
-  background-color: #FFFB8B;
-  border-radius: 30px;
-`
-const RankBadge = styled.Text`
-  text-align: center;
-  font-weight: 400;
-  font-size: 18px;
-  color: #081533
 `;
