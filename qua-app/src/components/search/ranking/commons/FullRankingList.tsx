@@ -88,6 +88,7 @@ const FullRankingList: React.FC = () => {
           <HeaderText>인기순</HeaderText>
         </HeaderContainer>
         <FlatList
+          style={styles.flatContainer}
           data={products}
           keyExtractor={(item) => item.id}
           renderItem={({ item, index }) => (
@@ -113,14 +114,14 @@ const SectionContainer = styled.View`
 
 const styles = StyleSheet.create({
   flatCategory: {
-    marginTop: 6,
+    marginTop: 4,
     paddingTop: 10,
   },
   flatSkinType: {
     marginVertical: 10,
   },
   flatContainer: {
-    height: 39,
+    paddingBottom: 20,
   },
 });
 

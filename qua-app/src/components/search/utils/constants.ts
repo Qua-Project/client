@@ -424,9 +424,39 @@ export const rankingData = [
 ];
 
 export const recommendedPick = [
-  { id: '1', brand: '라운드랩', name: '소나무 진정 시카 토너', price: '23,000원', image: require('@assets/search/toner.png') },
-  { id: '2', brand: '라운드랩', name: '소나무 진정 시카 크림', price: '23,000원', image: require('@assets/search/cream.png') },
-  { id: '3', brand: '라운드랩', name: '소나무 진정 시카 토너', price: '23,000원', image: require('@assets/search/toner.png') },
+  {
+    type: 1,
+    products: [
+      { id: '1', score: '5', brand: '라운드랩', name: '전 진정 시카 토너', price: '23,000원', image: require('@assets/search/toner.png') },
+      { id: '2', score: '5', brand: '라운드랩', name: '소나무 진정 시카 토너', price: '23,000원', image: require('@assets/search/toner.png') },
+      { id: '3', score: '5', brand: '라운드랩', name: '소나무 진정 시카 토너', price: '23,000원', image: require('@assets/search/toner.png') },
+    ],
+  },
+  {
+    type: 2,
+    products: [
+      { id: '1', score: '5', brand: '라운드랩', name: '전 진정 시카 앰플', price: '23,000원', image: require('@assets/search/ample.png') },
+      { id: '2', score: '5', brand: '라운드랩', name: '소나무 진정 시카 토너', price: '23,000원', image: require('@assets/search/ample.png') },
+      { id: '3', score: '5', brand: '라운드랩', name: '소나무 진정 시카 토너', price: '23,000원', image: require('@assets/search/ample.png') },
+    ],
+  },
+  {
+    type: 3,
+    products: [
+      { id: '1', score: '5', brand: '라운드랩', name: '전 진정 시카 로션', price: '23,000원', image: require('@assets/search/toner.png') },
+      { id: '2', score: '5', brand: '라운드랩', name: '소나무 진정 시카 토너', price: '23,000원', image: require('@assets/search/toner.png') },
+      { id: '3', score: '5', brand: '라운드랩', name: '소나무 진정 시카 토너', price: '23,000원', image: require('@assets/search/toner.png') },
+    ],
+  },
+  {
+    type: 4,
+    products: [
+      { id: '1', score: '5', brand: '라운드랩', name: '전 진정 시카 크림', price: '23,000원', image: require('@assets/search/cream.png') },
+      { id: '2', score: '5', brand: '라운드랩', name: '소나무 진정 시카 토너', price: '23,000원', image: require('@assets/search/cream.png') },
+      { id: '3', score: '5', brand: '라운드랩', name: '소나무 진정 시카 토너', price: '23,000원', image: require('@assets/search/cream.png') },
+    ],
+  }
+
 ];
 
 export const topDresserPick = [

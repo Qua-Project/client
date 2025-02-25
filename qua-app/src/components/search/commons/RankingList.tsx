@@ -70,8 +70,8 @@ const RankingList: React.FC<RankingListProps> = ({handleFull}) => {
           horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item}
-          renderItem={({ item }) => (
-            <CategoryItem onPress={() => setSelectedCategory(item)}>
+          renderItem={({ item, index }) => (
+            <CategoryItem key={index} onPress={() => setSelectedCategory(item)}>
               {selectedCategory === item && <CategoryIndicator />}
               <CategoryText selected={selectedCategory === item}>{item}</CategoryText>
             </CategoryItem>
@@ -84,8 +84,8 @@ const RankingList: React.FC<RankingListProps> = ({handleFull}) => {
           horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item}
-          renderItem={({ item }) => (
-            <FilterItem onPress={() => setSelectedFilter(item)}>
+          renderItem={({ item, index }) => (
+            <FilterItem key={index} onPress={() => setSelectedFilter(item)}>
               <FilterText selected={selectedFilter === item}>{item}</FilterText>
             </FilterItem>
           )}
@@ -105,7 +105,7 @@ const RankingList: React.FC<RankingListProps> = ({handleFull}) => {
           data={products.slice(0,3)}
           keyExtractor={(item) => item.id}
           renderItem={({ item, index }) => (
-            <RankingItem brand={item.brand} name={item.name} image={item.image} price={item.price} rank={index+1}/>
+            <RankingItem key={index} brand={item.brand} name={item.name} image={item.image} price={item.price} rank={index+1}/>
           )}
           ItemSeparatorComponent={()=><Divider/>}
         />
@@ -130,8 +130,8 @@ const SectionTitle = styled.Text`
 
 const styles = StyleSheet.create({
   flatCategory: {
-    marginTop: 14,
-    marginBottom: 11, 
+    marginTop: 3,
+    height: 46,
   },
   flatSkinType: {
     marginVertical: 10,
@@ -163,7 +163,7 @@ const CategoryText = styled.Text<{ selected: boolean }>`
 
 const CategoryIndicator = styled.View`
   position: absolute;
-  top: -8px;
+  top: 6px;
   width: 3px;
   height: 3px;
   background-color: #3A54AA;
