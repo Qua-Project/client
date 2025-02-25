@@ -1,6 +1,7 @@
 import { Profile } from "../ODSCardCommons/Profile";
 import styled from "@emotion/native";
 import { TotalRate } from "../ODSCardCommons/TotalRate";
+import { DetailRate } from "../ODSCardCommons/DetailRate";
 
 export const ODSCard = () => {
   return (
@@ -10,7 +11,12 @@ export const ODSCard = () => {
         source={require("../../../../assets/around/ODS_banner.png")}
       />
       <RateWrapper>
-        <TotalRate />
+        <TotalRateWrapper>
+          <TotalRate />
+        </TotalRateWrapper>
+        <DetailRateWrapper>
+          <DetailRate />
+        </DetailRateWrapper>
       </RateWrapper>
     </ODSCardWrapper>
   );
@@ -35,5 +41,17 @@ const BannerImage = styled.Image`
 `;
 
 const RateWrapper = styled.View`
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const TotalRateWrapper = styled.View`
+  width: 80px;
+  height: 80px;
+  margin-right: 16px;
+`;
+
+const DetailRateWrapper = styled.View`
+  width: 178px;
+  height: 94px;
 `;
