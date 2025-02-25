@@ -33,7 +33,6 @@ const ProfileImage = styled.Image`
 
 const ProfileTextWrapper = styled.View`
   flex-direction: row;
-  margin-left: 12px;
   flex: 1;
   align-items: flex-end;
 `;
