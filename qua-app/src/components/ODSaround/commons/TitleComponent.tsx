@@ -28,8 +28,9 @@ export const TitleComponent = () => {
 };
 
 const TitleComponentWrapper = styled.View`
-  flex: 1;
   padding: 18px;
+  width: 100%;
+  height: 50px;
 `;
 
 const Title = styled.Text`
