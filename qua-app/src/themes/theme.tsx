@@ -19,6 +19,7 @@ declare module "@emotion/react" {
       middle_grey: string;
       white: string;
       light_grey: string;
+      bright_grey: string;
     };
     fonts: {
       family: {
@@ -62,6 +63,7 @@ const theme: Theme = {
     middle_grey: "#AAAAAB",
     white: "#FFFFFF",
     light_grey: "#F7F7F7",
+    bright_grey: "#DBDBDB",
   },
   fonts: {
     family: {
