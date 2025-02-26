@@ -25,8 +25,6 @@ export const ODSCard = () => {
 const ODSCardWrapper = styled.View`
   width: 308px;
   height: 270px;
-  margin-top: 40px;
-  margin-left: 18px;
   background-color: ${({ theme }) => theme.colors.light_grey};
   border-radius: 10px;
   padding: 14px;
