@@ -1,5 +1,5 @@
-import { ODSAroundScreen } from "../../components/ODSaround/container";
+import { AroundScreen } from "../../components/around/container";
 
 export default function MainScreen() {
-  return <ODSAroundScreen />;
+  return <AroundScreen />;
 }
