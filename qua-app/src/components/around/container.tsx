@@ -1,6 +1,8 @@
 import { ODSCard } from "./commons/ODSCard";
 import { TitleComponent } from "./commons/TitleComponent";
+import { IngredientComponent } from "./RankCommons/IngredientComponent";
 import styled from "@emotion/native";
+import { RankButtonComponent } from "./RankCommons/RankButtonComponent";
 
 export const AroundScreen = () => {
   return (
@@ -12,6 +14,13 @@ export const AroundScreen = () => {
       />
       <ODSCard />
       <LineView />
+      <TitleComponent
+        mainTitle="랭킹별로 둘러보기"
+        subTitle="상위권 화장대를 둘러보고 인생템을 찾아보아요!"
+        showButton={true}
+      />
+      <IngredientComponent />
+      <RankButtonComponent />
     </AroundScreenWrapper>
   );
 };
