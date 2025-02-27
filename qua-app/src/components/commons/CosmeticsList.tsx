@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 import styled from '@emotion/native';
 import ProductItem from './ProductItem';
 
-interface MyCosmeticListProps {
+interface CosmeticListProps {
   productData:{
     id: string;
     brand:string;
@@ -13,7 +13,7 @@ interface MyCosmeticListProps {
   }[]
 };
 
-const MyCosmeticList:React.FC<MyCosmeticListProps> = ({ productData }) => {  
+const CosmeticList:React.FC<CosmeticListProps> = ({ productData }) => {  
   return (
     <Container>
       <ContentText>내 스킨/토너</ContentText>
@@ -33,7 +33,7 @@ const MyCosmeticList:React.FC<MyCosmeticListProps> = ({ productData }) => {
   );
 };
 
-export default MyCosmeticList;
+export default CosmeticList;
 
 const Container = styled.View`
   align-items: flex-start;

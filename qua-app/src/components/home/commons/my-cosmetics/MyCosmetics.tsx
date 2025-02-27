@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { FlatList } from 'react-native';
 import styled from '@emotion/native';
 import { MOCK_DATA } from '../../util/constants';
-import MyCosmeticList from './MyCosmeticsList';
-import CosmeticFitness from './CosmeticFitness';
+import CosmeticList from '@/src/components/commons/CosmeticsList';
+import CosmeticFitness from '../../../commons/CosmeticFitness';
 import RecommendedProductList from './RecommendedProductList';
 
 interface MyDresserProps {
@@ -23,7 +23,7 @@ const MyCosmetics:React.FC = () => {
         { label: '피지 조절', value: 0.6 },
       ]}
     />},
-    {id: 'my', content: <MyCosmeticList productData={MOCK_DATA[selectedTab]}/>},
+    {id: 'my', content: <CosmeticList productData={MOCK_DATA[selectedTab]}/>},
     {id: 'recommend', content: <RecommendedProductList />},
   ]
   return (
