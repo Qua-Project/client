@@ -39,15 +39,15 @@ const RankingItemContainer = styled.View`
   margin-bottom: 8px;
 `
 const RankingContainer = styled.View`
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  width: 42.5px;
 `
 
 const RankingText = styled.Text`
   font-size: 18px;
   font-weight: 400;
   color: #081533;
-  margin-left: 7px;
 `
 const DynamicSpacer = styled.View`
   flex: 1;  

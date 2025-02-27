@@ -22,7 +22,7 @@ const LoginScreen:React.FC = () => {
   const handleLogin = async () => {
     try {
       const redirectUri = "http://localhost:8081"; // 카카오 개발자 콘솔에 등록된 Redirect URI
-      const clientId = "941454427746b572c3db886d7663f80e";
+      const clientId = "5cadb22bc001cbee63bdeae066eea0dc";
 
       const authUrl = `${KAKAO_AUTH_URL}?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
 
