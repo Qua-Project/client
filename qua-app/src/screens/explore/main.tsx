@@ -19,13 +19,6 @@ export default function MainScreen() {
   return (
     <Container>
       <Title>Explore Main</Title>
-      <Pressable
-        onPress={() => {
-          navigation.navigate("detail", { productId: "12345" }); // 예시 productId
-        }}
-      >
-        <Text>제품상세페이지</Text>
-      </Pressable>
     </Container>
   );
 }

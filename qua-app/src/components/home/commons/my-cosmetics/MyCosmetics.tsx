@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 import styled from '@emotion/native';
 import { MOCK_DATA } from '../../util/constants';
 import CosmeticList from '@/src/components/commons/CosmeticsList';
-import CosmeticFitness from '../../../commons/CosmeticFitness';
+import CosmeticFitness from '@/src/components/commons/CosmeticFitness';
 import RecommendedProductList from './RecommendedProductList';
 
 interface MyDresserProps {

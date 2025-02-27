@@ -15,4 +15,3 @@ export type RootParamList = {
   SearchProduct: undefined;
   Ranking: undefined;
 };
-export type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
