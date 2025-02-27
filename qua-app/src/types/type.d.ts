@@ -14,4 +14,5 @@ export type RootParamList = {
   Search: undefined;
   SearchProduct: undefined;
   Ranking: undefined;
+  Explore: undefined;
 };

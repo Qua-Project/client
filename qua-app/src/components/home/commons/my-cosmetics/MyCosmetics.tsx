@@ -9,12 +9,13 @@ import RecommendedProductList from './RecommendedProductList';
 interface MyDresserProps {
   headerHeight: number; 
 }
-const TABS = ['스킨', '앰플', '로션', '기타']; 
+const TABS = ['스킨', '앰플', '로션', '크림']; 
 
 const MyCosmetics:React.FC = () => {  
-  const [selectedTab, setSelectedTab] = useState<'스킨' | '앰플' | '로션' | '기타'>('스킨');
+  const [selectedTab, setSelectedTab] = useState<'스킨' | '앰플' | '로션' | '크림'>('스킨');
   const data = [
-    {id:'fit', content: <CosmeticFitness
+    {id:'fit', content: 
+    <CosmeticFitness
       matchLevel="매우 적합"
       matchData={[
         { label: '보습', value: 0.5 },

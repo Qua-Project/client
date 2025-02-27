@@ -89,7 +89,7 @@ export const MOCK_DATA = {
       imageSource:require('@assets/home/cosmetics/toner.png'),
     },
   ],
-  기타: [
+  크림: [
     { 
       id: '1', 
       brand: '라운드랩',

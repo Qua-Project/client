@@ -1,11 +1,11 @@
 
 import React, { useCallback } from 'react';
-import { Dimensions, View, Text, Image, ScrollView, FlatList } from 'react-native';
+import { Dimensions, StyleSheet, View, Text, Image, ScrollView, FlatList } from 'react-native';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import styled from '@emotion/native';
 import ProfileContainer from './ProfileContainer';
-import SkinDataContainer from './SkinDataContainer';
+import SkinDataContainer from '@/src/components/commons/SkinDataContainer';
 import SolutionContainer from './SolutionContainer';
 import DresserPosition from './DresserPosition';
 import ExploreDresserContainer from './ExploreDresserContainer';
@@ -79,6 +79,13 @@ const MyDresserBottomSheet:React.FC = () => {
 
 export default MyDresserBottomSheet;
 
+const styles = StyleSheet.create({
+  flatList: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 const AnimatedBottomSheet = styled(Animated.View)`
   width: 100%;
   height: ${MAX_HEIGHT}px; /* ✅ 전체 높이 */
