@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TouchableOpacity, Text, View } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 import styled from "@emotion/native";
 
 const categories = ["추천순", "인기순", "점수순"];
