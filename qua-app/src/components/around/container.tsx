@@ -43,7 +43,9 @@ export const AroundScreen = () => {
           subTitle="상위권 화장대를 둘러보고 인생템을 찾아보아요!"
           showButton={true}
         />
-        <IngredientComponent />
+        <IngredientComponentWrapper>
+          <IngredientComponent />
+        </IngredientComponentWrapper>
         <RankButtonComponent />
         <RankCardWrapper>
           <FlatList
@@ -74,13 +76,17 @@ const LineView = styled.View`
   margin: 40px 18px;
 `;
 
-// ODS 카드 간격 조정
+const IngredientComponentWrapper = styled.View`
+  width: 100%;
+`;
+
 const ODSCardWrapper = styled.View`
   margin-right: 16px;
 `;
 
 const RankCardWrapper = styled.View`
   width: 100%;
+  margin-top: 40px;
 `;
 
 export default AroundScreen;

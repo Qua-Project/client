@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ScrollView, TouchableOpacity, Text } from "react-native";
 import styled from "@emotion/native";
 
@@ -20,11 +20,7 @@ export const IngredientComponent = () => {
   return (
     <IngredientComponentWrapper>
       <ScrollContainer>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 18 }}
-        >
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {categories.map((category) => (
             <CategoryButton
               key={category}
@@ -44,12 +40,12 @@ export const IngredientComponent = () => {
 
 const IngredientComponentWrapper = styled.View`
   flex-direction: row;
-  margin-top: 16px;
   height: 17px;
+  margin: 16px 18px 0 18px;
 `;
 
 const ScrollContainer = styled.View`
-  width: 390px;
+  width: 100%;
   height: 17px;
 `;
 
