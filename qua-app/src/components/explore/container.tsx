@@ -111,4 +111,4 @@ const RankCardWrapperItem = styled.View`
   height: 76px;
 `;
 
-export default ExploreContainer;
+export default AroundScreen;
