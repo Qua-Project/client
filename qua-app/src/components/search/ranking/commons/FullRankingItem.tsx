@@ -1,0 +1,94 @@
+import styled from "@emotion/native";
+import React from "react";
+import { FlatList } from "react-native";
+
+interface FullRankingItemProps{
+  rank: number;
+  brand: string;
+  name: string;
+  price: string;
+  image: any;
+}
+const FullRankingItem: React.FC<FullRankingItemProps> = ({brand, image, name, price, rank}) => {
+  return (
+    <RankingItemContainer>
+      <RankingContainer>
+        <RankingText>{rank}</RankingText>
+      </RankingContainer>
+      <ProductImageContainer>
+        <ProductImage source={image}/>
+      </ProductImageContainer>
+      <ProductInfo>
+        <ProductBrand>{brand}</ProductBrand>
+        <ProductName>{name}</ProductName>
+      </ProductInfo>
+      <DynamicSpacer/>
+      <ProductPriceContainer>
+        <ProductPrice>{price}</ProductPrice>
+      </ProductPriceContainer>
+    </RankingItemContainer>
+  );
+};
+
+export default FullRankingItem;
+
+const RankingItemContainer = styled.View`
+  width: 100%;
+  flex-direction: row;
+  margin-top: 12px;
+  margin-bottom: 8px;
+`
+const RankingContainer = styled.View`
+  align-items: flex-end;
+  justify-content: center;
+  width: 42.5px;
+`
+
+const RankingText = styled.Text`
+  font-size: 18px;
+  font-weight: 400;
+  color: #081533;
+`
+const DynamicSpacer = styled.View`
+  flex: 1;  
+  background-color: transparent;
+`;
+
+const ProductInfo = styled.View`
+  padding-top: 10px;
+  margin-left: 7px;
+  flex-direction: col;
+  gap: 3px;
+`
+const ProductImageContainer = styled.View`
+  margin-left: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+`
+const ProductImage = styled.Image`
+  width: 55px;
+  height: 55px;
+`;
+
+const ProductName = styled.Text`
+  font-size: 12px;
+  font-weight: 500;
+  color: #000000;
+`;
+const ProductBrand = styled.Text`
+  font-size: 10px;
+  font-weight: 500;
+  color: #959595;
+`;
+const ProductPriceContainer = styled.View`
+  align-items: flex-end;
+  justify-content: center;
+`
+const ProductPrice = styled.Text`
+  font-size: 16px;
+  font-weight: 600;
+  color: #3A54AA;
+  margin-right: 30px;
+`;

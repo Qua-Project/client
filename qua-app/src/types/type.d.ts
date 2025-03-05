@@ -1,7 +1,17 @@
 export type RootParamList = {
   Login: undefined;
-  Main: undefined;
-  SkinTypeStart: undefined;
+  Tab: undefined;
+  SkinTypeTest: undefined;
+  SkinTypeResult: { skinType: string };
+  SkinTypeReport: undefined;
   OnBoarding: undefined;
-  Around: undefined;
+  Basic: undefined;
+  Nickname: undefined;
+  Home: undefined;
+  Add: undefined;
+  Login: undefined;
+  Search: undefined;
+  SearchProduct: undefined;
+  Ranking: undefined;
+  Explore: undefined;
 };
