@@ -1,4 +1,3 @@
-
 export type RootParamList = {
   Login: undefined;
   Tab: undefined;
