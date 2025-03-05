@@ -1,5 +1,5 @@
+import { FlatList, ScrollView } from "react-native";
 import styled from "@emotion/native";
-import { ScrollView, FlatList, View } from "react-native";
 import { ODSCard } from "./commons/ODSCard";
 import { TitleComponent } from "./commons/TitleComponent";
 import { IngredientComponent } from "./RankCommons/IngredientComponent";
@@ -8,7 +8,6 @@ import { RankCard } from "./commons/RankCard";
 
 export const AroundScreen = () => {
   const odsCards = [1, 2, 3, 4, 5];
-
   const rankCards = Array.from({ length: 10 }, (_, i) => i + 1);
 
   return (
@@ -23,13 +22,11 @@ export const AroundScreen = () => {
         {/* ODS 카드 가로 스크롤 */}
         <ODSViewWrapper>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {odsCards.map((item, index) => {
-              return (
-                <ODSCardWrapper key={index}>
-                  <ODSCard />
-                </ODSCardWrapper>
-              );
-            })}
+            {odsCards.map((item, index) => (
+              <ODSCardWrapper key={index}>
+                <ODSCard />
+              </ODSCardWrapper>
+            ))}
           </ScrollView>
         </ODSViewWrapper>
 
@@ -51,10 +48,14 @@ export const AroundScreen = () => {
           <FlatList
             data={rankCards}
             keyExtractor={(item, index) => index.toString()}
+            scrollEnabled={false}
+            nestedScrollEnabled={true}
             renderItem={({ item, index }) => (
-              <RankCard
-                backgroundColor={index % 2 === 0 ? "#F4F7FF" : "#F7F7F7"}
-              />
+              <RankCardWrapperItem>
+                <RankCard
+                  backgroundColor={index % 2 === 0 ? "#F4F7FF" : "#F7F7F7"}
+                />
+              </RankCardWrapperItem>
             )}
           />
         </RankCardWrapper>
@@ -94,6 +95,14 @@ const IngredientComponentWrapper = styled.View`
 const RankCardWrapper = styled.View`
   width: 100%;
   margin-top: 40px;
+`;
+
+const RankCardWrapperItem = styled.View`
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 76px;
 `;
 
 export default AroundScreen;
