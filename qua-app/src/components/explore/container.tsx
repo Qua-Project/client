@@ -12,9 +12,9 @@ export const ExploreContainer = () => {
   const rankCards = Array.from({ length: 10 }, (_, i) => i + 1);
 
   return (
-    <AroundScreenWrapper> 
+    <AroundScreenWrapper>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <MainHeader/>
+        <MainHeader />
         <TitleComponent
           mainTitle="ODS 화장대 둘러보기"
           subTitle="같은 스킨타입의 화장대를 둘러보고 인생템을 찾아보아요!"
@@ -71,7 +71,7 @@ const AroundScreenWrapper = styled.View`
   justify-content: center;
   align-items: strech;
   width: 100%;
-  height:100%;
+  height: 100%;
   background-color: ${({ theme }) => theme.colors.white};
 `;
 
@@ -111,4 +111,4 @@ const RankCardWrapperItem = styled.View`
   height: 76px;
 `;
 
-export default AroundScreen;
+export default ExploreContainer;
