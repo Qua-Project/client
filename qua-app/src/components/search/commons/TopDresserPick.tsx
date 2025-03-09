@@ -1,7 +1,8 @@
 import styled from "@emotion/native";
 import React from "react";
 import { topDresserPick } from "../utils/constants";
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
+import { StyleSheet } from "react-native";
 
 const TopDresserPick: React.FC = () => {
   return (
@@ -34,6 +35,7 @@ const TopDresserPick: React.FC = () => {
               horizontal
               showsHorizontalScrollIndicator={false}
               ItemSeparatorComponent={()=> <RowDivider/>}
+              ListFooterComponent={<View style={{width:20}}></View>}
             />
           </UserSection>
         ))}

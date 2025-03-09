@@ -9,7 +9,7 @@ const MyDresser: React.FC<MyDresserProps> = ({headerHeight}) => {
   return (
     <Container>
       <MainImage source={require('@assets/home/dressing_table.png')} headerHeight={headerHeight}/>
-      <MyDresserBottomSheet/>
+      {/* <MyDresserBottomSheet/> */}
     </Container>
     
   );
