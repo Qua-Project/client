@@ -1,6 +1,6 @@
-import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import ExploreScreen from "../screens/explore/main";
+import ExploreMoreScreen from "@/src/screens/explore/more";
 const ExploreStack = createStackNavigator();
 
 export default function ExploreNavigator() {
@@ -11,6 +11,10 @@ export default function ExploreNavigator() {
       }}
     >
       <ExploreStack.Screen name="Explore" component={ExploreScreen} />
+      <ExploreStack.Screen
+        name="ExploreMoreScreen"
+        component={ExploreMoreScreen}
+      />
     </ExploreStack.Navigator>
   );
 }

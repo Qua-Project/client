@@ -1,6 +1,8 @@
 import styled from "@emotion/native";
 import { useTheme } from "@emotion/react";
 import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 interface TitleComponentProps {
   mainTitle: string;
@@ -8,12 +10,28 @@ interface TitleComponentProps {
   showButton?: boolean;
 }
 
+type ExploreStackParamList = {
+  ExploreStack: undefined;
+  ExploreMoreScreen: undefined;
+};
+
+type NavigationProps = StackNavigationProp<
+  ExploreStackParamList,
+  "ExploreMoreScreen"
+>;
+
 export const TitleComponent = ({
   mainTitle,
   subTitle,
   showButton = false,
 }: TitleComponentProps) => {
   const theme = useTheme();
+  const navigation = useNavigation<NavigationProps>();
+
+  const handleMoveToMoreExplore = () => {
+    console.log("asdf");
+    navigation.navigate("ExploreMoreScreen");
+  };
 
   return (
     <TitleComponentWrapper>
@@ -38,7 +56,7 @@ export const TitleComponent = ({
         </Title>
       </TextWrapper>
       {showButton && (
-        <ButtonWrapper>
+        <ButtonWrapper onPress={() => handleMoveToMoreExplore()}>
           <ButtonText>전체보기&gt;</ButtonText>
         </ButtonWrapper>
       )}

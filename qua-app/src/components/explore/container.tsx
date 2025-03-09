@@ -1,5 +1,5 @@
+import { FlatList, ScrollView } from "react-native";
 import styled from "@emotion/native";
-import { ScrollView, FlatList, View } from "react-native";
 import { ODSCard } from "./commons/ODSCard";
 import { TitleComponent } from "./commons/TitleComponent";
 import { IngredientComponent } from "./RankCommons/IngredientComponent";
@@ -9,13 +9,12 @@ import MainHeader from "../commons/MainHeader";
 
 export const ExploreContainer = () => {
   const odsCards = [1, 2, 3, 4, 5];
-
   const rankCards = Array.from({ length: 10 }, (_, i) => i + 1);
 
   return (
-    <AroundScreenWrapper> 
+    <AroundScreenWrapper>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <MainHeader/>
+        <MainHeader />
         <TitleComponent
           mainTitle="ODS 화장대 둘러보기"
           subTitle="같은 스킨타입의 화장대를 둘러보고 인생템을 찾아보아요!"
@@ -25,13 +24,11 @@ export const ExploreContainer = () => {
         {/* ODS 카드 가로 스크롤 */}
         <ODSViewWrapper>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {odsCards.map((item, index) => {
-              return (
-                <ODSCardWrapper key={index}>
-                  <ODSCard />
-                </ODSCardWrapper>
-              );
-            })}
+            {odsCards.map((item, index) => (
+              <ODSCardWrapper key={index}>
+                <ODSCard />
+              </ODSCardWrapper>
+            ))}
           </ScrollView>
         </ODSViewWrapper>
 
@@ -53,10 +50,14 @@ export const ExploreContainer = () => {
           <FlatList
             data={rankCards}
             keyExtractor={(item, index) => index.toString()}
+            scrollEnabled={false}
+            nestedScrollEnabled={true}
             renderItem={({ item, index }) => (
-              <RankCard
-                backgroundColor={index % 2 === 0 ? "#F4F7FF" : "#F7F7F7"}
-              />
+              <RankCardWrapperItem>
+                <RankCard
+                  backgroundColor={index % 2 === 0 ? "#F4F7FF" : "#F7F7F7"}
+                />
+              </RankCardWrapperItem>
             )}
           />
         </RankCardWrapper>
@@ -70,7 +71,7 @@ const AroundScreenWrapper = styled.View`
   justify-content: center;
   align-items: strech;
   width: 100%;
-  height:100%;
+  height: 100%;
   background-color: ${({ theme }) => theme.colors.white};
 `;
 
@@ -100,6 +101,14 @@ const IngredientComponentWrapper = styled.View`
 const RankCardWrapper = styled.View`
   width: 100%;
   margin-top: 40px;
+`;
+
+const RankCardWrapperItem = styled.View`
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 76px;
 `;
 
 export default ExploreContainer;
