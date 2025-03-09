@@ -31,7 +31,7 @@ const ProductDetailContainer:React.FC<ProductDetailContainerProps> = ({productDe
         <Divider/>
         <ReportContainer>
           <ReportText>적합도 분석 리포트</ReportText>
-          <ReportBox>
+          <ReportBox onPress={() => {navigation.push('ProductAnalysisReport')}}>
             <ReportMessage>내 피부와의 적합도가 궁금하다면?</ReportMessage>
             <ClickText>CLICK!</ClickText>
           </ReportBox>
@@ -59,6 +59,7 @@ const ProductImage = styled.Image<{width: number}>`
   height: undefinded;
   margin-top: 40px;
   aspect-ratio: 1/1;
+  resize-mode: contain;
   border-radius: 20px;
 `;
 
@@ -110,7 +111,7 @@ const ReportText = styled.Text`
   margin-bottom: 16px;
 `;
 
-const ReportBox = styled.View`
+const ReportBox = styled.TouchableOpacity`
   background-color: rgba(203, 219, 255, 0.5);
   padding-vertical: 56px;
   border-radius: 20px;
@@ -136,7 +137,7 @@ const ButtonContainer = styled.View`
   width: 100%;
   background-color: white;
   align-items: center;
-  justify-contents: flex-start;
+  justify-content: flex-start;
   padding-bottom: 24px;
   padding-horizontal: 18px;
 `

@@ -92,6 +92,7 @@ const ValueCard = styled.TouchableOpacity`
 const CardImage = styled.Image`
   width: 77px;
   height: 77px;
+  resize-mode: contain;
   border-radius: 10px;
   margin-right: 15px;
 `;
