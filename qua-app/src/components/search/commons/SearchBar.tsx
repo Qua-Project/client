@@ -12,6 +12,7 @@ const SearchBar:React.FC<SearchBarProps> = ({handleSearch}) => {
         onPress={handleSearch}
         placeholder="적합도를 확인하세요!"
         placeholderTextColor="#818182"
+        
       />
       <SearchBtn onPress={handleSearch}>
         <SearchIcon name="search" size={24} color="#818182" />
