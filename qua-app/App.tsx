@@ -8,6 +8,7 @@ import AppLoading from 'expo-app-loading';
 
 const loadFonts = async () => {
   await Font.loadAsync({
+    'Pretendard': require('./assets/fonts/Pretendard-Regular.ttf'),
     'Pretendard-Regular': require('./assets/fonts/Pretendard-Regular.ttf'),
     'Pretendard-Bold': require('./assets/fonts/Pretendard-Bold.ttf'),
     'Pretendard-Light': require('./assets/fonts/Pretendard-Light.ttf'),
