@@ -7,6 +7,7 @@ import { ProductDetail, RootParamList } from "@/src/types/type";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { Dimensions } from 'react-native';
+import WaitingCard from "./commons/WaitingCard";
  
 // 화면 너비, 높이 구하는 방법
 const windowWidth = Dimensions.get('window').width;
@@ -16,9 +17,25 @@ interface ProductDetailContainerProps{
 
 const ProductDetailContainer:React.FC<ProductDetailContainerProps> = ({productDetail}) => {
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'ProductDetail'>>(); 
+  const [isWaiting, setIsWaiting] = useState(false);
+
+  const onClick = () => {
+    setIsWaiting(true);
+    const timer = setTimeout(() => {
+      navigation.push('ProductAnalysisReport');
+    }, 2000);
+    const timer2 = setTimeout(() => {
+      setIsWaiting(false);
+    }, 3000);
+    
+    return () => {clearTimeout(timer);clearTimeout(timer2);}
+  };
 
   return (
-    <Container>
+    <>
+    {isWaiting 
+    ? <WaitingCard/> 
+    :<Container>
       <BackButton/>
       <ScrollView contentContainerStyle={{ paddingBottom: 100, paddingHorizontal: 28.5 }}  showsVerticalScrollIndicator={false}>
         <ProductImage source={productDetail.image} width={windowWidth}/>
@@ -31,7 +48,7 @@ const ProductDetailContainer:React.FC<ProductDetailContainerProps> = ({productDe
         <Divider/>
         <ReportContainer>
           <ReportText>적합도 분석 리포트</ReportText>
-          <ReportBox onPress={() => {navigation.push('ProductAnalysisReport')}}>
+          <ReportBox onPress={onClick}>
             <ReportMessage>내 피부와의 적합도가 궁금하다면?</ReportMessage>
             <ClickText>CLICK!</ClickText>
           </ReportBox>
@@ -42,7 +59,8 @@ const ProductDetailContainer:React.FC<ProductDetailContainerProps> = ({productDe
           <ButtonText>내 화장대에 등록하기</ButtonText>
         </FixedButton>
       </ButtonContainer>
-    </Container>
+    </Container>}
+    </>
   );
 }
 

@@ -6,54 +6,41 @@ import { FlatList, Image, Keyboard, TouchableWithoutFeedback, StyleSheet, Scroll
 import { RootParamList } from "@/src/types/type";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
-import WaitingCard from "./commons/WaitingCard";
+import WaitingCard from "../product-detail/commons/WaitingCard";
 import { product, productHeshtag } from "./utils/constants";
 import FittnessCard from "./commons/FittnessCard";
 import SkinTypeDeatil from "./commons/SkinTypeDetail";
 
 const ProductAnalysisReportContainer:React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'ProductAnalysisReport'>>(); 
-  const [isWaiting, setIsWaiting] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsWaiting(false); // ✅ 3초 후 상태 변경
-    }, 3000);
-
-    return () => clearTimeout(timer); // ✅ 메모리 정리
-  }, []);
-
+  
   return (
-    <>
-    {isWaiting 
-    ? <WaitingCard/> 
-    : <Container>
-        <HeaderContainer>
-          <BackButton/>
-          <TitleContainer>
-            <Title>적합도 분석 결과</Title>
-          </TitleContainer>
-        </HeaderContainer>
-        <ScrollView contentContainerStyle={{ paddingBottom: 100 }}  showsVerticalScrollIndicator={false}>
-          <CardContainer>
-            <ProductImage source={product.image} />
-            <InfoContainer>
-              <BrandText>{product.brand}</BrandText>
-              <ProductName>{product.name}</ProductName>
-              <KeywordContainer>
-                {productHeshtag.map((keyword, index) => (
-                  <KeywordTag key={index}>
-                    <KeywordText>{keyword}</KeywordText>
-                  </KeywordTag>
-                ))}
-              </KeywordContainer>
-            </InfoContainer>
-          </CardContainer>
-          <FittnessCard fittnessKey="veryFit" />
-          <SkinTypeDeatil skinType="ODS"/>
-        </ScrollView>
-      </Container>}
-    </>
+    <Container>
+      <HeaderContainer>
+        <BackButton/>
+        <TitleContainer>
+          <Title>적합도 분석 결과</Title>
+        </TitleContainer>
+      </HeaderContainer>
+      <ScrollView contentContainerStyle={{ paddingBottom: 100 }}  showsVerticalScrollIndicator={false}>
+        <CardContainer>
+          <ProductImage source={product.image} />
+          <InfoContainer>
+            <BrandText>{product.brand}</BrandText>
+            <ProductName>{product.name}</ProductName>
+            <KeywordContainer>
+              {productHeshtag.map((keyword, index) => (
+                <KeywordTag key={index}>
+                  <KeywordText>{keyword}</KeywordText>
+                </KeywordTag>
+              ))}
+            </KeywordContainer>
+          </InfoContainer>
+        </CardContainer>
+        <FittnessCard fittnessKey="veryFit" />
+        <SkinTypeDeatil skinType="ODS"/>
+      </ScrollView>
+    </Container>
   );
 }
 
