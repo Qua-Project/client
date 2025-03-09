@@ -2,13 +2,16 @@ import styled from "@emotion/native";
 import { useState } from "react";
 import { Image } from "react-native";
 import SortFilterModal from "./SortFilterModal";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { ProductDetail, RootParamList } from "@/src/types/type";
+import { useNavigation } from "@react-navigation/native";
 
 interface ValueContainerProps {
-  searchResult: { image: any; name: string; brand: string; type: string, price: string }[];
+  searchResult: ProductDetail[];
 }
 
 const ValueContainer:React.FC<ValueContainerProps> = ({
-  searchResult,
+  searchResult
 }: ValueContainerProps) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("인기순");
@@ -18,6 +21,9 @@ const ValueContainer:React.FC<ValueContainerProps> = ({
     setSelectedFilter(filter);
     setModalVisible(false); // ✅ 필터 선택 후 모달 닫기
   };
+
+  const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'SearchProduct'>>(); 
+  
   return (
     <Container>
       <FilterContainer onPress={toggleModal}>
@@ -25,7 +31,7 @@ const ValueContainer:React.FC<ValueContainerProps> = ({
       </FilterContainer>
       {searchResult.length > 0 ? (
         searchResult.map((item, index) => (
-          <ValueCard key={index}>
+          <ValueCard key={index} onPress={() => {navigation.push("ProductDetail", {productDetail:item})}}>
             <CardImage source={item.image} />
             <TextContainer>
               <ProductBrand>{item.brand}</ProductBrand>
@@ -71,7 +77,7 @@ const FilterText = styled.Text`
   font-family: Pretendard;
 `
 
-const ValueCard = styled.View`
+const ValueCard = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
@@ -86,6 +92,7 @@ const ValueCard = styled.View`
 const CardImage = styled.Image`
   width: 77px;
   height: 77px;
+  resize-mode: contain;
   border-radius: 10px;
   margin-right: 15px;
 `;
