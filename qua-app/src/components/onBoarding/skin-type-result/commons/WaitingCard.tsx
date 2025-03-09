@@ -27,7 +27,7 @@ const IconImage = styled.Image`
 `
 const Container = styled.View`
   flex: 1;
-  color: transparent;
+  background-color: white;
   justify-content: center;
   align-items: center;
   gap: 4px;
