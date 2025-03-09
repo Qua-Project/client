@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "@emotion/native";
 import BackButton from "../../commons/BackButton";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
@@ -8,44 +8,53 @@ import { RootParamList } from "@/src/types/type";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { populorData } from "./utils/constants";
-
+import HighLightedText from "./commons/HighLightedText";
+import ValueContainer from "./commons/ValueContainer";
 
 const SearchProductContainer:React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'SearchProduct'>>(); 
   const [inputValue, setInputValue] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [recentSearches, setRecentSearches] = useState<string[]>(["자작나무 수분크림", "독도 토너"]);
   const [searchResult, setSearchResult] = useState<any[]>([]);
   const [showResults, setShowResults] = useState(false);
-  const [addedItems, setAddedItems] = useState<any[]>([]); 
 
-  const handleSearch = () => {
-    if (inputValue.trim() === "") return;
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedQuery(inputValue);
+    }, 200); // 🔹 200ms 지연
+
+    return () => clearTimeout(handler);
+  }, [inputValue]);
+
+  useEffect(() => {
+    if (debouncedQuery.length > 0) {
+      setSearchResult(searchData.filter((item) => item.name.includes(debouncedQuery)));
+    } else {
+      setSearchResult([]);
+    }
+  }, [debouncedQuery]);
+
+  const handleSearch = (text: string) => {
+    if (text.trim() === "") return;
+    setInputValue(text);
 
     // 최근 검색어 업데이트
     setRecentSearches((prev) => [
-      inputValue,
-      ...prev.filter((item) => item !== inputValue),
+      text,
+      ...prev.filter((item) => item !== text),
     ]);
 
-    // 검색 결과 필터링 (이름에 검색어 포함 여부로 필터)
-    const filteredResults = searchData.filter((item) =>
-      item.name.includes(inputValue)
-    );
-    setSearchResult(filteredResults);
     setShowResults(true);
+    console.log("search: " + inputValue);
   };
 
-  // plus 버튼 누르면 해당 아이템을 등록
-  const handleAddItem = (item: any) => {
-    setAddedItems((prev) => [...prev, item]);
-    setShowResults(false); // 등록 후 검색 결과 숨김
-    setInputValue("");
-  };
-
-  // close 버튼 누르면 해당 아이템 삭제
-  const handleRemoveItem = (indexToRemove: number) => {
-    setAddedItems((prev) => prev.filter((_, index) => index !== indexToRemove));
-  };
+  const handleTextChange = (text:string) => {
+    setInputValue(text);
+    
+    setShowResults(false);
+    console.log("handle change: " + debouncedQuery);
+  }
 
   return (
     // <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -55,58 +64,75 @@ const SearchProductContainer:React.FC = () => {
         <SearchContainer>
           <Search
             value={inputValue}
-            onChangeText={(text) => {
-              setInputValue(text);
-              setShowResults(false); // 입력할 때 검색 결과 숨김
-            }}
+            onChangeText={handleTextChange}
             autoFocus={true}
             selectionColor={"#818182"}
-            onSubmitEditing={handleSearch}
+            onSubmitEditing={() => handleSearch(inputValue)}
           />
-          <SearchBtn onPress={handleSearch}>
+          <SearchBtn onPress={() => handleSearch(inputValue)}>
             <SearchIcon name="search" size={24} color="#818182" />
           </SearchBtn>
         </SearchContainer>
       </HeaderContainer>
-      <RecentContainer>
-        <Title>최근 검색</Title>
-        <RecentBtnContainer>
-          {recentSearches.map((item, index) => (
-            <RecentButton key={index} onPress={() => setInputValue(item)}>
-              <RecentText>{item}</RecentText>
-            </RecentButton>
-          ))}
-        </RecentBtnContainer>
-      </RecentContainer>
-      <Title>인기 검색어</Title>
-      
-      <FlatList
-        style={styles.flatContainer}
-        data={populorData}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <PopularItemContainer>
-            <PopularTextContainer>
-              <RankText>{item.id}</RankText>
-              <RankCosmeticText>{item.name}</RankCosmeticText>
-            </PopularTextContainer>
-            <PopularDivider/>
-          </PopularItemContainer>
-        )}
-        showsVerticalScrollIndicator={false}
-      />
-      
+      {showResults && (<>
+        <ValueContainer searchResult={searchResult}/>
+      </>)}
+      {(debouncedQuery.length > 0 && !showResults) && (<>
+        <FlatList
+          style={styles.searchFlatContainer}
+          data={searchResult}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item, index }) => (
+            <AutocompleteItem key={index} onPress={() => handleSearch(item.name)}>
+              <HighLightedText query={debouncedQuery} text={item.name} />
+            </AutocompleteItem>
+          )}
+        />
+      </>)}
+      {debouncedQuery.length == 0 && (<>
+        <RecentContainer>
+          <Title>최근 검색</Title>
+          <RecentBtnContainer>
+            {recentSearches.map((item, index) => (
+              <RecentButton key={index} onPress={() => setInputValue(item)}>
+                <RecentText>{item}</RecentText>
+              </RecentButton>
+            ))}
+          </RecentBtnContainer>
+        </RecentContainer>
+        <Title>인기 검색어</Title>
+        
+        <FlatList
+          style={styles.popularFlatContainer}
+          data={populorData}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <PopularItemContainer>
+              <PopularTextContainer>
+                <RankText>{item.id}</RankText>
+                <RankCosmeticText>{item.name}</RankCosmeticText>
+              </PopularTextContainer>
+              <PopularDivider/>
+            </PopularItemContainer>
+          )}
+          showsVerticalScrollIndicator={false}
+        />
+      </>)}
     </Container>
     // </TouchableWithoutFeedback>
   );
 }
+
 export default SearchProductContainer;
 
 const styles = StyleSheet.create({
-  flatContainer: {
+  popularFlatContainer: {
     paddingHorizontal: 20,
     paddingBottom: 30,
   },
+  searchFlatContainer: {
+    paddingTop: 40,
+  }
 });
 
 const Container = styled.View`
@@ -121,6 +147,10 @@ const HeaderContainer = styled.View`
   align-items: center;
   justify-content: flex-start;
 `
+const AutocompleteItem = styled.TouchableOpacity`
+  padding-left: 70px;
+  padding-bottom: 25px;
+`;
 
 const SearchContainer = styled.View`
   position: relative;
@@ -155,7 +185,7 @@ const SearchIcon = styled(EvilIcons)`
 
 const RecentContainer = styled.View`
   margin-top: 43px;
-  height: 114px;
+  padding-bottom: 20px;
 `;
 
 const Title = styled.Text`
