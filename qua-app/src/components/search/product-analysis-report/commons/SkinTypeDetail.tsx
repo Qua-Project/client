@@ -30,8 +30,9 @@ const Container = styled.View`
   background-color: rgba(233, 240, 255, 1);
   padding-vertical: 14px;
   padding-horizontal: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-horizontal: 23px;
+  margin-bottom: 24px;
 `;
 
 const Title = styled.Text`

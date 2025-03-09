@@ -31,6 +31,7 @@ const Container = styled.View`
   background-color: #F7F7F7;
   border-radius: 10px;
   margin-top: 28px;
+  margin-bottom: 16px;
 `
 const Title = styled.Text`
   font-size: 24px;

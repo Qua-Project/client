@@ -10,6 +10,7 @@ import WaitingCard from "../product-detail/commons/WaitingCard";
 import { product, productHeshtag } from "./utils/constants";
 import FittnessCard from "./commons/FittnessCard";
 import SkinTypeDeatil from "./commons/SkinTypeDetail";
+import FitAnalysisCard from "./commons/FitAnalysisCard";
 
 const ProductAnalysisReportContainer:React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'ProductAnalysisReport'>>(); 
@@ -22,7 +23,7 @@ const ProductAnalysisReportContainer:React.FC = () => {
           <Title>적합도 분석 결과</Title>
         </TitleContainer>
       </HeaderContainer>
-      <ScrollView contentContainerStyle={{ paddingBottom: 100 }}  showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 20 }}  showsVerticalScrollIndicator={false}>
         <CardContainer>
           <ProductImage source={product.image} />
           <InfoContainer>
@@ -39,6 +40,7 @@ const ProductAnalysisReportContainer:React.FC = () => {
         </CardContainer>
         <FittnessCard fittnessKey="veryFit" />
         <SkinTypeDeatil skinType="ODS"/>
+        <FitAnalysisCard/>
       </ScrollView>
     </Container>
   );
