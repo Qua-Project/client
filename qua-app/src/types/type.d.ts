@@ -14,4 +14,15 @@ export type RootParamList = {
   SearchProduct: undefined;
   Ranking: undefined;
   Explore: undefined;
+  ProductDetail: {productDetail: ProductDetail};
+  ProductAnalysisReport: undefined;
+};
+
+export type ProductDetail = {
+  id: string;
+  image: any; 
+  name: string; 
+  brand: string; 
+  type: string; 
+  price: string;
 };
