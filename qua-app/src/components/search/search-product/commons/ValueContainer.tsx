@@ -1,5 +1,7 @@
 import styled from "@emotion/native";
+import { useState } from "react";
 import { Image } from "react-native";
+import SortFilterModal from "./SortFilterModal";
 
 interface ValueContainerProps {
   searchResult: { image: any; name: string; brand: string; type: string, price: string }[];
@@ -8,9 +10,17 @@ interface ValueContainerProps {
 const ValueContainer:React.FC<ValueContainerProps> = ({
   searchResult,
 }: ValueContainerProps) => {
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState("인기순");
+
+  const toggleModal = () => setModalVisible(!isModalVisible);
+  const handleSelectFilter = (filter: string) => {
+    setSelectedFilter(filter);
+    setModalVisible(false); // ✅ 필터 선택 후 모달 닫기
+  };
   return (
     <Container>
-      <FilterContainer>
+      <FilterContainer onPress={toggleModal}>
         <FilterText>인기순 ▼</FilterText>
       </FilterContainer>
       {searchResult.length > 0 ? (
@@ -30,6 +40,7 @@ const ValueContainer:React.FC<ValueContainerProps> = ({
       ) : (
         <NoResultText>검색 결과가 없습니다.</NoResultText>
       )}
+      <SortFilterModal isVisible={isModalVisible} onClose={toggleModal} selectedFilter={selectedFilter} onSelectFilter={handleSelectFilter} />
     </Container>
   );
 }
@@ -39,7 +50,14 @@ const Container = styled.View`
   padding-horizontal: 20px;
 `;
 
-const FilterContainer = styled.View`
+const ModalContainer = styled.View`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+`;
+
+const FilterContainer = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
@@ -126,4 +144,3 @@ const NoResultText = styled.Text`
   margin-top: 20px;
 `;
 
-const PlusBtn = styled.Pressable``;
