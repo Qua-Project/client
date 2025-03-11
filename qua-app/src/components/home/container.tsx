@@ -9,15 +9,16 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootParamList } from '@/src/types/type';
 import MainHeader from '../commons/MainHeader';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HEADER_HEIGHT = -50; 
 
 const HomeContainer: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'Home'>>(); 
   const [selectedTab, setSelectedTab] = useState<'DRESSER' | 'COSMETICS'>('DRESSER');
-  
-  const theme = useTheme(); 
-  
+  AsyncStorage.getItem('accessToken').then(res =>
+    console.log('Storage Token : ', res),
+  );
   return (
       <GradientBackground
         colors={

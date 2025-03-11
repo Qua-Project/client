@@ -38,14 +38,10 @@ const AppleLoginButton = () => {
       const accessToken = response.headers.authorization.split('Bearer ')[1];
 
       await AsyncStorage.setItem('accessToken', accessToken);
-      console.log('✅ 로그인 성공! 저장된 토큰:', accessToken);
       const userInfo = await getUserInfo();
-      console.log(userInfo);
       setUserInfo(userInfo);
       setLoggedIn(true);
       navigation.navigate('Nickname');
-      // console.log('Apple Credential:', credential);
-      // Alert.alert('로그인 성공!', `User: ${credential.identityToken}`);
     } catch (error) {
       console.log(error);
     }

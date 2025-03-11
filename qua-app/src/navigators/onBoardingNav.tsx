@@ -16,7 +16,7 @@ const OnBoardingNavigator = () => {
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
     >
-      {/* <Stack.Screen name="Login" component={LoginScreen} /> */}
+      <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Nickname" component={NicknameScreen} />
       <Stack.Screen name="Basic" component={BasicScreen} />
       <Stack.Screen name="SkinTypeTest" component={SkinTypeStartScreen} />
