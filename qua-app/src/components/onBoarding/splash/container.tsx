@@ -31,8 +31,8 @@ const SplashContainer: React.FC = () => {
   return (
       <GradientBackground
         colors={[
-          "#79A3FF",
           "#CDDDFF",
+          "#79A3FF",
         ]}
         start={{ x: 0, y: 0 }} 
         end={{ x: 1, y: 1  }}   

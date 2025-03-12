@@ -16,7 +16,7 @@ const SkinTypeDescriptionContainer:React.FC = () => {
       <SkinTypeDescription/>
       <SkinBalance/>
       <SkinTypeDetail/>
-      <ButtonContainer onPress={() => {navigation.replace('Home');}}>
+      <ButtonContainer onPress={() => {navigation.replace('Tab');}}>
         <ButtonText>확인</ButtonText>
       </ButtonContainer>
     </Container>

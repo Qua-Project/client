@@ -31,9 +31,11 @@ const TestSlider:React.FC = () => {
     const storageSkinType = await AsyncStorage.getItem('skinTypeResult');
     
     if ( storageSkinType == null){
-      await SkinTypeRscService().createTypeInfo(skinTypeResult);
+      const type = await SkinTypeRscService().createTypeInfo(skinTypeResult);
+      console.log(type);
     }else{
-      await SkinTypeRscService().updateTypeInfo(skinTypeResult);
+      const type = await SkinTypeRscService().updateTypeInfo(skinTypeResult);
+      console.log(type);
     }
     
     const skinType = skinTypeResult.skinType;

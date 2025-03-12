@@ -12,7 +12,7 @@ const SkinCareTipContainer:React.FC = () => {
   return (
     <Container>
       <SkincareStepNavigator steps={SKIN_CARE_STEP_TIPS} />
-      <ButtonContainer onPress={(isStart) => {navigation.replace('Home');}}>
+      <ButtonContainer onPress={(isStart) => {navigation.replace('Tab');}}>
         <ButtonText>확인</ButtonText>
       </ButtonContainer>
     </Container>
