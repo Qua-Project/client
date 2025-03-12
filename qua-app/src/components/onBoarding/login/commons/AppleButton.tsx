@@ -10,10 +10,11 @@ import axios from 'axios';
 import { BASEURL } from '../../../../shared';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootParamList } from '@/src/types/type';
+import { useAuthStore } from '@/src/shared/hooks/stores/auth';
 
 const AppleLoginButton = () => {
-  const { setLoggedIn, setUserInfo } = useUserStore();
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'Nickname'>>(); 
+  const { setLoggedIn } = useAuthStore();
   const {getUserInfo} = UserRscService();
   const handleAppleLogin = async () => {
     try {
@@ -23,9 +24,6 @@ const AppleLoginButton = () => {
           AppleAuthentication.AppleAuthenticationScope.EMAIL,
         ],
       });
-      console.log('Apple Credential:', credential);
-      
-      console.log(BASEURL);
 
       const response = await axios.create({
         baseURL: BASEURL,
@@ -34,13 +32,13 @@ const AppleLoginButton = () => {
         },
       }).get('api/user/login/apple', { params: { code: credential.identityToken }})
   
-      console.log(response.headers);
       const accessToken = response.headers.authorization.split('Bearer ')[1];
 
-      await AsyncStorage.setItem('accessToken', accessToken);
+      await setLoggedIn(accessToken); 
+      //await AsyncStorage.setItem('accessToken', accessToken);
       const userInfo = await getUserInfo();
-      setUserInfo(userInfo);
-      setLoggedIn(true);
+      console.log(userInfo);
+      
       navigation.navigate('Nickname');
     } catch (error) {
       console.log(error);

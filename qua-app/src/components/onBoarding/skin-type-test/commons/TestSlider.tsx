@@ -1,8 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ScrollView, Dimensions, View, StyleSheet, FlatList} from 'react-native';
-import SkinTypeTestCard from './SkinTypeTestCard';
-import { LinearGradient } from 'expo-linear-gradient';
-import Animated, { useAnimatedScrollHandler, useSharedValue, runOnJS} from "react-native-reanimated";
+import React, { useState, useRef } from 'react';
+import {Dimensions, FlatList} from 'react-native';
+import Animated, { useAnimatedScrollHandler, useSharedValue} from "react-native-reanimated";
 import styled from '@emotion/native';
 import { TEST_SLIDE_DATA } from '../utils/constants';
 import TestItem from './TestItem';
@@ -10,6 +8,9 @@ import { calculateSkinType } from '../utils/calculateSkinType';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootParamList } from '@/src/types/type'; 
 import { useNavigation } from '@react-navigation/native';
+import { SkinTypeRscService } from '@/src/shared/hooks/services/SkinTypeServices';
+import { useSkinTypeStore } from '@/src/shared/hooks/stores/skin-type';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const {width} = Dimensions.get('window');
 
@@ -19,15 +20,32 @@ const TestSlider:React.FC = () => {
   const [selectedOptions, setSelectedOptions] = useState<Record<number, number>>({});
   const [currentPage, setCurrentPage] = useState(0); 
   const flatListRef = useRef<FlatList>(null); 
+  const {setMingamScore, setSkinConcern, setSkinType, setSubunScore, setUbunScore} = useSkinTypeStore();
   const onScrollHandler = useAnimatedScrollHandler({
     onScroll: (e) => {
       scrollX.value = e.contentOffset.x;
     }
   });
-  const handleButtonClick = () => {
-    const skinType = calculateSkinType(selectedOptions);
-    console.log(skinType); 
-    navigation.navigate('SkinTypeResult', {skinType}); 
+  const handleButtonClick = async () => {
+    const skinTypeResult:SkinType.SkinTypeDto = calculateSkinType(selectedOptions);
+    const storageSkinType = await AsyncStorage.getItem('skinTypeResult');
+    
+    if ( storageSkinType == null){
+      await SkinTypeRscService().createTypeInfo(skinTypeResult);
+    }else{
+      await SkinTypeRscService().updateTypeInfo(skinTypeResult);
+    }
+    
+    const skinType = skinTypeResult.skinType;
+    
+    setMingamScore(skinTypeResult.mingamScore);
+    setSkinConcern(skinTypeResult.skinConcern);
+    setSkinType(skinTypeResult.skinType);
+    setSubunScore(skinTypeResult.subunScore);
+    setUbunScore(skinTypeResult.ubunScore);
+    
+    await AsyncStorage.setItem('skinTypeResult', skinTypeResult.skinType);
+    navigation.navigate('SkinTypeResult', { skinType }); 
   };
 
   const handleOptionSelect = (questionId: number, optionIndex: number) => {
@@ -35,15 +53,15 @@ const TestSlider:React.FC = () => {
       ...prev,
       [questionId]: optionIndex + 1, 
     }));
-    console.log('ques' + questionId);
+    
     if (currentPage < TEST_SLIDE_DATA.length) {
       
       setCurrentPage(questionId + 1);
       flatListRef.current?.scrollToOffset({
-        offset: questionId * width, // ✅ 다음 페이지 위치로 이동
-        animated: true, // ✅ 부드러운 스크롤
+        offset: questionId * width, 
+        animated: true, 
       });
-      console.log('curr'+currentPage);
+      
     }
   };
 
@@ -56,7 +74,7 @@ const TestSlider:React.FC = () => {
           renderItem={({item, index})=> (
             <TestItem 
               item={item} 
-              index={index} 
+              index={item.id} 
               scrollX={scrollX}
               selectedOptions={selectedOptions}
               onSelectOption={handleOptionSelect} 

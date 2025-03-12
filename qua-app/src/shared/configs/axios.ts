@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { BASEURL } from './url';
+import * as SecureStore from 'expo-secure-store';
 
 // ✅ 저장된 토큰 가져오기 (AsyncStorage 사용)
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -20,7 +21,8 @@ export const FORMAPI = axios.create({
 
 API.interceptors.request.use(
   async (config) => {
-    const token = await AsyncStorage.getItem('accessToken'); 
+    //const token = await AsyncStorage.getItem('accessToken'); 
+    const token = await SecureStore.getItemAsync('accessToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`; 
     }

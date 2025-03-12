@@ -8,6 +8,7 @@ import SkinTypeResultScreen from '../screens/onBoarding/skinTypeResult';
 import SkinTypeReportScreen from '../screens/onBoarding/skinTypeReport';
 import NicknameScreen from "../screens/onBoarding/nickname";
 import BasicScreen from "../screens/onBoarding/basic";
+import SplashScreen from '../screens/onBoarding/splash';
 
 const Stack = createStackNavigator();
 

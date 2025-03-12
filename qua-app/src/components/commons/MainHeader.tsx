@@ -1,7 +1,8 @@
 import styled from "@emotion/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import { SkinTypeRscService } from "@/src/shared/hooks/services/SkinTypeServices";
 export default function MainHeader() {
+  
   return (
     <SafeContainer>
       {/* 🔹 헤더 */}

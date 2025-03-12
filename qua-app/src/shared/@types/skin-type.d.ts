@@ -1,6 +1,6 @@
 declare namespace SkinType {
   export interface SkinTypeDto {
-    kinType: string;
+    skinType: string;
     ubunScore: number;
     subunScore: number;
     mingamScore: number;

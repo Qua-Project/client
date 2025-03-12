@@ -3,27 +3,18 @@ import styled from '@emotion/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '@emotion/react';
 import SkinTypeStartSlider from './commons/SkinTypeStartSlider'
-import SkinTypeTestSlider from './commons/SkinTypeTestSlider';
 import TestSlider from './commons/TestSlider';
-import { StyleSheet, View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
-import { UserRscService } from '@/src/shared/hooks/services/UserService';
-
 
 const SkinTypeStartContainer: React.FC = () => {
   const [activeStart, setActiveStart] = useState(false);
   const handleButtonClick = () => {
-    handleUserInfo();
     setActiveStart(true);
   };
-  const {getUserInfo} = UserRscService();
   
-  const theme = useTheme(); // 테마 값 가져오기
-  console.log(theme);
-  const handleUserInfo = async() => {
-    const userInfo = await getUserInfo();
-    console.log(userInfo);
-  }
+  const theme = useTheme(); 
+
   return (
       <GradientBackground
         colors={[

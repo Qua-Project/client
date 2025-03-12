@@ -3,15 +3,20 @@ import SkinTypeDescription from './SkinTypeDesciption';
 import SkinBalance from './SkinBalance';
 import SkinTypeDetail from './SkinTypeDetail';
 import { startStore } from '@/src/shared/hooks/stores/start';
+import { RootParamList } from '@/src/types/type';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 const SkinTypeDescriptionContainer:React.FC = () => {
   const {isStart, setStart} = startStore();
+  const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'SkinTypeReport'>>(); 
+
   return (
     <Container>
       <SkinTypeDescription/>
       <SkinBalance/>
       <SkinTypeDetail/>
-      <ButtonContainer onPress={() => {setStart(!isStart)}}>
+      <ButtonContainer onPress={() => {navigation.replace('Home');}}>
         <ButtonText>확인</ButtonText>
       </ButtonContainer>
     </Container>

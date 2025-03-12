@@ -2,13 +2,17 @@ import styled from '@emotion/native';
 import SkincareStepNavigator from './SkinCareStepNavigator';
 import { SKIN_CARE_STEP_TIPS } from '../utils/constants';
 import { startStore } from '@/src/shared/hooks/stores/start';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootParamList } from '@/src/types/type';
 
 const SkinCareTipContainer:React.FC = () => {
   const {isStart, setStart} = startStore();
+  const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'SkinTypeReport'>>(); 
   return (
     <Container>
       <SkincareStepNavigator steps={SKIN_CARE_STEP_TIPS} />
-      <ButtonContainer onPress={(isStart) => {setStart(!isStart)}}>
+      <ButtonContainer onPress={(isStart) => {navigation.replace('Home');}}>
         <ButtonText>확인</ButtonText>
       </ButtonContainer>
     </Container>

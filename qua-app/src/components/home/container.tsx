@@ -16,9 +16,7 @@ const HEADER_HEIGHT = -50;
 const HomeContainer: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'Home'>>(); 
   const [selectedTab, setSelectedTab] = useState<'DRESSER' | 'COSMETICS'>('DRESSER');
-  AsyncStorage.getItem('accessToken').then(res =>
-    console.log('Storage Token : ', res),
-  );
+  
   return (
       <GradientBackground
         colors={

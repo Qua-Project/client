@@ -12,6 +12,7 @@ import { RootParamList } from "@/src/types/type";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useUserStore } from "@/src/shared/hooks/stores/user";
 import { UserRscService } from "@/src/shared/hooks/services/UserService";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const BasicContainer:React.FC = ()=> {
   const {username, birthDate, gender, setBirthDate, setGender} = useUserStore();
@@ -43,6 +44,7 @@ const BasicContainer:React.FC = ()=> {
     try {
       const updateUserResponse = 
         await UserRscService().updateUserInfo(updateUser);
+        
       console.log("사용자 정보 업데이트 성공: ", updateUserResponse);
     }catch (error) {
       console.error("사용자 정보 업데이트 실패: ",error);
@@ -115,10 +117,10 @@ const BasicContainer:React.FC = ()=> {
           disabled={!isFormValid}
           onPress={() => {
             setBirthDate(year+"-"+month+"-"+day);
-            console.log(birthDate);
+            
             handleUserInfo(
               username,
-              birthDate,
+              year+"-"+month+"-"+day,
               gender,
             );
             navigation.navigate("SkinTypeTest");
