@@ -29,7 +29,6 @@ export const TitleComponent = ({
   const navigation = useNavigation<NavigationProps>();
 
   const handleMoveToMoreExplore = () => {
-    console.log("asdf");
     navigation.navigate("ExploreMoreScreen");
   };
 

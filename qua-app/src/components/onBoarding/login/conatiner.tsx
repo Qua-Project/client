@@ -1,69 +1,90 @@
 import React from "react";
-import { View, StyleSheet, Alert } from "react-native";
-import * as WebBrowser from "expo-web-browser";
-import { useNavigation } from "@react-navigation/native";
-import { getAccessToken, getUserInfo, getLogin } from "../../../shared/hooks/services/kakaoServices"; 
-import KakaoButton from "./commons/KakaoButton";
-import { useUserStore } from "../../../shared/hooks/stores/user"; 
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RootParamList } from "../../../types/type"; 
+import { View } from "react-native";
+import styled from "@emotion/native";
 import AppleLoginButton from "./commons/AppleButton";
-import { BASEURL } from "../../../shared";
 
-
-const KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize";
-
-type LoginScreenNavigationProp = StackNavigationProp<RootParamList, "Login">;
-
-const LoginScreen:React.FC = () => {
-  const navigation = useNavigation<LoginScreenNavigationProp>();
-  const { setLoggedIn, setUserInfo, userInfo } = useUserStore();
-
-  const handleLogin = async () => {
-    try {
-      const redirectUri = "http://localhost:8081"; // 카카오 개발자 콘솔에 등록된 Redirect URI
-      const clientId = "5cadb22bc001cbee63bdeae066eea0dc";
-
-      const authUrl = `${KAKAO_AUTH_URL}?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
-
-      // 카카오 로그인 페이지 열기
-      const result = await WebBrowser.openAuthSessionAsync(authUrl, redirectUri);
-
-      if (result.type === "success" && result.url) {
-        // Redirect URI에서 인가 코드 파싱
-        const code = new URL(result.url).searchParams.get("code");
-        if (code) {
-          console.log("Authorization Code:", code);
-
-          const accessToken = await getAccessToken(code);
-          const userInfo = await getUserInfo(accessToken);
-          getLogin(code);
-          console.log("User Info:", userInfo);
-          Alert.alert("로그인 성공", `환영합니다, ${userInfo.properties.nickname}님!`);
-        } else {
-          Alert.alert("로그인 실패", "인가 코드를 가져올 수 없습니다.");
-        }
-      }
-    } catch (error) {
-      console.error("카카오 로그인 처리 실패:", error);
-      Alert.alert("로그인 실패", "카카오 로그인 중 오류가 발생했습니다.");
-    }
-  };
-
+const LoginContainer: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <KakaoButton onPress={handleLogin} />
-      <AppleLoginButton/>
-    </View>
+    <Container>
+      <Logo source={require("@assets/Qua.png")} />
+      <View style={{ height: 143, alignItems:'center'}}>
+        <Title>나만의 맞춤형 화장대</Title>
+        <Subtitle>
+          피부 타입의 고려 유무에 따라{"\n"}같은 제품으로 다른 효과를 낼 수 있어요!{"\n"}
+          쿠아와 함께 100점 화장대를 만들어 볼까요?
+        </Subtitle>
+      </View>
+      <View style={{ marginBottom:80}}>
+        <Button bgColor="#F9E007">
+          <AppLogo source={require("@assets/kakao.png")}/>
+          <ButtonText textColor="#282828">카카오톡으로 시작하기</ButtonText>
+          <View style={{ width:25 }} />
+        </Button>
+        <AppleLoginButton/>
+      </View>
+    </Container>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
+export default LoginContainer;
 
-export default LoginScreen;
+
+const Container = styled.View`
+  flex: 1;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 0 20px;
+`;
+
+const Logo = styled.Image`
+  width: 80px;
+  height: 40px;
+  margin-top:120px;
+  resize-mode: contain;
+`;
+
+const Title = styled.Text`
+  font-size: 30px;
+  line-height: 39px;
+  font-weight: 700;
+  color: #081533;
+  margin-bottom: 32px;
+`;
+
+const Subtitle = styled.Text`
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  color: #818182;
+  line-height: 24px;
+`;
+
+const AppLogo = styled.Image`
+  width: 20px;
+  resize-mode: contain;
+`;
+
+const Button = styled.TouchableOpacity<{ bgColor: string; borderColor?: string }>`
+  position: relative;
+  flex-direction: row;
+  width: 90%;
+  padding-horizontal: 15px;
+  padding-vertical: 12px;
+  border-radius: 10px;
+  background-color: ${({ bgColor }) => bgColor};
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  border-width: ${({ borderColor }) => (borderColor ? "1px" : "0px")};
+  border-color: ${({ borderColor }) => borderColor || "transparent"};
+`;
+
+const ButtonText = styled.Text<{ textColor: string }>`
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24.5px;
+  color: ${({ textColor }) => textColor};
+`;
+

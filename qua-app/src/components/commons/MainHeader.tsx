@@ -1,14 +1,18 @@
+import { SkinTypeRscService } from "@/src/shared/hooks/services/SkinTypeServices";
 import styled from "@emotion/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 export default function MainHeader() {
+  const handle = async () => {
+    const skintype = await SkinTypeRscService().getTypeInfo();
+    console.log(skintype);
+  };
+  
   return (
     <SafeContainer>
-      {/* 🔹 헤더 */}
       <Header>
         <Logo source={require('@assets/Qua.png')} />
         <HeaderButtons>
-          <SkinTypeButton>
+          <SkinTypeButton onPress={handle}>
             <SkinTypeText>피부 타입</SkinTypeText>
           </SkinTypeButton>
           <NotificationIcon source={require('@assets/notification_icon.png')} />

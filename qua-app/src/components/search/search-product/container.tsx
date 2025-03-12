@@ -46,18 +46,17 @@ const SearchProductContainer:React.FC = () => {
     ]);
 
     setShowResults(true);
-    console.log("search: " + inputValue);
+    
   };
 
   const handleTextChange = (text:string) => {
     setInputValue(text);
     
     setShowResults(false);
-    console.log("handle change: " + debouncedQuery);
+    
   }
 
   return (
-    // <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
     <Container>
       <HeaderContainer>
         <BackButton />
@@ -119,7 +118,6 @@ const SearchProductContainer:React.FC = () => {
         />
       </>)}
     </Container>
-    // </TouchableWithoutFeedback>
   );
 }
 

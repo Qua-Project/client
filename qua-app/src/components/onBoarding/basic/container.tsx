@@ -10,9 +10,13 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { RootParamList } from "@/src/types/type";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useUserStore } from "@/src/shared/hooks/stores/user";
+import { UserRscService } from "@/src/shared/hooks/services/UserService";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const BasicContainer:React.FC = ()=> {
-  const [gender, setGender] = useState<"남성" | "여성" | "">("");
+  const {username, birthDate, gender, setBirthDate, setGender} = useUserStore();
+  const [select, setSelect] = useState<"남성" | "여성" | "기타" | "">("");
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
@@ -22,11 +26,30 @@ const BasicContainer:React.FC = ()=> {
   const dayRef = useRef<TextInput>(null);
 
   const isFormValid =
-    gender !== "" &&
+    select !== "" &&
     year.length === 4 &&
     month.length === 2 &&
     day.length === 2;
 
+  const handleUserInfo = async (
+    username: string,
+    birthDate: string,
+    gender: "MALE" | "FEMALE" | "OTHERS",
+  ) => {
+    const updateUser: User.UpdateMeRequestDto = {
+      username: username,
+      birthDate: birthDate,
+      gender: gender,
+    };
+    try {
+      const updateUserResponse = 
+        await UserRscService().updateUserInfo(updateUser);
+        
+      console.log("사용자 정보 업데이트 성공: ", updateUserResponse);
+    }catch (error) {
+      console.error("사용자 정보 업데이트 실패: ",error);
+    }
+  }
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <Container>
@@ -34,16 +57,22 @@ const BasicContainer:React.FC = ()=> {
         <Title3>성별</Title3>
         <GenderContainer>
           <GenderButton
-            isSelected={gender === "여성"}
-            onPress={() => setGender("여성")}
+            isSelected={select === "여성"}
+            onPress={() => {
+              setSelect("여성");
+              setGender("FEMALE");
+            }}
           >
-            <GenderText isSelected={gender === "여성"}>여성</GenderText>
+            <GenderText isSelected={select === "여성"}>여성</GenderText>
           </GenderButton>
           <GenderButton
-            isSelected={gender === "남성"}
-            onPress={() => setGender("남성")}
+            isSelected={select === "남성"}
+            onPress={() => {
+              setSelect("남성");
+              setGender("MALE");
+            }}
           >
-            <GenderText isSelected={gender === "남성"}>남성</GenderText>
+            <GenderText isSelected={select === "남성"}>남성</GenderText>
           </GenderButton>
         </GenderContainer>
 
@@ -86,7 +115,16 @@ const BasicContainer:React.FC = ()=> {
 
         <NextButton
           disabled={!isFormValid}
-          onPress={() => navigation.navigate("SkinTypeTest")}
+          onPress={() => {
+            setBirthDate(year+"-"+month+"-"+day);
+            
+            handleUserInfo(
+              username,
+              year+"-"+month+"-"+day,
+              gender,
+            );
+            navigation.navigate("SkinTypeTest");
+          }}
           isActive={isFormValid}
         >
           <BtnText isActive={isFormValid}>다음</BtnText>

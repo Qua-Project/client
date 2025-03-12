@@ -5,6 +5,7 @@ import { ThemeProvider } from "@emotion/react";
 import theme from "./src/themes/theme";
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import OnBoardingNavigator from "./src/navigators/onBoardingNav";
 
 const loadFonts = async () => {
   await Font.loadAsync({
@@ -31,6 +32,7 @@ export default function App() {
     <NavigationContainer>
       <ThemeProvider theme={theme}>
         <AppNavigator />
+        {/* <OnBoardingNavigator/> */}
       </ThemeProvider>
     </NavigationContainer>
   );

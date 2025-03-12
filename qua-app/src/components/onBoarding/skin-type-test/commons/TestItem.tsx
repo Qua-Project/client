@@ -46,7 +46,6 @@ const TestItem:React.FC<TestItemProps> = ({item, index, scrollX, selectedOptions
       >
         <OuterContainer>
           <QuestionContainer>
-            {/* <Question>{item.question}</Question> */}
             {item.question.split(" ").map((word, index) => (
               <Question key={`${word}-${index}`}>
                 {word}{" "}
@@ -57,18 +56,28 @@ const TestItem:React.FC<TestItemProps> = ({item, index, scrollX, selectedOptions
         </OuterContainer>
 
         <OptionContainer index={item.id}>
-          {item.options.map((option, index) => (
-            <Option 
-              key={index} 
+          {item.options.map((option, index) => {
+            let numColumns = 0;
+            if (item.id === 11){
+              numColumns = 3;
+            }else {
+              numColumns = 2;
+            }
+            const row = Math.floor(index / numColumns);
+            const col = index % numColumns;
+            const adjustedIndex = col + row * numColumns;
+            
+            return (<Option 
+              key={adjustedIndex} 
               index={item.id}
-              selected={selectedOptions[item.id] === index + 1}
-              onPress={() => onSelectOption(item.id, index)}
+              selected={selectedOptions[item.id] === adjustedIndex + 1}
+              onPress={() => {onSelectOption(item.id, adjustedIndex);}}
             >
-              <OptionText selected={selectedOptions[item.id] === index + 1}>
+              <OptionText selected={selectedOptions[item.id] === adjustedIndex + 1}>
                 {option}
               </OptionText>
-            </Option>
-          ))}
+            </Option>)
+        })}
         </OptionContainer>
       </AnimatedCardContainer>
     </Container>
@@ -131,6 +140,7 @@ const OptionText = styled.Text<{ selected: boolean }>`
 `;
 const OptionContainer = styled.View<{index: number}>`
   flex-wrap: wrap;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   height: 70%;

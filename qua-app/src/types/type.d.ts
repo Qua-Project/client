@@ -16,6 +16,7 @@ export type RootParamList = {
   Explore: undefined;
   ProductDetail: {productDetail: ProductDetail};
   ProductAnalysisReport: undefined;
+  Splash: undefined;
 };
 
 export type ProductDetail = {
