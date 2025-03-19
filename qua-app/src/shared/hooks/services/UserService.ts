@@ -6,6 +6,7 @@ export const UserRscService = () => {
   const getUserInfo = async () => {
     try {
       const response = await API.get(URI); 
+      console.log(response.data);
       return response.data as User.UserDto; 
     } catch (error) {
       console.error("사용자 정보 get:", error);

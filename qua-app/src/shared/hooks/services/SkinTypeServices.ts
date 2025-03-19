@@ -7,6 +7,7 @@ export const SkinTypeRscService = () => {
     try {
       const response = await API.get(URI); 
       
+      console.log("skintype get ", response.data);
       return response.data as SkinType.SkinTypeDto; 
     } catch (error) {
       console.error("skintype 정보 get:", error);

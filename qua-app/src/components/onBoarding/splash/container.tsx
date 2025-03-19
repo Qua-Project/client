@@ -7,22 +7,51 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootParamList } from '@/src/types/type';
 import { useAuthStore } from '@/src/shared/hooks/stores/auth';
+import { useUserStore } from "@/src/shared/hooks/stores/user";
+import { useSkinTypeStore } from '@/src/shared/hooks/stores/skin-type';
+import { UserRscService } from '@/src/shared/hooks/services/UserService';
+import { SkinTypeRscService } from '@/src/shared/hooks/services/SkinTypeServices';
 
 const SplashContainer: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'Splash'>>(); 
   
   const { checkLoginStatus } = useAuthStore();
+  const { setUsername, setGender, setBirthDate } = useUserStore();
+  const { setSkinType, setUbunScore, setSubunScore, setMingamScore, setSkinConcern } = useSkinTypeStore();
 
   useEffect(() => {
     const initialize = async () => {
-      const isLoggedIn = await checkLoginStatus(); // ✅ SecureStore에서 로그인 상태 확인
-      setTimeout(() => {
-        if (isLoggedIn) {
-          navigation.replace('Tab'); // ✅ 로그인 상태라면 메인으로 이동
-        } else {
-          navigation.replace('Login'); // ✅ 로그인 안 되어 있으면 로그인 화면으로 이동
+      const isLoggedIn = await checkLoginStatus();
+
+      if (isLoggedIn) {
+        try {
+          const userService = UserRscService();
+          const skinTypeService = SkinTypeRscService();
+
+          const userInfo = await userService.getUserInfo();
+          if (userInfo) {
+            setUsername(userInfo.username);
+            setGender(userInfo.gender);
+            setBirthDate(userInfo.birthDate);
+          }
+
+          const skinTypeInfo = await skinTypeService.getTypeInfo();
+          if (skinTypeInfo) {
+            setSkinType(skinTypeInfo.skinType);
+            setUbunScore(skinTypeInfo.ubunScore);
+            setSubunScore(skinTypeInfo.subunScore);
+            setMingamScore(skinTypeInfo.mingamScore);
+            setSkinConcern(skinTypeInfo.skinConcern);
+          }
+
+          navigation.replace("Tab");
+        } catch (error) {
+          console.error("자동 로그인 중 오류 발생:", error);
+          navigation.replace("OnBoarding");
         }
-      }, 2000);
+      } else {
+        navigation.replace("OnBoarding");
+      }
     };
 
     initialize();

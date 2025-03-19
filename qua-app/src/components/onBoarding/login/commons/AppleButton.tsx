@@ -14,7 +14,7 @@ import { useAuthStore } from '@/src/shared/hooks/stores/auth';
 import styled from '@emotion/native';
 
 const AppleLoginButton = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'Nickname'>>(); 
+  const navigation = useNavigation<NativeStackNavigationProp<RootParamList, 'Login'>>(); 
   const { setLoggedIn } = useAuthStore();
   const {getUserInfo} = UserRscService();
   const handleAppleLogin = async () => {

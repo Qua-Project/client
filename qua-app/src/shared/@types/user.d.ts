@@ -4,7 +4,7 @@ declare namespace User {
     username: string
     email: string;
     userImage: string;
-    birthDate: string;
+    birthDate: number[];
     userAge: string;
     gender: "MALE"|"FEMALE"|"OTHERS";
   }
@@ -18,7 +18,7 @@ declare namespace User {
   export interface UpdateMeResponseDto {
     username: string;
     email: string;
-    birthDate: string;
+    birthDate: number[];
     gender: "MALE"|"FEMALE"|"OTHERS";
   }
 
